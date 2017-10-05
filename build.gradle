@@ -1,0 +1,78 @@
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+archivesBaseName = 'adf-core'
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	compile fileTree(dir: new File(rootDir, 'lib'), include: '*.jar')
+	compile fileTree(dir: new File(rootDir, 'lib/util'), include: '*.jar')
+	compile fileTree(dir: new File(rootDir, 'lib/util/default'), include: '*.jar')
+	compile fileTree(dir: new File(rootDir, 'lib/rescue/core'), include: '*.jar')
+	compile fileTree(dir: new File(rootDir, 'lib/rescue/util'), include: '*.jar')
+
+	//testCompile 'junit:junit:4.11'
+}
+
+[compileJava, compileTestJava].each {
+	it.options.encoding = 'UTF-8'
+	it.options.compilerArgs += ['-source', '1.8', '-target', '1.8', '-Xlint:unchecked']
+}
+javadoc.options.encoding = 'UTF-8'
+
+jar {
+	//destinationDir = new File(projectDir, 'tactics')
+	//manifest.attributes("Main-Class", "adf.Main")
+
+	manifest {
+		attributes "Main-Class": "adf.Main"
+		attributes "Build-Timestamp": getBuildTime();
+	}
+}
+
+jar.doLast { task ->
+	ant.checksum file: task.archivePath
+}
+
+task javadocJar(type: Jar, dependsOn:javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives sourcesJar
+	archives javadocJar
+}
+
+build.mustRunAfter 'clean'
+
+task start (type: JavaExec) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = "adf.Main"
+	if (project.hasProperty('args')) {
+		args project.args.split('\\s+')
+	}
+	jvmArgs '-Xms512m', '-Xmx8g'
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.8'
+}
+
+def getBuildTime() {
+	def calender = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+	def dateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+	dateFormat.setTimeZone(calender.getTimeZone());
+	return dateFormat.format(calender.getTime());
+}
