@@ -6,6 +6,8 @@ apply plugin: 'idea'
 
 archivesBaseName = 'adf-core'
 
+def javaVersion = 1.8;
+
 repositories {
 	jcenter()
 }
@@ -22,9 +24,19 @@ dependencies {
 
 [compileJava, compileTestJava].each {
 	it.options.encoding = 'UTF-8'
-	it.options.compilerArgs += ['-source', '1.8', '-target', '1.8', '-Xlint:unchecked']
+	it.options.compilerArgs += ['-source', javaVersion,
+															'-target', javaVersion,
+															'-Xlint:unchecked']
+	if (javaVersion >= 1.9) {
+		it.options.compilerArgs += ['--add-modules', 'java.xml.bind',
+																'--add-exports', 'java.xml.bind/javax.xml.bind=ALL-UNNAMED']
+	}
 }
+
 javadoc.options.encoding = 'UTF-8'
+if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
+	javadoc.options.addStringOption('-add-modules', 'java.xml.bind');
+}
 
 jar {
 	//destinationDir = new File(projectDir, 'tactics')
@@ -67,7 +79,7 @@ task start (type: JavaExec) {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.8'
+	gradleVersion = '4.3.1'
 }
 
 def getBuildTime() {
