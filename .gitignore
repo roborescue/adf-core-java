@@ -23,3 +23,9 @@ build/*
 *.ipr
 *.iws
 .idea/
+/bin/
+
+# eclipse
+.settings
+.project
+.classpath
