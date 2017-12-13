@@ -12,6 +12,7 @@ import javax.annotation.Nullable;
 import java.awt.geom.Rectangle2D;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.lang.reflect.InvocationTargetException;
 
 import static rescuecore2.standard.entities.StandardEntityURN.*;
 
@@ -544,15 +545,15 @@ public class WorldInfo implements Iterable<StandardEntity> {
 		Class<? extends EntityListener>... otherListeners
 	) {
 		try {
-			entity.addEntityListener(listener.newInstance());
+			entity.addEntityListener(listener.getDeclaredConstructor().newInstance());
 			for (Class<? extends EntityListener> other : otherListeners) {
-				Object otherListener = other.newInstance();
+				Object otherListener = other.getDeclaredConstructor().newInstance();
 				if (otherListener instanceof EntityListener) {
 					entity.addEntityListener((EntityListener) otherListener);
 				}
 			}
-		} catch (InstantiationException | IllegalAccessException exception) {
-			exception.printStackTrace();
+		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+			e.printStackTrace();
 		}
 		this.addEntity(entity);
 	}
@@ -577,8 +578,8 @@ public class WorldInfo implements Iterable<StandardEntity> {
 	public void registerEntityListener(@Nonnull Class<? extends EntityListener> listener) {
 		for (StandardEntity entity : this.getAllEntities()) {
 			try {
-				entity.addEntityListener(listener.newInstance());
-			} catch (InstantiationException | IllegalAccessException e) {
+				entity.addEntityListener(listener.getDeclaredConstructor().newInstance());
+			} catch (InstantiationException | IllegalAccessException | NoSuchMethodException  | InvocationTargetException e) {
 				e.printStackTrace();
 			}
 		}
@@ -586,8 +587,8 @@ public class WorldInfo implements Iterable<StandardEntity> {
 
 	public void registerWorldListener(@Nonnull Class<? extends WorldModelListener<StandardEntity>> listener) {
 		try {
-			this.world.addWorldModelListener(listener.newInstance());
-		} catch (InstantiationException | IllegalAccessException e) {
+			this.world.addWorldModelListener(listener.getDeclaredConstructor().newInstance());
+		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}
@@ -623,10 +624,8 @@ public class WorldInfo implements Iterable<StandardEntity> {
 	}
 
 	/**
-	 * @deprecated Maybe, Operations requiring the WorldModel can be done directly from WorldInfo.
 	 * @return StandardWorldmodel
 	 */
-	@Deprecated
 	@Nonnull
 	public StandardWorldModel getRawWorld() {
 		return this.world;

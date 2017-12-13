@@ -16,6 +16,7 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.lang.reflect.InvocationTargetException;
 
 public class AgentLauncher {
 	private Config config;
@@ -24,11 +25,11 @@ public class AgentLauncher {
 
 	private List<Connector> connectors;
 
-	public AgentLauncher(String... args) throws ClassNotFoundException, ClassCastException, InstantiationException, IllegalAccessException {
+	public AgentLauncher(String... args) throws ClassNotFoundException, ClassCastException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		this.init(args);
 	}
 
-	private void init(String... args) throws ClassNotFoundException, ClassCastException, InstantiationException, IllegalAccessException {
+	private void init(String... args) throws ClassNotFoundException, ClassCastException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		this.initSystem();
 		this.config = ConfigInitializer.getConfig(args);
 		this.initConnector();
@@ -49,11 +50,12 @@ public class AgentLauncher {
 		Registry.SYSTEM_REGISTRY.registerPropertyFactory(StandardPropertyFactory.INSTANCE);
 	}
 
-	private void initConnector() throws ClassNotFoundException, ClassCastException, InstantiationException, IllegalAccessException {
+	@SuppressWarnings("unchecked")
+	private void initConnector() throws ClassNotFoundException, ClassCastException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		//load AbstractLoader
 		URLClassLoader classLoader = (URLClassLoader) this.getClass().getClassLoader();
 		Class c = classLoader.loadClass(this.config.getValue(ConfigKey.KEY_LOADER_CLASS));
-		this.loader = (AbstractLoader) c.newInstance();
+		this.loader = (AbstractLoader) c.getDeclaredConstructor().newInstance();
 		// set connectors
 		this.connectors = new ArrayList<>();
 		//platoon

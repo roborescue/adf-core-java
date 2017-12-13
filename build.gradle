@@ -26,7 +26,7 @@ dependencies {
 	it.options.encoding = 'UTF-8'
 	it.options.compilerArgs += ['-source', javaVersion,
 															'-target', javaVersion,
-															'-Xlint:unchecked']
+															'-Xlint:unchecked', '-Xlint:deprecation']
 	if (javaVersion >= 1.9) {
 		it.options.compilerArgs += ['--add-modules', 'java.xml.bind',
 																'--add-exports', 'java.xml.bind/javax.xml.bind=ALL-UNNAMED']
