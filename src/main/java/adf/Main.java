@@ -7,6 +7,7 @@ import adf.launcher.LaunchSupporter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.lang.reflect.InvocationTargetException;
 
 public class Main {
 	public static final String VERSION_CODE = "2.2.0";
@@ -21,7 +22,7 @@ public class Main {
 		try {
 			AgentLauncher connector = new AgentLauncher((String[]) launcherArguments.toArray(new String[0]));
 			connector.start();
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 			ConsoleOutput.out(ConsoleOutput.State.ERROR, "Loader is not found.");
 			e.printStackTrace();
 		}
