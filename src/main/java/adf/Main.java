@@ -10,7 +10,7 @@ import java.util.List;
 import java.lang.reflect.InvocationTargetException;
 
 public class Main {
-	public static final String VERSION_CODE = "2.2.0";
+	public static final String VERSION_CODE = "2.3.0";
 
 	public static void main(String... args) {
 		ConsoleOutput.version();
