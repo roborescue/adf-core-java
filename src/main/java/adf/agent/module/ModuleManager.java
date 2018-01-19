@@ -5,9 +5,11 @@ import adf.agent.develop.DevelopData;
 import adf.agent.info.AgentInfo;
 import adf.agent.info.ScenarioInfo;
 import adf.agent.info.WorldInfo;
+import adf.component.communication.ChannelSubscriber;
 import adf.component.communication.CommunicationMessage;
 import adf.component.centralized.CommandExecutor;
 import adf.component.centralized.CommandPicker;
+import adf.component.communication.MessageCoordinator;
 import adf.component.extaction.ExtAction;
 import adf.component.module.AbstractModule;
 import rescuecore2.config.NoSuchConfigOptionException;
@@ -24,6 +26,8 @@ public class ModuleManager {
 	private Map<String, ExtAction> actionMap;
 	private Map<String, CommandExecutor<CommunicationMessage>> executorMap;
 	private Map<String, CommandPicker> pickerMap;
+	private Map<String, ChannelSubscriber> channelSubscriberMap;
+	private Map<String, MessageCoordinator> messageCoordinatorMap;
 
 	private AgentInfo agentInfo;
 	private WorldInfo worldInfo;
@@ -43,6 +47,8 @@ public class ModuleManager {
 		this.actionMap = new HashMap<>();
 		this.executorMap = new HashMap<>();
 		this.pickerMap = new HashMap<>();
+		this.channelSubscriberMap = new HashMap<>(1);
+		this.messageCoordinatorMap = new HashMap<>(1);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -255,6 +261,104 @@ public class ModuleManager {
 			Constructor<CommandPicker> constructor = actionClass.getConstructor(AgentInfo.class, WorldInfo.class, ScenarioInfo.class, ModuleManager.class, DevelopData.class);
 			CommandPicker instance = constructor.newInstance(this.agentInfo, this.worldInfo, this.scenarioInfo, this, this.developData);
 			this.pickerMap.put(actionClass.getCanonicalName(), instance);
+			return instance;
+		} catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public final ChannelSubscriber getChannelSubscriber(String subscriberName, String defaultClassName) {
+		String className = subscriberName;
+		try {
+			className = this.moduleConfig.getValue(subscriberName);
+		} catch (NoSuchConfigOptionException ignored) {
+		}
+
+		try {
+			Class<?> actionClass;
+			try {
+				actionClass = Class.forName(className);
+			} catch (ClassNotFoundException | NullPointerException e) {
+				className = defaultClassName;
+				actionClass = Class.forName(className);
+			}
+
+			ChannelSubscriber instance = this.channelSubscriberMap.get(className);
+			if (instance != null) {
+				return instance;
+			}
+
+			if (ChannelSubscriber.class.isAssignableFrom(actionClass)) {
+				instance = this.getChannelSubscriber((Class<ChannelSubscriber>) actionClass);
+				this.channelSubscriberMap.put(className, instance);
+				return instance;
+			}
+		} catch (ClassNotFoundException | NullPointerException e) {
+			throw new RuntimeException(e);
+		}
+
+		throw new IllegalArgumentException("channelSubscriber name is not found : " + className);
+	}
+	@SuppressWarnings("unchecked")
+	public final ChannelSubscriber getChannelSubscriber(String subscriberName) {
+		return getChannelSubscriber(subscriberName, "");
+	}
+	@SuppressWarnings("unchecked")
+	public final ChannelSubscriber getChannelSubscriber(Class<ChannelSubscriber> subsClass) {
+		try {
+			Constructor<ChannelSubscriber> constructor = subsClass.getConstructor();
+			ChannelSubscriber instance = constructor.newInstance();
+			this.channelSubscriberMap.put(subsClass.getCanonicalName(), instance);
+			return instance;
+		} catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public final MessageCoordinator getMessageCoordinator(String coordinatorName, String defaultClassName) {
+		String className = coordinatorName;
+		try {
+			className = this.moduleConfig.getValue(coordinatorName);
+		} catch (NoSuchConfigOptionException ignored) {
+		}
+
+		try {
+			Class<?> actionClass;
+			try {
+				actionClass = Class.forName(className);
+			} catch (ClassNotFoundException | NullPointerException e) {
+				className = defaultClassName;
+				actionClass = Class.forName(className);
+			}
+
+			MessageCoordinator instance = this.messageCoordinatorMap.get(className);
+			if (instance != null) {
+				return instance;
+			}
+
+			if (MessageCoordinator.class.isAssignableFrom(actionClass)) {
+				instance = this.getMessageCoordinator((Class<MessageCoordinator>) actionClass);
+				this.messageCoordinatorMap.put(className, instance);
+				return instance;
+			}
+		} catch (ClassNotFoundException | NullPointerException e) {
+			throw new RuntimeException(e);
+		}
+
+		throw new IllegalArgumentException("channelSubscriber name is not found : " + className);
+	}
+	@SuppressWarnings("unchecked")
+	public final MessageCoordinator getMessageCoordinator(String coordinatorName) {
+		return getMessageCoordinator(coordinatorName, "");
+	}
+	@SuppressWarnings("unchecked")
+	public final MessageCoordinator getMessageCoordinator(Class<MessageCoordinator> subsClass) {
+		try {
+			Constructor<MessageCoordinator> constructor = subsClass.getConstructor();
+			MessageCoordinator instance = constructor.newInstance();
+			this.messageCoordinatorMap.put(subsClass.getCanonicalName(), instance);
 			return instance;
 		} catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
 			throw new RuntimeException(e);

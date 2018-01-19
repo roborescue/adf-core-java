@@ -145,6 +145,14 @@ public class ScenarioInfo {
 		return config.getIntValue("comms.channels.count");
 	}
 
+	public int getCommsChannelBandwidth(int channel) {
+		if (channel < getCommsChannelsCount()) {
+			return config.getIntValue("comms.channels."+channel+".bandwidth");
+		} else {
+			return 0;
+		}
+	}
+
 	@Nullable
 	public String getKernelPerception() {
 		return config.getValue("kernel.perception");

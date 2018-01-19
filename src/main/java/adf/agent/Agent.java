@@ -135,6 +135,7 @@ public abstract class Agent<E extends StandardEntity> extends AbstractAgent<Stan
 		this.agentInfo.recordThinkStartTime();
 		this.agentInfo.setTime(time);
 
+
 		if (1 == time) {
 			if (this.communicationModule != null) {
 				ConsoleOutput.out(ConsoleOutput.State.ERROR, "[ERROR ] Loader is not found.");
@@ -146,8 +147,17 @@ public abstract class Agent<E extends StandardEntity> extends AbstractAgent<Stan
 			this.messageManager.registerMessageBundle(new StandardMessageBundle());
 		}
 
-		if (time <= this.ignoreTime) {
-			super.send(new AKSubscribe(this.getID(), time, 1));
+		// agents can subscribe after ignore time
+		if (time >= ignoreTime) {
+			this.messageManager.subscribe(this.agentInfo, this.worldInfo, this.scenarioInfo);
+
+			if (!this.messageManager.getIsSubscribed()) {
+				int[] channelsToSubscribe = this.messageManager.getChannels();
+				if (channelsToSubscribe != null) {
+					super.send(new AKSubscribe(this.getID(), time, channelsToSubscribe));
+					this.messageManager.setIsSubscribed(true);
+				}
+			}
 		}
 
 		this.agentInfo.setHeard(heard);
