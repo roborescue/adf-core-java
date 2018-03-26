@@ -18,13 +18,12 @@ import javax.annotation.Nonnull;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 public class StandardCommunicationModule extends CommunicationModule {
 	final private int ESCAPE_CHAR = 0x41;
 	final private int SIZE_ID = 5;
 	final private int SIZE_TTL = 3;
-
-	private int channel = 1;
 
 	@Override
 	public void receive(@Nonnull Agent agent, @Nonnull MessageManager messageManager) {
@@ -105,52 +104,54 @@ public class StandardCommunicationModule extends CommunicationModule {
 	public void send(@Nonnull Agent agent, @Nonnull MessageManager messageManager) {
 		final int voiceLimitBytes = agent.scenarioInfo.getVoiceMessagesSize();
 		int voiceMessageLeft = voiceLimitBytes;
-		//BitOutputStream voiceMessageStream = new BitOutputStream();
 		ByteArrayOutputStream voiceMessageStream = new ByteArrayOutputStream();
 
 		Message[] messages = new Message[1];
 
-		for (CommunicationMessage message : messageManager.getSendMessageList()) {
-			int messageClassIndex = messageManager.getMessageClassIndex(message);
+		List<List<CommunicationMessage>> sendMessageList = messageManager.getSendMessageList();
+		for (int channel = 0; channel < sendMessageList.size(); channel++) {
+			for (CommunicationMessage message : sendMessageList.get(channel)) {
+				int messageClassIndex = messageManager.getMessageClassIndex(message);
 
-			BitOutputStream bitOutputStream = new BitOutputStream();
-			bitOutputStream.writeBits(messageClassIndex, SIZE_ID);
+				BitOutputStream bitOutputStream = new BitOutputStream();
+				bitOutputStream.writeBits(messageClassIndex, SIZE_ID);
 
-			if (!message.isRadio()) {
-				bitOutputStream.writeBits(((StandardMessage) message).getTTL(), SIZE_TTL);
-			}
+				if (channel == 0) {
+					bitOutputStream.writeBits(((StandardMessage) message).getTTL(), SIZE_TTL);
+				}
 
-			bitOutputStream.writeBits(message.toBitOutputStream());
+				bitOutputStream.writeBits(message.toBitOutputStream());
 
-			if (message.isRadio()) {
-				messages[0] = new AKSpeak(agent.getID(), agent.agentInfo.getTime(), channel, bitOutputStream.toByteArray());
-				agent.send(messages);
-			} else {
-				int messageSize = (int) Math.ceil(((double) bitOutputStream.size()) / 8.0);
-				if (messageSize <= voiceMessageLeft) {
-					byte[] messageData = bitOutputStream.toByteArray();
-					ByteArrayOutputStream escapedMessage = new ByteArrayOutputStream();
-					for (int i = 0; i < messageSize; i++) {
-						if (messageData[i] == ESCAPE_CHAR) {
-							escapedMessage.write(ESCAPE_CHAR);
+				if (channel > 0) {
+					messages[0] = new AKSpeak(agent.getID(), agent.agentInfo.getTime(), channel, bitOutputStream.toByteArray());
+					agent.send(messages);
+				} else {
+					// voice channel
+					int messageSize = (int) Math.ceil(((double) bitOutputStream.size()) / 8.0);
+					if (messageSize <= voiceMessageLeft) {
+						byte[] messageData = bitOutputStream.toByteArray();
+						ByteArrayOutputStream escapedMessage = new ByteArrayOutputStream();
+						for (int i = 0; i < messageSize; i++) {
+							if (messageData[i] == ESCAPE_CHAR) {
+								escapedMessage.write(ESCAPE_CHAR);
+							}
+							escapedMessage.write(messageData[i]);
 						}
-						escapedMessage.write(messageData[i]);
-					}
-					escapedMessage.toByteArray();
-					escapedMessage.write(ESCAPE_CHAR);
-					if (escapedMessage.size() <= voiceMessageLeft) {
-						voiceMessageLeft -= escapedMessage.size();
-						try {
-							voiceMessageStream.write(escapedMessage.toByteArray());
-						} catch (IOException e) {
-							e.printStackTrace();
+						escapedMessage.toByteArray();
+						escapedMessage.write(ESCAPE_CHAR);
+						if (escapedMessage.size() <= voiceMessageLeft) {
+							voiceMessageLeft -= escapedMessage.size();
+							try {
+								voiceMessageStream.write(escapedMessage.toByteArray());
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}
 			}
 		}
 
-		//messages[0] = new AKSay(agent.getID(), agent.agentInfo.getTime(), voiceMessageStream.toByteArray());
 		if (voiceMessageStream.size() > 0) {
 			messages[0] = new AKSpeak(agent.getID(), agent.agentInfo.getTime(), 0, voiceMessageStream.toByteArray());
 			agent.send(messages);

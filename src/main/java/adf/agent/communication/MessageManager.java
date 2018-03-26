@@ -4,6 +4,7 @@ import adf.agent.communication.standard.bundle.StandardMessageBundle;
 import adf.agent.info.AgentInfo;
 import adf.agent.info.ScenarioInfo;
 import adf.agent.info.WorldInfo;
+import adf.component.communication.ChannelSubscriber;
 import adf.component.communication.CommunicationMessage;
 import adf.component.communication.MessageBundle;
 import adf.component.communication.MessageCoordinator;
@@ -19,11 +20,16 @@ public class MessageManager {
 	private HashMap<Integer, Class<? extends CommunicationMessage>> messageClassMap;
 	private HashMap<Class<? extends CommunicationMessage>, Integer> messageClassIDMap;
 	private ArrayList<CommunicationMessage> sendMessageList;
+	private List<List<CommunicationMessage>> channelSendMessageList;
 	private List<CommunicationMessage> receivedMessageList;
 	private int heardAgentHelpCount;
-	private List<MessageCoordinator> messageCoordinatorList;
+	private MessageCoordinator messageCoordinator;
 
 	private Set<String> checkDuplicationCache;
+
+	private ChannelSubscriber channelSubscriber;
+	private int[] subscribedChannels;
+	private boolean isSubscribed;
 
 	public MessageManager() {
 		this.standardMessageClassCount = 1;    // 00001
@@ -31,10 +37,46 @@ public class MessageManager {
 		this.messageClassMap = new HashMap<>(32);
 		this.messageClassIDMap = new HashMap<>(32);
 		this.sendMessageList = new ArrayList<>();
+		this.channelSendMessageList = new ArrayList<>();
 		this.checkDuplicationCache = new HashSet<>();
 		this.receivedMessageList = new ArrayList<>();
 		this.heardAgentHelpCount = 0;
-		this.messageCoordinatorList = new ArrayList<>();
+
+		this.messageCoordinator = null;
+
+		channelSubscriber = null;
+		subscribedChannels = new int[1];
+		// by default subscribe to channel 1
+		subscribedChannels[0] = 1;
+		isSubscribed = false;
+	}
+
+	public void subscribeToChannels(int[] channels) {
+		subscribedChannels = channels;
+		isSubscribed = false;
+	}
+	public int[] getChannels() {
+		return subscribedChannels;
+	}
+	public boolean getIsSubscribed() {
+		return isSubscribed;
+	}
+	public void setIsSubscribed(boolean subscribed) {
+		isSubscribed = subscribed;
+	}
+
+	public void setMessageCoordinator(MessageCoordinator mc) {
+		this.messageCoordinator = mc;
+	}
+
+	public void setChannelSubscriber(ChannelSubscriber cs) {
+		channelSubscriber = cs;
+	}
+
+	public void subscribe(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo) {
+		if (channelSubscriber != null) {
+			channelSubscriber.subscribe(agentInfo, worldInfo, scenarioInfo, this);
+		}
 	}
 
 	public boolean registerMessageClass(int index, @Nonnull Class<? extends CommunicationMessage> messageClass) {
@@ -65,11 +107,6 @@ public class MessageManager {
 				(messageBundle.getClass().equals(StandardMessageBundle.class) ?
 					standardMessageClassCount++ : customMessageClassCount++),
 				messageClass);
-		}
-
-		MessageCoordinator messageCoordinator = messageBundle.getMessageCoordinator();
-		if (messageCoordinator != null) {
-			messageCoordinatorList.add(messageCoordinator);
 		}
 	}
 
@@ -110,8 +147,8 @@ public class MessageManager {
 	}
 
 	@Nonnull
-	public List<CommunicationMessage> getSendMessageList() {
-		return this.sendMessageList;
+	public List<List<CommunicationMessage>> getSendMessageList() {
+		return this.channelSendMessageList;
 	}
 
 	public void addReceivedMessage(@Nonnull CommunicationMessage message) {
@@ -136,9 +173,14 @@ public class MessageManager {
 	}
 
 	public void coordinateMessages(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo) {
-		for (int index = (this.messageCoordinatorList.size() - 1); 0 <= index; index--) {
-			MessageCoordinator coordinator = this.messageCoordinatorList.get(index);
-			coordinator.coordinate(agentInfo, worldInfo, scenarioInfo, this, this.sendMessageList);
+		// create a list of messages for every channel including the voice comm channel
+		this.channelSendMessageList = new ArrayList<List<CommunicationMessage>>(scenarioInfo.getCommsChannelsCount());
+		for (int i = 0; i < scenarioInfo.getCommsChannelsCount(); i++) {
+			this.channelSendMessageList.add(new ArrayList<CommunicationMessage>());
+		}
+
+		if (messageCoordinator != null) {
+			messageCoordinator.coordinate(agentInfo, worldInfo, scenarioInfo, this, this.sendMessageList, this.channelSendMessageList);
 		}
 	}
 

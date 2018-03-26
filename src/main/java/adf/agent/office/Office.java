@@ -24,6 +24,8 @@ public abstract class Office<E extends StandardEntity> extends Agent<E> {
 
 		this.agentInfo = new AgentInfo(this, model);
 		this.moduleManager = new ModuleManager(this.agentInfo, this.worldInfo, this.scenarioInfo, this.moduleConfig, this.developData);
+		this.messageManager.setChannelSubscriber(moduleManager.getChannelSubscriber("MessageManager.CenterChannelSubscriber", "adf.component.communication.ChannelSubscriber"));
+		this.messageManager.setMessageCoordinator(moduleManager.getMessageCoordinator("MessageManager.CenterMessageCoordinator", "adf.agent.communication.standard.bundle.StandardMessageCoordinator"));
 
 		rootTacticsCenter.initialize(this.agentInfo, this.worldInfo, this.scenarioInfo, this.moduleManager, this.messageManager, this.developData);
 

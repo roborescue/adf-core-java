@@ -26,6 +26,8 @@ public abstract class Platoon<E extends StandardEntity> extends Agent<E> {
 
 		this.agentInfo = new AgentInfo(this, this.model);
 		this.moduleManager = new ModuleManager(this.agentInfo, this.worldInfo, this.scenarioInfo, this.moduleConfig, this.developData);
+		this.messageManager.setChannelSubscriber(moduleManager.getChannelSubscriber("MessageManager.PlatoonChannelSubscriber", "adf.component.communication.ChannelSubscriber"));
+		this.messageManager.setMessageCoordinator(moduleManager.getMessageCoordinator("MessageManager.PlatoonMessageCoordinator", "adf.agent.communication.standard.bundle.StandardMessageCoordinator"));
 
 		this.rootTactics.initialize(this.agentInfo, this.worldInfo, this.scenarioInfo, this.moduleManager, this.messageManager, this.developData);
 
