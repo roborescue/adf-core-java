@@ -175,7 +175,7 @@ public class ScenarioInfo {
 	}
 
 	public int getFireTankRefillRate() {
-		return this.config.getIntValue("fire.tank.refill-rate", 500);
+		return this.config.getIntValue("fire.tank.refill_rate", 500);
 	}
 
 	public int getKernelTimesteps() {
