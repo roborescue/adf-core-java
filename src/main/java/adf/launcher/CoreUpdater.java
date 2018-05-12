@@ -8,9 +8,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 public class CoreUpdater {
-	private final String CORE_URL = "https://raw.githubusercontent.com/roborescue/rcrs-adf/jar/build/libs/adf-core.jar";
-	private final String COREMD5_URL = "https://raw.githubusercontent.com/roborescue/rcrs-adf/jar/build/libs/adf-core.jar.MD5";
-	private final String CORESRC_URL = "https://raw.githubusercontent.com/roborescue/rcrs-adf/jar/build/libs/adf-core-sources.jar";
+	private final String CORE_URL = "https://raw.githubusercontent.com/roborescue/rcrs-adf-core/jar/build/libs/adf-core.jar";
+	private final String COREMD5_URL = "https://raw.githubusercontent.com/roborescue/rcrs-adf-core/jar/build/libs/adf-core.jar.MD5";
+	private final String CORESRC_URL = "https://raw.githubusercontent.com/roborescue/rcrs-adf-core/jar/build/libs/adf-core-sources.jar";
 	private final String SOURCES_DIR = "sources";
 	private final String SOURCES_FILE = "adf-core-sources.jar";
 
