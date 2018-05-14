@@ -53,7 +53,7 @@ public class AgentLauncher {
 	@SuppressWarnings("unchecked")
 	private void initConnector() throws ClassNotFoundException, ClassCastException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		//load AbstractLoader
-		URLClassLoader classLoader = (URLClassLoader) this.getClass().getClassLoader();
+		ClassLoader classLoader = (ClassLoader) this.getClass().getClassLoader();
 		Class c = classLoader.loadClass(this.config.getValue(ConfigKey.KEY_LOADER_CLASS));
 		this.loader = (AbstractLoader) c.getDeclaredConstructor().newInstance();
 		// set connectors

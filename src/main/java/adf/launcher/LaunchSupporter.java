@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 public class LaunchSupporter
 {
+	private final String OPTION_MAKELAUNCHER = "-makelauncher";
 	private final String OPTION_MAKESCRIPTS = "-makescripts";
 	private final String OPTION_COMPILE = "-compile";
 	private final String OPTION_JAVAHOME = "-javahome";
@@ -85,16 +86,24 @@ public class LaunchSupporter
 			removeOption(args, OPTION_COMPILE);
 			compileAgent(compilerJavaHome);
 			//args.add(OPTION_AUTOCLASSPATH);
-			args.add(OPTION_CHECK);
+			args.add(OPTION_MAKELAUNCHER);
+			//args.add(OPTION_CHECK);
 			worked = true;
 		}
 
 		if (args.contains(OPTION_MAKESCRIPTS))
 		{
-			makeLauncherScript(compilerJavaHome);
 			makeScript(compilerJavaHome, "compile", "-compile");
-			makeScript(compilerJavaHome, "precompute", "-t", "$1:$2:$3:$4:$5:$6", "-h", "$7", "-pre", "true");
-			makeScript(compilerJavaHome, "start", "-t", "$1:$2:$3:$4:$5:$6", "-h", "$7");
+			makeScript(compilerJavaHome, "precompute", "adf.sample.SampleLoader", "-t", "$1,$2,$3,$4,$5,$6", "-h", "$7", "-pre", "true");
+			makeScript(compilerJavaHome, "start", "adf.sample.SampleLoader", "-t", "$1,$2,$3,$4,$5,$6", "-h", "$7");
+			args.add(OPTION_MAKELAUNCHER);
+			worked = true;
+		}
+
+		if (args.contains(OPTION_MAKELAUNCHER))
+		{
+			removeOption(args, OPTION_MAKELAUNCHER);
+			makeLauncherScript(compilerJavaHome);
 			worked = true;
 		}
 
@@ -136,12 +145,13 @@ public class LaunchSupporter
 	private void printOptionList()
 	{
 		System.out.println("* Please run following command when you update librarys.");
-		System.out.println("java -jar library/rescue/adf/adf-core.jar -makescripts");
+		System.out.println("java -jar library/rescue/adf/adf-core.jar -makelauncher");
 		System.out.println("");
 		System.out.println("");
 		System.out.println("./launcher.sh {Options}");
 		System.out.println("Options:");
-		System.out.println("-makescripts\t\t\t\tmake utility scripts(launcher.sh, etc.)");
+		System.out.println("-makescripts\t\t\t\tmake launcher.sh");
+		System.out.println("-makescripts\t\t\t\tmake utility scripts(start.sh, etc.)");
 		System.out.println("-t [FB],[FS],[PF],[PO],[AT],[AC]\tnumber of agents");
 		System.out.println("-fb [FB]\t\t\t\tnumber of FireBrigade");
 		System.out.println("-fs [FS]\t\t\t\tnumber of FireStation");
