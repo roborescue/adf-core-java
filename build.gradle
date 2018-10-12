@@ -9,82 +9,88 @@ archivesBaseName = 'adf-core'
 def javaVersion = 1.8;
 
 repositories {
-	jcenter()
+  jcenter()
 }
 
 dependencies {
-	compile fileTree(dir: new File(rootDir, 'lib'), include: '*.jar')
-	compile fileTree(dir: new File(rootDir, 'lib/util'), include: '*.jar')
-	compile fileTree(dir: new File(rootDir, 'lib/util/default'), include: '*.jar')
-	compile fileTree(dir: new File(rootDir, 'lib/rescue/core'), include: '*.jar')
-	compile fileTree(dir: new File(rootDir, 'lib/rescue/util'), include: '*.jar')
+  compile fileTree(dir: new File(rootDir, 'lib'), include: '*.jar')
+  compile fileTree(dir: new File(rootDir, 'lib/util'), include: '*.jar')
+  compile fileTree(dir: new File(rootDir, 'lib/util/default'), include: '*.jar')
+  compile fileTree(dir: new File(rootDir, 'lib/rescue/core'), include: '*.jar')
+  compile fileTree(dir: new File(rootDir, 'lib/rescue/util'), include: '*.jar')
+  if (JavaVersion.current() == JavaVersion.VERSION_11) {
+    compile 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+    compile 'com.sun.xml.bind:jaxb-core:2.3.0.1'
+    compile 'com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438'
+    compile 'javax.activation:activation:1.1.1'
+  }
 
-	//testCompile 'junit:junit:4.11'
+  //testCompile 'junit:junit:4.11'
 }
 
 [compileJava, compileTestJava].each {
-	it.options.encoding = 'UTF-8'
-	it.options.compilerArgs += ['-source', javaVersion,
-															'-target', javaVersion,
-															'-Xlint:unchecked', '-Xlint:deprecation']
-	if (javaVersion >= 1.9) {
-		it.options.compilerArgs += ['--add-modules', 'java.xml.bind',
-																'--add-exports', 'java.xml.bind/javax.xml.bind=ALL-UNNAMED']
-	}
+  it.options.encoding = 'UTF-8'
+  it.options.compilerArgs += ['-source', javaVersion,
+                              '-target', javaVersion,
+                              '-Xlint:unchecked', '-Xlint:deprecation']
+  if (javaVersion == 1.9) {
+    it.options.compilerArgs += ['--add-modules', 'java.xml.bind',
+                                '--add-exports', 'java.xml.bind/javax.xml.bind=ALL-UNNAMED']
+  }
 }
 
 javadoc.options.encoding = 'UTF-8'
-if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
-	javadoc.options.addStringOption('-add-modules', 'java.xml.bind');
+if (JavaVersion.current() == JavaVersion.VERSION_1_9) {
+  javadoc.options.addStringOption('-add-modules', 'java.xml.bind');
 }
 
 jar {
-	//destinationDir = new File(projectDir, 'tactics')
-	//manifest.attributes("Main-Class", "adf.Main")
+  //destinationDir = new File(projectDir, 'tactics')
+  //manifest.attributes("Main-Class", "adf.Main")
 
-	manifest {
-		attributes "Main-Class": "adf.Main"
-		attributes "Build-Timestamp": getBuildTime();
-	}
+  manifest {
+    attributes "Main-Class": "adf.Main"
+    attributes "Build-Timestamp": getBuildTime();
+  }
 }
 
 jar.doLast { task ->
-	ant.checksum file: task.archivePath
+  ant.checksum file: task.archivePath
 }
 
 task javadocJar(type: Jar, dependsOn:javadoc) {
-	classifier = 'javadoc'
-	from javadoc.destinationDir
+  classifier = 'javadoc'
+  from javadoc.destinationDir
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = 'sources'
-	from sourceSets.main.allSource
+  classifier = 'sources'
+  from sourceSets.main.allSource
 }
 
 artifacts {
-	archives sourcesJar
-	archives javadocJar
+  archives sourcesJar
+  archives javadocJar
 }
 
 build.mustRunAfter 'clean'
 
 task start (type: JavaExec) {
-	classpath = sourceSets.main.runtimeClasspath
-	main = "adf.Main"
-	if (project.hasProperty('args')) {
-		args project.args.split('\\s+')
-	}
-	jvmArgs '-Xms512m', '-Xmx8g'
+  classpath = sourceSets.main.runtimeClasspath
+  main = "adf.Main"
+  if (project.hasProperty('args')) {
+    args project.args.split('\\s+')
+  }
+  jvmArgs '-Xms512m', '-Xmx8g'
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '4.3.1'
+  gradleVersion = '4.3.1'
 }
 
 def getBuildTime() {
-	def calender = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-	def dateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
-	dateFormat.setTimeZone(calender.getTimeZone());
-	return dateFormat.format(calender.getTime());
+  def calender = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+  def dateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+  dateFormat.setTimeZone(calender.getTimeZone());
+  return dateFormat.format(calender.getTime());
 }
