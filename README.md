@@ -1,6 +1,6 @@
-# `rcrs-adf-core` RCRS Agent Development Framework
+# `rcrs-adf-core` RCRS Agent Development Framework (Core)
 
-(Linux) Instructions to download, compile and install the core of the Agent Development Framework (ADF)
+(Linux) Instructions to download and build the core of the Agent Development Framework (ADF)
 
 ## 1. Software Pre-Requisites
 
@@ -8,7 +8,7 @@
 - Gradle
 - OpenJDK Java 8+
 
-## 2. Download project from GitHub
+## 2. Download
 
 ```bash
 

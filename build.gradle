@@ -1,41 +1,42 @@
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+plugins {
+  id 'java-library'
+  id 'idea'
+}
 
-apply plugin: 'java'
-apply plugin: 'idea'
-
-archivesBaseName = 'adf-core'
-
-def javaVersion = 1.8;
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+version = '2.3.0'
 
 repositories {
   jcenter()
 }
 
+def getDateTime() {
+    new Date().format('yyyyMMddHHmmss',TimeZone.getTimeZone('UTC'))
+}
+
 dependencies {
-  compile fileTree(dir: new File(rootDir, 'lib'), include: '*.jar')
-  compile fileTree(dir: new File(rootDir, 'lib/util'), include: '*.jar')
-  compile fileTree(dir: new File(rootDir, 'lib/util/default'), include: '*.jar')
-  compile fileTree(dir: new File(rootDir, 'lib/rescue/core'), include: '*.jar')
-  compile fileTree(dir: new File(rootDir, 'lib/rescue/util'), include: '*.jar')
+  implementation fileTree(dir: new File(rootDir, 'lib'), include: '*.jar')
+  implementation fileTree(dir: new File(rootDir, 'lib/util'), include: '*.jar')
+  implementation fileTree(dir: new File(rootDir, 'lib/util/default'), include: '*.jar')
+  implementation fileTree(dir: new File(rootDir, 'lib/rescue/core'), include: '*.jar')
+
   if (JavaVersion.current() == JavaVersion.VERSION_11) {
-    compile 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
-    compile 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    compile 'com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438'
-    compile 'javax.activation:activation:1.1.1'
+    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+    implementation 'com.sun.xml.bind:jaxb-core:2.3.0.1'
+    implementation 'com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438'
+    implementation 'javax.activation:activation:1.1.1'
   }
 
-  //testCompile 'junit:junit:4.11'
+  testImplementation 'junit:junit:4.12'
 }
 
 [compileJava, compileTestJava].each {
   it.options.encoding = 'UTF-8'
-  it.options.compilerArgs += ['-source', javaVersion,
-                              '-target', javaVersion,
-                              '-Xlint:unchecked', '-Xlint:deprecation']
-  if (javaVersion == 1.9) {
-    it.options.compilerArgs += ['--add-modules', 'java.xml.bind',
-                                '--add-exports', 'java.xml.bind/javax.xml.bind=ALL-UNNAMED']
+  it.options.compilerArgs += [ '-Xlint:unchecked', '-Xlint:deprecation' ]
+  if (JavaVersion.current() == JavaVersion.VERSION_1_9) {
+    it.options.compilerArgs += [ '--add-modules', 'java.xml.bind',
+                                 '--add-exports','java.xml.bind/javax.xml.bind=ALL-UNNAMED' ]
   }
 }
 
@@ -45,13 +46,11 @@ if (JavaVersion.current() == JavaVersion.VERSION_1_9) {
 }
 
 jar {
-  //destinationDir = new File(projectDir, 'tactics')
-  //manifest.attributes("Main-Class", "adf.Main")
-
   manifest {
     attributes "Main-Class": "adf.Main"
-    attributes "Build-Timestamp": getBuildTime();
+    attributes "Build-Timestamp": getDateTime();
   }
+  archiveName = 'adf-core.jar'
 }
 
 jar.doLast { task ->
@@ -61,11 +60,13 @@ jar.doLast { task ->
 task javadocJar(type: Jar, dependsOn:javadoc) {
   classifier = 'javadoc'
   from javadoc.destinationDir
+  archiveName = 'adf-core-javadoc.jar'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
   classifier = 'sources'
   from sourceSets.main.allSource
+  archiveName = 'adf-core-sources.jar'
 }
 
 artifacts {
@@ -82,15 +83,4 @@ task start (type: JavaExec) {
     args project.args.split('\\s+')
   }
   jvmArgs '-Xms512m', '-Xmx8g'
-}
-
-task wrapper(type: Wrapper) {
-  gradleVersion = '4.3.1'
-}
-
-def getBuildTime() {
-  def calender = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-  def dateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
-  dateFormat.setTimeZone(calender.getTimeZone());
-  return dateFormat.format(calender.getTime());
 }
