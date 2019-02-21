@@ -11,8 +11,8 @@ build
 *.iml
 *.ipr
 *.iws
-.idea/
-/bin/
+.idea
+bin
 
 # Eclipse
 .settings

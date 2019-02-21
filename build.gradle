@@ -1,6 +1,5 @@
 plugins {
   id 'java-library'
-  id 'idea'
 }
 
 sourceCompatibility = '1.8'
@@ -12,7 +11,7 @@ repositories {
 }
 
 def getDateTime() {
-    new Date().format('yyyyMMddHHmmss',TimeZone.getTimeZone('UTC'))
+  new Date().format('yyyyMMddHHmmss',TimeZone.getTimeZone('UTC'))
 }
 
 dependencies {
@@ -21,12 +20,10 @@ dependencies {
   implementation fileTree(dir: new File(rootDir, 'lib/util/default'), include: '*.jar')
   implementation fileTree(dir: new File(rootDir, 'lib/rescue/core'), include: '*.jar')
 
-  if (JavaVersion.current() == JavaVersion.VERSION_11) {
-    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
-    implementation 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    implementation 'com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438'
-    implementation 'javax.activation:activation:1.1.1'
-  }
+  implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+  implementation 'com.sun.xml.bind:jaxb-core:2.3.0.1'
+  implementation 'com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438'
+  implementation 'javax.activation:activation:1.1.1'
 
   testImplementation 'junit:junit:4.12'
 }
@@ -43,6 +40,10 @@ dependencies {
 javadoc.options.encoding = 'UTF-8'
 if (JavaVersion.current() == JavaVersion.VERSION_1_9) {
   javadoc.options.addStringOption('-add-modules', 'java.xml.bind');
+}
+
+test {
+  useJUnit()
 }
 
 jar {
