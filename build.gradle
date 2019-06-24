@@ -10,6 +10,14 @@ repositories {
   jcenter()
 }
 
+sourceSets {
+  main {
+    java {
+      srcDirs = [ 'src/main/java/adf' ]
+    }
+  }
+}
+
 def getDateTime() {
   new Date().format('yyyyMMddHHmmss',TimeZone.getTimeZone('UTC'))
 }
