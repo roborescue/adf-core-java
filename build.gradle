@@ -59,7 +59,7 @@ jar {
     attributes "Main-Class": "adf.Main"
     attributes "Build-Timestamp": getDateTime();
   }
-  archiveName = 'adf-core.jar'
+  archiveFileName = 'adf-core.jar'
 }
 
 jar.doLast { task ->
@@ -69,13 +69,13 @@ jar.doLast { task ->
 task javadocJar(type: Jar, dependsOn:javadoc) {
   classifier = 'javadoc'
   from javadoc.destinationDir
-  archiveName = 'adf-core-javadoc.jar'
+  archiveFileName = 'adf-core-javadoc.jar'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
   classifier = 'sources'
   from sourceSets.main.allSource
-  archiveName = 'adf-core-sources.jar'
+  archiveFileName = 'adf-core-sources.jar'
 }
 
 artifacts {
