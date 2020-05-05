@@ -165,9 +165,11 @@ public class MessageManager {
 	public final List<CommunicationMessage> getReceivedMessageList(Class<? extends CommunicationMessage>... messageClasses) {
 		List<CommunicationMessage> resultList = new ArrayList<>();
 		for (CommunicationMessage message : this.receivedMessageList) {
-			if (Arrays.asList(messageClasses).contains(message.getClass())) {
-				resultList.add(message);
-			}
+		    for (Class<? extends CommunicationMessage> messageClass : messageClasses) {
+		        if (messageClass.isAssignableFrom(message.getClass())) {
+		            resultList.add(message);
+                }
+            }
 		}
 		return resultList;
 	}
