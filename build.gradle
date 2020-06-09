@@ -10,23 +10,12 @@ repositories {
   jcenter()
 }
 
-sourceSets {
-  main {
-    java {
-      srcDirs = [ 'src/main/java/adf' ]
-    }
-  }
-}
-
 def getDateTime() {
   new Date().format('yyyyMMddHHmmss',TimeZone.getTimeZone('UTC'))
 }
 
 dependencies {
-  implementation fileTree(dir: new File(rootDir, 'lib'), include: '*.jar')
-  implementation fileTree(dir: new File(rootDir, 'lib/util'), include: '*.jar')
-  implementation fileTree(dir: new File(rootDir, 'lib/util/default'), include: '*.jar')
-  implementation fileTree(dir: new File(rootDir, 'lib/rescue/core'), include: '*.jar')
+  implementation fileTree(dir: new File(rootDir, 'lib'), include: '**/*.jar', exclude: '**/*-sources.jar')
 
   implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
   implementation 'com.sun.xml.bind:jaxb-core:2.3.0.1'
@@ -52,6 +41,10 @@ if (JavaVersion.current() == JavaVersion.VERSION_1_9) {
 
 test {
   useJUnit()
+}
+
+clean.doFirst {
+  delete file( new File( rootDir, 'bin' ) )
 }
 
 jar {
