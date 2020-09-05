@@ -33,7 +33,7 @@ public class StandardCommunicationModule extends CommunicationModule {
 			if (heard instanceof AKSpeak) {
 				EntityID senderID = heard.getAgentID();
 
-				if (agent.getID() == senderID) {
+				if (agent.getID().equals(senderID)) {
 					continue;
 				}
 
