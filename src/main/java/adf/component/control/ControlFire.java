@@ -7,11 +7,13 @@ import adf.component.tactics.TacticsFireStation;
  */
 @Deprecated
 public abstract class ControlFire extends TacticsFireStation {
-	public ControlFire(ControlFire parent) {
-		super(parent);
-	}
 
-	public ControlFire() {
-		this(null);
-	}
+  public ControlFire( ControlFire parent ) {
+    super( parent );
+  }
+
+
+  public ControlFire() {
+    this( null );
+  }
 }

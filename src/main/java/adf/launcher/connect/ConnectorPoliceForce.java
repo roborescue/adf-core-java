@@ -14,49 +14,49 @@ import rescuecore2.config.Config;
 import rescuecore2.connection.ConnectionException;
 
 public class ConnectorPoliceForce extends Connector {
-	@Override
-	public void connect(ComponentLauncher launcher, Config config, AbstractLoader loader) {
-		int count = config.getIntValue(ConfigKey.KEY_POLICE_FORCE_COUNT, 0);
 
-		if (count == 0) {
-			return;
-		}
+  @Override
+  public void connect( ComponentLauncher launcher, Config config,
+      AbstractLoader loader ) {
+    int count = config.getIntValue( ConfigKey.KEY_POLICE_FORCE_COUNT, 0 );
 
-		try {
-			for (int i = 0; i != count; ++i) {
-				TacticsPoliceForce tacticsPoliceForce;
-				if (loader.getTacticsPoliceForce() == null) {
-					ConsoleOutput.error("Cannot Load PoliceForce Tactics");
-					tacticsPoliceForce = new DummyTacticsPoliceForce();
-				} else {
-					tacticsPoliceForce = loader.getTacticsPoliceForce();
-				}
+    if ( count == 0 ) {
+      return;
+    }
 
-				ModuleConfig moduleConfig = new ModuleConfig(
-					config.getValue(ConfigKey.KEY_MODULE_CONFIG_FILE_NAME, ModuleConfig.DEFAULT_CONFIG_FILE_NAME),
-					config.getArrayValue(ConfigKey.KEY_MODULE_DATA, "")
-				);
+    try {
+      for ( int i = 0; i != count; ++i ) {
+        TacticsPoliceForce tacticsPoliceForce;
+        if ( loader.getTacticsPoliceForce() == null ) {
+          ConsoleOutput.error( "Cannot Load PoliceForce Tactics" );
+          tacticsPoliceForce = new DummyTacticsPoliceForce();
+        } else {
+          tacticsPoliceForce = loader.getTacticsPoliceForce();
+        }
 
-				DevelopData developData = new DevelopData(
-					config.getBooleanValue(ConfigKey.KEY_DEVELOP_FLAG, false),
-					config.getValue(ConfigKey.KEY_DEVELOP_DATA_FILE_NAME, DevelopData.DEFAULT_FILE_NAME),
-					config.getArrayValue(ConfigKey.KEY_DEVELOP_DATA, "")
-				);
+        ModuleConfig moduleConfig = new ModuleConfig(
+            config.getValue( ConfigKey.KEY_MODULE_CONFIG_FILE_NAME,
+                ModuleConfig.DEFAULT_CONFIG_FILE_NAME ),
+            config.getArrayValue( ConfigKey.KEY_MODULE_DATA, "" ) );
 
-				launcher.connect(new PlatoonPolice(
-					tacticsPoliceForce,
-					config.getBooleanValue(ConfigKey.KEY_PRECOMPUTE, false),
-					config.getBooleanValue(ConfigKey.KEY_DEBUG_FLAG, false),
-					moduleConfig,
-					developData
-				));
-				//System.out.println(name);
-				connected++;
-			}
-		} catch (InterruptedException | ConnectionException | ComponentConnectionException e) {
-			//e.printStackTrace();
-		}
+        DevelopData developData = new DevelopData(
+            config.getBooleanValue( ConfigKey.KEY_DEVELOP_FLAG, false ),
+            config.getValue( ConfigKey.KEY_DEVELOP_DATA_FILE_NAME,
+                DevelopData.DEFAULT_FILE_NAME ),
+            config.getArrayValue( ConfigKey.KEY_DEVELOP_DATA, "" ) );
 
-		ConsoleOutput.finish("Connect PoliceForce (success:" + connected + ")");
-	}
+        launcher.connect( new PlatoonPolice( tacticsPoliceForce,
+            config.getBooleanValue( ConfigKey.KEY_PRECOMPUTE, false ),
+            config.getBooleanValue( ConfigKey.KEY_DEBUG_FLAG, false ),
+            moduleConfig, developData ) );
+        // System.out.println(name);
+        connected++;
+      }
+    } catch ( InterruptedException | ConnectionException
+        | ComponentConnectionException e ) {
+      // e.printStackTrace();
+    }
+
+    ConsoleOutput.finish( "Connect PoliceForce (success:" + connected + ")" );
+  }
 }

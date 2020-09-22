@@ -5,11 +5,13 @@ package adf.component.tactics;
  */
 @Deprecated
 public abstract class TacticsPolice extends TacticsPoliceForce {
-	public TacticsPolice(TacticsPoliceForce parent) {
-		super(parent);
-	}
 
-	public TacticsPolice() {
-		super(null);
-	}
+  public TacticsPolice( TacticsPoliceForce parent ) {
+    super( parent );
+  }
+
+
+  public TacticsPolice() {
+    super( null );
+  }
 }

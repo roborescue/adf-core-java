@@ -1,4 +1,4 @@
-package adf.agent.action.ambulance;
+package adf.agent.action.fire;
 
 import adf.agent.action.Action;
 import javax.annotation.Nonnull;

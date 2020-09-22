@@ -14,50 +14,51 @@ import rescuecore2.config.Config;
 import rescuecore2.connection.ConnectionException;
 
 public class ConnectorAmbulanceCentre extends Connector {
-	@Override
-	public void connect(ComponentLauncher launcher, Config config, AbstractLoader loader) {
-		int count = config.getIntValue(ConfigKey.KEY_AMBULANCE_CENTRE_COUNT, 0);
 
-		if (count == 0) {
-			return;
-		}
+  @Override
+  public void connect( ComponentLauncher launcher, Config config,
+      AbstractLoader loader ) {
+    int count = config.getIntValue( ConfigKey.KEY_AMBULANCE_CENTRE_COUNT, 0 );
 
-		try {
-			for (int i = 0; i != count; ++i) {
-				TacticsAmbulanceCentre tacticsAmbulanceCenter;
-				if (loader.getTacticsAmbulanceCentre() == null) {
-					ConsoleOutput.error("Cannot Load AmbulanceCentre Tactics");
-					tacticsAmbulanceCenter = new DummyTacticsAmbulanceCentre();
-				} else {
-					tacticsAmbulanceCenter = loader.getTacticsAmbulanceCentre();
-				}
+    if ( count == 0 ) {
+      return;
+    }
 
-				ModuleConfig moduleConfig = new ModuleConfig(
-					config.getValue(ConfigKey.KEY_MODULE_CONFIG_FILE_NAME, ModuleConfig.DEFAULT_CONFIG_FILE_NAME),
-					config.getArrayValue(ConfigKey.KEY_MODULE_DATA, "")
-				);
+    try {
+      for ( int i = 0; i != count; ++i ) {
+        TacticsAmbulanceCentre tacticsAmbulanceCenter;
+        if ( loader.getTacticsAmbulanceCentre() == null ) {
+          ConsoleOutput.error( "Cannot Load AmbulanceCentre Tactics" );
+          tacticsAmbulanceCenter = new DummyTacticsAmbulanceCentre();
+        } else {
+          tacticsAmbulanceCenter = loader.getTacticsAmbulanceCentre();
+        }
 
-				DevelopData developData = new DevelopData(
-					config.getBooleanValue(ConfigKey.KEY_DEVELOP_FLAG, false),
-					config.getValue(ConfigKey.KEY_DEVELOP_DATA_FILE_NAME, DevelopData.DEFAULT_FILE_NAME),
-					config.getArrayValue(ConfigKey.KEY_DEVELOP_DATA, "")
-				);
+        ModuleConfig moduleConfig = new ModuleConfig(
+            config.getValue( ConfigKey.KEY_MODULE_CONFIG_FILE_NAME,
+                ModuleConfig.DEFAULT_CONFIG_FILE_NAME ),
+            config.getArrayValue( ConfigKey.KEY_MODULE_DATA, "" ) );
 
-				launcher.connect(new OfficeAmbulance(
-					tacticsAmbulanceCenter,
-					config.getBooleanValue(ConfigKey.KEY_PRECOMPUTE, false),
-					config.getBooleanValue(ConfigKey.KEY_DEBUG_FLAG, false),
-					moduleConfig,
-					developData
-				));
-				//System.out.println(name);
-				connected++;
-			}
-		} catch (ComponentConnectionException | InterruptedException | ConnectionException e) {
-			//e.printStackTrace();
-			//System.out.println("[ERROR ] Cannot Load AmbulanceCentre Control !!");
-		}
+        DevelopData developData = new DevelopData(
+            config.getBooleanValue( ConfigKey.KEY_DEVELOP_FLAG, false ),
+            config.getValue( ConfigKey.KEY_DEVELOP_DATA_FILE_NAME,
+                DevelopData.DEFAULT_FILE_NAME ),
+            config.getArrayValue( ConfigKey.KEY_DEVELOP_DATA, "" ) );
 
-		ConsoleOutput.finish("Connect AmbulanceCentre (success:" + connected + ")");
-	}
+        launcher.connect( new OfficeAmbulance( tacticsAmbulanceCenter,
+            config.getBooleanValue( ConfigKey.KEY_PRECOMPUTE, false ),
+            config.getBooleanValue( ConfigKey.KEY_DEBUG_FLAG, false ),
+            moduleConfig, developData ) );
+        // System.out.println(name);
+        connected++;
+      }
+    } catch ( ComponentConnectionException | InterruptedException
+        | ConnectionException e ) {
+      // e.printStackTrace();
+      // System.out.println("[ERROR ] Cannot Load AmbulanceCentre Control !!");
+    }
+
+    ConsoleOutput
+        .finish( "Connect AmbulanceCentre (success:" + connected + ")" );
+  }
 }

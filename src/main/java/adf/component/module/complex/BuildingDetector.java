@@ -10,36 +10,40 @@ import adf.agent.precompute.PrecomputeData;
 import rescuecore2.standard.entities.Building;
 
 public abstract class BuildingDetector extends TargetDetector<Building> {
-	public BuildingDetector(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
-		super(ai, wi, si, moduleManager, developData);
-	}
 
-	@Override
-	public BuildingDetector precompute(PrecomputeData precomputeData) {
-		super.precompute(precomputeData);
-		return this;
-	}
+  public BuildingDetector( AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData ) {
+    super( ai, wi, si, moduleManager, developData );
+  }
 
-	@Override
-	public BuildingDetector resume(PrecomputeData precomputeData) {
-		super.resume(precomputeData);
-		return this;
-	}
 
-	@Override
-	public BuildingDetector preparate() {
-		super.preparate();
-		return this;
-	}
+  @Override
+  public BuildingDetector precompute( PrecomputeData precomputeData ) {
+    super.precompute( precomputeData );
+    return this;
+  }
 
-	@Override
-	public BuildingDetector updateInfo(MessageManager messageManager) {
-		super.updateInfo(messageManager);
-		return this;
-	}
 
-	@Override
-	public abstract BuildingDetector calc();
+  @Override
+  public BuildingDetector resume( PrecomputeData precomputeData ) {
+    super.resume( precomputeData );
+    return this;
+  }
+
+
+  @Override
+  public BuildingDetector preparate() {
+    super.preparate();
+    return this;
+  }
+
+
+  @Override
+  public BuildingDetector updateInfo( MessageManager messageManager ) {
+    super.updateInfo( messageManager );
+    return this;
+  }
+
+
+  @Override
+  public abstract BuildingDetector calc();
 }
-
-

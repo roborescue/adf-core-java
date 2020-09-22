@@ -11,28 +11,43 @@ import adf.agent.precompute.PrecomputeData;
 import adf.component.tactics.TacticsFireBrigade;
 
 public class DummyTacticsFireBrigade extends TacticsFireBrigade {
-	@Override
-	public void initialize(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, MessageManager messageManager, DevelopData developData) {
 
-	}
+  @Override
+  public void initialize( AgentInfo agentInfo, WorldInfo worldInfo,
+      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      MessageManager messageManager, DevelopData developData ) {
 
-	@Override
-	public void precompute(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, PrecomputeData precomputeData, DevelopData developData) {
+  }
 
-	}
 
-	@Override
-	public void resume(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, PrecomputeData precomputeData, DevelopData developData) {
+  @Override
+  public void precompute( AgentInfo agentInfo, WorldInfo worldInfo,
+      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      PrecomputeData precomputeData, DevelopData developData ) {
 
-	}
+  }
 
-	@Override
-	public void preparate(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, DevelopData developData) {
 
-	}
+  @Override
+  public void resume( AgentInfo agentInfo, WorldInfo worldInfo,
+      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      PrecomputeData precomputeData, DevelopData developData ) {
 
-	@Override
-	public Action think(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, MessageManager messageManager, DevelopData developData) {
-		return null;
-	}
+  }
+
+
+  @Override
+  public void preparate( AgentInfo agentInfo, WorldInfo worldInfo,
+      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      DevelopData developData ) {
+
+  }
+
+
+  @Override
+  public Action think( AgentInfo agentInfo, WorldInfo worldInfo,
+      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      MessageManager messageManager, DevelopData developData ) {
+    return null;
+  }
 }
