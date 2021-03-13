@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Main {
 
-  public static final String VERSION_CODE = "2.5.0";
+  public static final String VERSION_CODE = "3.0.0";
 
 
   public static void main( String... args ) {

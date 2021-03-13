@@ -18,6 +18,7 @@ public class MessageFireBrigade extends StandardMessage {
   public static final int  ACTION_MOVE       = 1;
   public static final int  ACTION_EXTINGUISH = 2;
   public static final int  ACTION_REFILL     = 3;
+  public static final int  ACTION_RESCUE     = 4;
 
   private static final int SIZE_ID           = 32;
   private static final int SIZE_HP           = 14;
