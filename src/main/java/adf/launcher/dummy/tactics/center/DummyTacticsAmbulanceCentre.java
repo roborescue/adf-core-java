@@ -10,23 +10,35 @@ import adf.agent.precompute.PrecomputeData;
 import adf.component.tactics.TacticsAmbulanceCentre;
 
 public class DummyTacticsAmbulanceCentre extends TacticsAmbulanceCentre {
-	@Override
-	public void initialize(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, MessageManager messageManager, DevelopData developData) {
 
-	}
+  @Override
+  public void initialize( AgentInfo agentInfo, WorldInfo worldInfo,
+      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      MessageManager messageManager, DevelopData developData ) {
 
-	@Override
-	public void resume(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, PrecomputeData precomputeInfo, DevelopData developData) {
+  }
 
-	}
 
-	@Override
-	public void preparate(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, DevelopData developData) {
+  @Override
+  public void resume( AgentInfo agentInfo, WorldInfo worldInfo,
+      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      PrecomputeData precomputeInfo, DevelopData developData ) {
 
-	}
+  }
 
-	@Override
-	public void think(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, MessageManager messageManager, DevelopData developData) {
 
-	}
+  @Override
+  public void preparate( AgentInfo agentInfo, WorldInfo worldInfo,
+      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      DevelopData developData ) {
+
+  }
+
+
+  @Override
+  public void think( AgentInfo agentInfo, WorldInfo worldInfo,
+      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      MessageManager messageManager, DevelopData developData ) {
+
+  }
 }

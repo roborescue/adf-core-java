@@ -1,21 +1,25 @@
 package adf.launcher.option;
 
 import adf.launcher.ConfigKey;
+
 import rescuecore2.config.Config;
 
 public class OptionPoliceOffice extends Option {
-	@Override
-	public boolean hasValue() {
-		return true;
-	}
 
-	@Override
-	public String getKey() {
-		return "-po";
-	}
+  @Override
+  public boolean hasValue() {
+    return true;
+  }
 
-	@Override
-	public void setValue(Config config, String data) {
-		config.setValue(ConfigKey.KEY_POLICE_OFFICE_COUNT, data);
-	}
+
+  @Override
+  public String getKey() {
+    return "-po";
+  }
+
+
+  @Override
+  public void setValue( Config config, String data ) {
+    config.setValue( ConfigKey.KEY_POLICE_OFFICE_COUNT, data );
+  }
 }

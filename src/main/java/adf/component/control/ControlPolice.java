@@ -7,11 +7,13 @@ import adf.component.tactics.TacticsPoliceOffice;
  */
 @Deprecated
 public abstract class ControlPolice extends TacticsPoliceOffice {
-	public ControlPolice(ControlPolice parent) {
-		super(parent);
-	}
 
-	public ControlPolice() {
-		super(null);
-	}
+  public ControlPolice( ControlPolice parent ) {
+    super( parent );
+  }
+
+
+  public ControlPolice() {
+    super( null );
+  }
 }

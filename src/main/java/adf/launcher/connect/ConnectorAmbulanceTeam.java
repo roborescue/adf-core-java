@@ -11,55 +11,52 @@ import adf.launcher.dummy.tactics.DummyTacticsAmbulanceTeam;
 import rescuecore2.components.ComponentConnectionException;
 import rescuecore2.components.ComponentLauncher;
 import rescuecore2.config.Config;
-import rescuecore2.config.ConfigException;
 import rescuecore2.connection.ConnectionException;
 
 public class ConnectorAmbulanceTeam extends Connector {
-	@Override
-	public void connect(ComponentLauncher launcher, Config config, AbstractLoader loader) {
-		int count = config.getIntValue(ConfigKey.KEY_AMBULANCE_TEAM_COUNT, 0);
-		//check
-		if (count == 0) {
-			return;
-		}
 
-		//connect
-		try {
-			for (int i = 0; i != count; ++i) {
-				TacticsAmbulanceTeam tacticsAmbulanceTeam;
-				if (loader.getTacticsAmbulanceTeam() == null) {
-					ConsoleOutput.error("Cannot Load AmbulanceTeam Tactics");
-					tacticsAmbulanceTeam = new DummyTacticsAmbulanceTeam();
-				} else {
-					tacticsAmbulanceTeam = loader.getTacticsAmbulanceTeam();
-				}
+  @Override
+  public void connect( ComponentLauncher launcher, Config config,
+      AbstractLoader loader ) {
+    int count = config.getIntValue( ConfigKey.KEY_AMBULANCE_TEAM_COUNT, 0 );
+    // check
+    if ( count == 0 ) {
+      return;
+    }
 
-				ModuleConfig moduleConfig = new ModuleConfig(
-					config.getValue(ConfigKey.KEY_MODULE_CONFIG_FILE_NAME, ModuleConfig.DEFAULT_CONFIG_FILE_NAME),
-					config.getArrayValue(ConfigKey.KEY_MODULE_DATA, "")
-				);
+    // connect
+    try {
+      for ( int i = 0; i != count; ++i ) {
+        TacticsAmbulanceTeam tacticsAmbulanceTeam;
+        if ( loader.getTacticsAmbulanceTeam() == null ) {
+          ConsoleOutput.error( "Cannot Load AmbulanceTeam Tactics" );
+          tacticsAmbulanceTeam = new DummyTacticsAmbulanceTeam();
+        } else {
+          tacticsAmbulanceTeam = loader.getTacticsAmbulanceTeam();
+        }
 
-				DevelopData developData = new DevelopData(
-					config.getBooleanValue(ConfigKey.KEY_DEVELOP_FLAG, false),
-					config.getValue(ConfigKey.KEY_DEVELOP_DATA_FILE_NAME, DevelopData.DEFAULT_FILE_NAME),
-					config.getArrayValue(ConfigKey.KEY_DEVELOP_DATA, "")
-				);
+        ModuleConfig moduleConfig = new ModuleConfig(
+            config.getValue( ConfigKey.KEY_MODULE_CONFIG_FILE_NAME,
+                ModuleConfig.DEFAULT_CONFIG_FILE_NAME ),
+            config.getArrayValue( ConfigKey.KEY_MODULE_DATA, "" ) );
 
-				launcher.connect(new PlatoonAmbulance(
-					tacticsAmbulanceTeam,
-					config.getBooleanValue(ConfigKey.KEY_PRECOMPUTE, false),
-					config.getBooleanValue(ConfigKey.KEY_DEBUG_FLAG, false),
-					moduleConfig,
-					developData
-				));
-				//System.out.println(name);
-				connected++;
-			}
-		} catch (ComponentConnectionException | InterruptedException | ConnectionException e) {
-			//e.printStackTrace();
-			//System.out.println("[ERROR ] Cannot Load AmbulanceTeam Tactics !!");
-		}
+        DevelopData developData = new DevelopData(
+            config.getBooleanValue( ConfigKey.KEY_DEVELOP_FLAG, false ),
+            config.getValue( ConfigKey.KEY_DEVELOP_DATA_FILE_NAME,
+                DevelopData.DEFAULT_FILE_NAME ),
+            config.getArrayValue( ConfigKey.KEY_DEVELOP_DATA, "" ) );
 
-		ConsoleOutput.finish("Connect AmbulanceTeam (success:" + connected + ")");
-	}
+        launcher.connect( new PlatoonAmbulance( tacticsAmbulanceTeam,
+            config.getBooleanValue( ConfigKey.KEY_PRECOMPUTE, false ),
+            config.getBooleanValue( ConfigKey.KEY_DEBUG_FLAG, false ),
+            moduleConfig, developData ) );
+        connected++;
+      }
+    } catch ( ComponentConnectionException | InterruptedException
+        | ConnectionException e ) {
+      ConsoleOutput.finish( "[ERROR ] Cannot Load AmbulanceTeam Tactics !!" );
+    }
+
+    ConsoleOutput.finish( "Connect AmbulanceTeam (success:" + connected + ")" );
+  }
 }

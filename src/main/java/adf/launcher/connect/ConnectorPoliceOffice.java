@@ -8,56 +8,55 @@ import adf.component.tactics.TacticsPoliceOffice;
 import adf.launcher.ConfigKey;
 import adf.launcher.ConsoleOutput;
 import adf.launcher.dummy.tactics.center.DummyTacticsPoliceOffice;
+
 import rescuecore2.components.ComponentConnectionException;
 import rescuecore2.components.ComponentLauncher;
 import rescuecore2.config.Config;
 import rescuecore2.connection.ConnectionException;
 
 public class ConnectorPoliceOffice extends Connector {
-	@Override
-	public void connect(ComponentLauncher launcher, Config config, AbstractLoader loader) {
-		int count = config.getIntValue(ConfigKey.KEY_POLICE_OFFICE_COUNT, 0);
 
-		if (count == 0) {
-			return;
-		}
+  @Override
+  public void connect( ComponentLauncher launcher, Config config,
+      AbstractLoader loader ) {
+    int count = config.getIntValue( ConfigKey.KEY_POLICE_OFFICE_COUNT, 0 );
 
-		try {
-			for (int i = 0; i != count; ++i) {
-				TacticsPoliceOffice tacticsPoliceOffice;
-				if (loader.getTacticsPoliceOffice() == null) {
-					ConsoleOutput.error("Cannot Load PoliceOffice Tactics");
-					tacticsPoliceOffice = new DummyTacticsPoliceOffice();
-				} else {
-					tacticsPoliceOffice = loader.getTacticsPoliceOffice();
-				}
+    if ( count == 0 ) {
+      return;
+    }
 
-				ModuleConfig moduleConfig = new ModuleConfig(
-					config.getValue(ConfigKey.KEY_MODULE_CONFIG_FILE_NAME, ModuleConfig.DEFAULT_CONFIG_FILE_NAME),
-					config.getArrayValue(ConfigKey.KEY_MODULE_DATA, "")
-				);
+    try {
+      for ( int i = 0; i != count; ++i ) {
+        TacticsPoliceOffice tacticsPoliceOffice;
+        if ( loader.getTacticsPoliceOffice() == null ) {
+          ConsoleOutput.error( "Cannot Load PoliceOffice Tactics" );
+          tacticsPoliceOffice = new DummyTacticsPoliceOffice();
+        } else {
+          tacticsPoliceOffice = loader.getTacticsPoliceOffice();
+        }
 
-				DevelopData developData = new DevelopData(
-					config.getBooleanValue(ConfigKey.KEY_DEVELOP_FLAG, false),
-					config.getValue(ConfigKey.KEY_DEVELOP_DATA_FILE_NAME, DevelopData.DEFAULT_FILE_NAME),
-					config.getArrayValue(ConfigKey.KEY_DEVELOP_DATA, "")
-				);
+        ModuleConfig moduleConfig = new ModuleConfig(
+            config.getValue( ConfigKey.KEY_MODULE_CONFIG_FILE_NAME,
+                ModuleConfig.DEFAULT_CONFIG_FILE_NAME ),
+            config.getArrayValue( ConfigKey.KEY_MODULE_DATA, "" ) );
 
-				launcher.connect(new OfficePolice(
-					tacticsPoliceOffice,
-					config.getBooleanValue(ConfigKey.KEY_PRECOMPUTE, false),
-					config.getBooleanValue(ConfigKey.KEY_DEBUG_FLAG, false),
-					moduleConfig,
-					developData
-				));
-				//System.out.println(name);
-				connected++;
-			}
-		} catch (ComponentConnectionException | InterruptedException | ConnectionException e) {
-			//e.printStackTrace();
-			//System.out.println("[ERROR ] Cannot Load PoliceOffice Control !!");
-		}
+        DevelopData developData = new DevelopData(
+            config.getBooleanValue( ConfigKey.KEY_DEVELOP_FLAG, false ),
+            config.getValue( ConfigKey.KEY_DEVELOP_DATA_FILE_NAME,
+                DevelopData.DEFAULT_FILE_NAME ),
+            config.getArrayValue( ConfigKey.KEY_DEVELOP_DATA, "" ) );
 
-		ConsoleOutput.finish("Connect PoliceOffice (success:" + connected + ")");
-	}
+        launcher.connect( new OfficePolice( tacticsPoliceOffice,
+            config.getBooleanValue( ConfigKey.KEY_PRECOMPUTE, false ),
+            config.getBooleanValue( ConfigKey.KEY_DEBUG_FLAG, false ),
+            moduleConfig, developData ) );
+        connected++;
+      }
+    } catch ( ComponentConnectionException | InterruptedException
+        | ConnectionException e ) {
+      ConsoleOutput.finish( "[ERROR ] Cannot Load PoliceOffice Control !!" );
+    }
+
+    ConsoleOutput.finish( "Connect PoliceOffice (success:" + connected + ")" );
+  }
 }

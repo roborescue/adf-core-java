@@ -2,12 +2,12 @@ plugins {
   id 'java-library'
 }
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
-version = '2.3.0'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+version = '2.5.0'
 
 repositories {
-  jcenter()
+  mavenCentral()
 }
 
 def getDateTime() {

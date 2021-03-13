@@ -7,11 +7,13 @@ import adf.component.tactics.TacticsAmbulanceCentre;
  */
 @Deprecated
 public abstract class ControlAmbulance extends TacticsAmbulanceCentre {
-	public ControlAmbulance(ControlAmbulance parent) {
-		super(parent);
-	}
 
-	public ControlAmbulance() {
-		this(null);
-	}
+  public ControlAmbulance( ControlAmbulance parent ) {
+    super( parent );
+  }
+
+
+  public ControlAmbulance() {
+    this( null );
+  }
 }
