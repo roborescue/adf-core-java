@@ -16,46 +16,39 @@ import rescuecore2.connection.ConnectionException;
 public class ConnectorFireStation extends Connector {
 
   @Override
-  public void connect( ComponentLauncher launcher, Config config,
-      AbstractLoader loader ) {
-    int count = config.getIntValue( ConfigKey.KEY_FIRE_STATION_COUNT, 0 );
+  public void connect(ComponentLauncher launcher, Config config, AbstractLoader loader) {
+    int count = config.getIntValue(ConfigKey.KEY_FIRE_STATION_COUNT, 0);
 
-    if ( count == 0 ) {
+    if (count == 0) {
       return;
     }
 
     try {
-      for ( int i = 0; i != count; ++i ) {
+      for (int i = 0; i != count; ++i) {
         TacticsFireStation tacticsFireStation;
-        if ( loader.getTacticsFireStation() == null ) {
-          ConsoleOutput.error( "Cannot Load FireStation Tactics" );
+        if (loader.getTacticsFireStation() == null) {
+          ConsoleOutput.error("Cannot Load FireStation Tactics");
           tacticsFireStation = new DummyTacticsFireStation();
         } else {
           tacticsFireStation = loader.getTacticsFireStation();
         }
 
         ModuleConfig moduleConfig = new ModuleConfig(
-            config.getValue( ConfigKey.KEY_MODULE_CONFIG_FILE_NAME,
-                ModuleConfig.DEFAULT_CONFIG_FILE_NAME ),
-            config.getArrayValue( ConfigKey.KEY_MODULE_DATA, "" ) );
+            config.getValue(ConfigKey.KEY_MODULE_CONFIG_FILE_NAME, ModuleConfig.DEFAULT_CONFIG_FILE_NAME),
+            config.getArrayValue(ConfigKey.KEY_MODULE_DATA, ""));
 
-        DevelopData developData = new DevelopData(
-            config.getBooleanValue( ConfigKey.KEY_DEVELOP_FLAG, false ),
-            config.getValue( ConfigKey.KEY_DEVELOP_DATA_FILE_NAME,
-                DevelopData.DEFAULT_FILE_NAME ),
-            config.getArrayValue( ConfigKey.KEY_DEVELOP_DATA, "" ) );
+        DevelopData developData = new DevelopData(config.getBooleanValue(ConfigKey.KEY_DEVELOP_FLAG, false),
+            config.getValue(ConfigKey.KEY_DEVELOP_DATA_FILE_NAME, DevelopData.DEFAULT_FILE_NAME),
+            config.getArrayValue(ConfigKey.KEY_DEVELOP_DATA, ""));
 
-        launcher.connect( new OfficeFire( tacticsFireStation,
-            config.getBooleanValue( ConfigKey.KEY_PRECOMPUTE, false ),
-            config.getBooleanValue( ConfigKey.KEY_DEBUG_FLAG, false ),
-            moduleConfig, developData ) );
+        launcher.connect(new OfficeFire(tacticsFireStation, config.getBooleanValue(ConfigKey.KEY_PRECOMPUTE, false),
+            config.getBooleanValue(ConfigKey.KEY_DEBUG_FLAG, false), moduleConfig, developData));
         connected++;
       }
-    } catch ( ComponentConnectionException | InterruptedException
-        | ConnectionException e ) {
-      ConsoleOutput.finish( "[ERROR ] Cannot Load FireStation Control !!" );
+    } catch (ComponentConnectionException | InterruptedException | ConnectionException e) {
+      // ConsoleOutput.finish( "[ERROR ] Cannot Load FireStation Tactics !!" );
     }
 
-    ConsoleOutput.finish( "Connect FireStation (success:" + connected + ")" );
+    ConsoleOutput.finish("Connect FireStation (success:" + connected + ")");
   }
 }
