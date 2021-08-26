@@ -10,15 +10,13 @@ public class OptionHost extends Option {
     return true;
   }
 
-
   @Override
   public String getKey() {
     return "-h";
   }
 
-
   @Override
-  public void setValue( Config config, String data ) {
-    config.setValue( Constants.KERNEL_HOST_NAME_KEY, data );
+  public void setValue(Config config, String data) {
+    config.setValue(Constants.KERNEL_HOST_NAME_KEY, data);
   }
 }

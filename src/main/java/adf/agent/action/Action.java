@@ -10,7 +10,6 @@ public abstract class Action {
   public Action() {
   }
 
-
   @Nonnull
-  public abstract Message getCommand( @Nonnull EntityID agentID, int time );
+  public abstract Message getCommand(@Nonnull EntityID agentID, int time);
 }

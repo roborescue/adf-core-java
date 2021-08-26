@@ -1,8 +1,9 @@
 package adf.launcher.connect;
 
-import adf.component.AbstractLoader;
 import rescuecore2.components.ComponentLauncher;
 import rescuecore2.config.Config;
+
+import adf.component.AbstractLoader;
 
 public abstract class Connector {
   int connected = 0;

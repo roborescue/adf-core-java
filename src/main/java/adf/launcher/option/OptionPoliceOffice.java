@@ -1,8 +1,8 @@
 package adf.launcher.option;
 
-import adf.launcher.ConfigKey;
-
 import rescuecore2.config.Config;
+
+import adf.launcher.ConfigKey;
 
 public class OptionPoliceOffice extends Option {
 
@@ -11,15 +11,13 @@ public class OptionPoliceOffice extends Option {
     return true;
   }
 
-
   @Override
   public String getKey() {
     return "-po";
   }
 
-
   @Override
-  public void setValue( Config config, String data ) {
-    config.setValue( ConfigKey.KEY_POLICE_OFFICE_COUNT, data );
+  public void setValue(Config config, String data) {
+    config.setValue(ConfigKey.KEY_POLICE_OFFICE_COUNT, data);
   }
 }

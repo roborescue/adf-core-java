@@ -8,5 +8,5 @@ public abstract class Option {
 
   public abstract String getKey();
 
-  public abstract void setValue( Config config, String data );
+  public abstract void setValue(Config config, String data);
 }

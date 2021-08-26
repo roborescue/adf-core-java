@@ -1,8 +1,8 @@
 package adf.launcher.option;
 
-import adf.launcher.ConfigKey;
-
 import rescuecore2.config.Config;
+
+import adf.launcher.ConfigKey;
 
 public class OptionDebug extends Option {
 
@@ -11,15 +11,13 @@ public class OptionDebug extends Option {
     return true;
   }
 
-
   @Override
   public String getKey() {
     return "-d";
   }
 
-
   @Override
-  public void setValue( Config config, String data ) {
-    config.setValue( ConfigKey.KEY_DEBUG_FLAG, data );
+  public void setValue(Config config, String data) {
+    config.setValue(ConfigKey.KEY_DEBUG_FLAG, data);
   }
 }

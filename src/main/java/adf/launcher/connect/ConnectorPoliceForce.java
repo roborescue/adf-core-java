@@ -1,17 +1,18 @@
 package adf.launcher.connect;
 
-import adf.agent.config.ModuleConfig;
-import adf.agent.develop.DevelopData;
-import adf.agent.platoon.PlatoonPolice;
-import adf.component.tactics.TacticsPoliceForce;
-import adf.component.AbstractLoader;
-import adf.launcher.ConfigKey;
-import adf.launcher.ConsoleOutput;
-import adf.launcher.dummy.tactics.DummyTacticsPoliceForce;
 import rescuecore2.components.ComponentConnectionException;
 import rescuecore2.components.ComponentLauncher;
 import rescuecore2.config.Config;
 import rescuecore2.connection.ConnectionException;
+
+import adf.agent.config.ModuleConfig;
+import adf.agent.develop.DevelopData;
+import adf.agent.platoon.PlatoonPolice;
+import adf.component.AbstractLoader;
+import adf.component.tactics.TacticsPoliceForce;
+import adf.launcher.ConfigKey;
+import adf.launcher.ConsoleOutput;
+import adf.launcher.dummy.tactics.DummyTacticsPoliceForce;
 
 public class ConnectorPoliceForce extends Connector {
 

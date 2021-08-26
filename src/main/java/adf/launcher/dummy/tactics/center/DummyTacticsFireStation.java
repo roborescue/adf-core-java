@@ -12,33 +12,26 @@ import adf.component.tactics.TacticsFireStation;
 public class DummyTacticsFireStation extends TacticsFireStation {
 
   @Override
-  public void initialize( AgentInfo agentInfo, WorldInfo worldInfo,
-      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
-      MessageManager messageManager, DevelopData developData ) {
+  public void initialize(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo,
+      ModuleManager moduleManager, MessageManager messageManager, DevelopData developData) {
 
   }
 
-
   @Override
-  public void resume( AgentInfo agentInfo, WorldInfo worldInfo,
-      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
-      PrecomputeData precomputeInfo, DevelopData developData ) {
+  public void resume(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      PrecomputeData precomputeInfo, DevelopData developData) {
 
   }
 
-
   @Override
-  public void preparate( AgentInfo agentInfo, WorldInfo worldInfo,
-      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
-      DevelopData developData ) {
+  public void preparate(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo,
+      ModuleManager moduleManager, DevelopData developData) {
 
   }
 
-
   @Override
-  public void think( AgentInfo agentInfo, WorldInfo worldInfo,
-      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
-      MessageManager messageManager, DevelopData developData ) {
+  public void think(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+      MessageManager messageManager, DevelopData developData) {
 
   }
 }

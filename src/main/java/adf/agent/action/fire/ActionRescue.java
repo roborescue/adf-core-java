@@ -1,29 +1,27 @@
 package adf.agent.action.fire;
 
-import adf.agent.action.Action;
-
 import javax.annotation.Nonnull;
 
 import rescuecore2.messages.Message;
+import rescuecore2.messages.control.AKCommand;
+import rescuecore2.standard.commands.AKRescue;
 import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.messages.AKRescue;
 import rescuecore2.worldmodel.EntityID;
+
+import adf.agent.action.Action;
 
 public class ActionRescue extends Action {
 
   protected EntityID target;
 
-
-  public ActionRescue( @Nonnull EntityID targetID ) {
+  public ActionRescue(@Nonnull EntityID targetID) {
     super();
     this.target = targetID;
   }
 
-
-  public ActionRescue( @Nonnull Human human ) {
-    this( human.getID() );
+  public ActionRescue(@Nonnull Human human) {
+    this(human.getID());
   }
-
 
   @Override
   @Nonnull
@@ -31,16 +29,14 @@ public class ActionRescue extends Action {
     return "ActionRescue [target=" + target + "]";
   }
 
-
   @Nonnull
   public EntityID getTarget() {
     return this.target;
   }
 
-
   @Override
   @Nonnull
-  public Message getCommand( @Nonnull EntityID agentID, int time ) {
-    return new AKRescue( agentID, time, this.target );
+  public Message getCommand(@Nonnull EntityID agentID, int time) {
+    return new AKCommand(new AKRescue(agentID, time, this.target));
   }
 }

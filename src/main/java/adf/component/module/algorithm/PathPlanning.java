@@ -1,5 +1,12 @@
 package adf.component.module.algorithm;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import rescuecore2.misc.Pair;
+import rescuecore2.worldmodel.EntityID;
+
 import adf.agent.communication.MessageManager;
 import adf.agent.develop.DevelopData;
 import adf.agent.info.AgentInfo;
@@ -9,45 +16,34 @@ import adf.agent.module.ModuleManager;
 import adf.agent.precompute.PrecomputeData;
 import adf.component.module.AbstractModule;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
-import rescuecore2.misc.Pair;
-import rescuecore2.worldmodel.EntityID;
-
 public abstract class PathPlanning extends AbstractModule {
 
-  public PathPlanning( AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData ) {
-    super( ai, wi, si, moduleManager, developData );
+  public PathPlanning(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager,
+      DevelopData developData) {
+    super(ai, wi, si, moduleManager, developData);
   }
-
 
   public abstract List<EntityID> getResult();
 
-  public abstract PathPlanning setFrom( EntityID id );
+  public abstract PathPlanning setFrom(EntityID id);
 
-  public abstract PathPlanning setDestination( Collection<EntityID> targets );
+  public abstract PathPlanning setDestination(Collection<EntityID> targets);
 
-
-  public PathPlanning setDestination( EntityID... targets ) {
-    return this.setDestination( Arrays.asList( targets ) );
+  public PathPlanning setDestination(EntityID... targets) {
+    return this.setDestination(Arrays.asList(targets));
   }
 
-
   @Override
-  public PathPlanning precompute( PrecomputeData precomputeData ) {
-    super.precompute( precomputeData );
+  public PathPlanning precompute(PrecomputeData precomputeData) {
+    super.precompute(precomputeData);
     return this;
   }
 
-
   @Override
-  public PathPlanning resume( PrecomputeData precomputeData ) {
-    super.resume( precomputeData );
+  public PathPlanning resume(PrecomputeData precomputeData) {
+    super.resume(precomputeData);
     return this;
   }
-
 
   @Override
   public PathPlanning preparate() {
@@ -55,30 +51,26 @@ public abstract class PathPlanning extends AbstractModule {
     return this;
   }
 
-
   @Override
-  public PathPlanning updateInfo( MessageManager messageManager ) {
-    super.updateInfo( messageManager );
+  public PathPlanning updateInfo(MessageManager messageManager) {
+    super.updateInfo(messageManager);
     return this;
   }
-
 
   @Override
   public abstract PathPlanning calc();
 
-
   public double getDistance() {
     double sum = 0.0;
     List<EntityID> path = getResult();
-    if ( path == null || path.size() <= 1 ) {
+    if (path == null || path.size() <= 1) {
       return sum;
     }
 
     Pair<Integer, Integer> prevPoint = null;
-    for ( EntityID id : path ) {
-      Pair<Integer, Integer> point = worldInfo
-          .getLocation( worldInfo.getEntity( id ) );
-      if ( prevPoint != null ) {
+    for (EntityID id : path) {
+      Pair<Integer, Integer> point = worldInfo.getLocation(worldInfo.getEntity(id));
+      if (prevPoint != null) {
         int x = prevPoint.first() - point.first();
         int y = prevPoint.second() - point.second();
         sum += x * x + y * y;
@@ -86,17 +78,15 @@ public abstract class PathPlanning extends AbstractModule {
       prevPoint = point;
     }
 
-    return Math.sqrt( sum );
+    return Math.sqrt(sum);
   }
-
 
   // Alias
-  public double getDistance( EntityID from, EntityID dest ) {
-    return this.setFrom( from ).setDestination( dest ).calc().getDistance();
+  public double getDistance(EntityID from, EntityID dest) {
+    return this.setFrom(from).setDestination(dest).calc().getDistance();
   }
 
-
-  public List<EntityID> getResult( EntityID from, EntityID dest ) {
-    return this.setFrom( from ).setDestination( dest ).calc().getResult();
+  public List<EntityID> getResult(EntityID from, EntityID dest) {
+    return this.setFrom(from).setDestination(dest).calc().getResult();
   }
 }

@@ -1,12 +1,13 @@
 package adf.agent.action.common;
 
-import adf.agent.action.Action;
-
 import javax.annotation.Nonnull;
 
 import rescuecore2.messages.Message;
-import rescuecore2.standard.messages.AKRest;
+import rescuecore2.messages.control.AKCommand;
+import rescuecore2.standard.commands.AKRest;
 import rescuecore2.worldmodel.EntityID;
+
+import adf.agent.action.Action;
 
 public class ActionRest extends Action {
 
@@ -14,17 +15,15 @@ public class ActionRest extends Action {
     super();
   }
 
-
   @Override
   @Nonnull
   public String toString() {
     return "ActionRest []";
   }
 
-
   @Override
   @Nonnull
-  public Message getCommand( @Nonnull EntityID agentID, int time ) {
-    return new AKRest( agentID, time );
+  public Message getCommand(@Nonnull EntityID agentID, int time) {
+    return new AKCommand(new AKRest(agentID, time));
   }
 }

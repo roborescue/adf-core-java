@@ -14,24 +14,22 @@ import adf.agent.precompute.PrecomputeData;
 @Deprecated
 public abstract class HumanSelector extends HumanDetector {
 
-  public HumanSelector( AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData ) {
-    super( ai, wi, si, moduleManager, developData );
+  public HumanSelector(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager,
+      DevelopData developData) {
+    super(ai, wi, si, moduleManager, developData);
   }
 
-
   @Override
-  public HumanSelector precompute( PrecomputeData precomputeData ) {
-    super.precompute( precomputeData );
+  public HumanSelector precompute(PrecomputeData precomputeData) {
+    super.precompute(precomputeData);
     return this;
   }
 
-
   @Override
-  public HumanSelector resume( PrecomputeData precomputeData ) {
-    super.resume( precomputeData );
+  public HumanSelector resume(PrecomputeData precomputeData) {
+    super.resume(precomputeData);
     return this;
   }
-
 
   @Override
   public HumanSelector preparate() {
@@ -39,13 +37,11 @@ public abstract class HumanSelector extends HumanDetector {
     return this;
   }
 
-
   @Override
-  public HumanSelector updateInfo( MessageManager messageManager ) {
-    super.updateInfo( messageManager );
+  public HumanSelector updateInfo(MessageManager messageManager) {
+    super.updateInfo(messageManager);
     return this;
   }
-
 
   @Override
   public abstract HumanSelector calc();

@@ -14,24 +14,22 @@ import adf.agent.precompute.PrecomputeData;
 @Deprecated
 public abstract class BuildingSelector extends BuildingDetector {
 
-  public BuildingSelector( AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData ) {
-    super( ai, wi, si, moduleManager, developData );
+  public BuildingSelector(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager,
+      DevelopData developData) {
+    super(ai, wi, si, moduleManager, developData);
   }
 
-
   @Override
-  public BuildingSelector precompute( PrecomputeData precomputeData ) {
-    super.precompute( precomputeData );
+  public BuildingSelector precompute(PrecomputeData precomputeData) {
+    super.precompute(precomputeData);
     return this;
   }
 
-
   @Override
-  public BuildingSelector resume( PrecomputeData precomputeData ) {
-    super.resume( precomputeData );
+  public BuildingSelector resume(PrecomputeData precomputeData) {
+    super.resume(precomputeData);
     return this;
   }
-
 
   @Override
   public BuildingSelector preparate() {
@@ -39,13 +37,11 @@ public abstract class BuildingSelector extends BuildingDetector {
     return this;
   }
 
-
   @Override
-  public BuildingSelector updateInfo( MessageManager messageManager ) {
-    super.updateInfo( messageManager );
+  public BuildingSelector updateInfo(MessageManager messageManager) {
+    super.updateInfo(messageManager);
     return this;
   }
-
 
   @Override
   public abstract BuildingSelector calc();

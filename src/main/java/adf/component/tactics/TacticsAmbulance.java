@@ -6,12 +6,11 @@ package adf.component.tactics;
 @Deprecated
 public abstract class TacticsAmbulance extends TacticsAmbulanceTeam {
 
-  public TacticsAmbulance( TacticsAmbulanceTeam parent ) {
-    super( parent );
+  public TacticsAmbulance(TacticsAmbulanceTeam parent) {
+    super(parent);
   }
 
-
   public TacticsAmbulance() {
-    super( null );
+    super(null);
   }
 }

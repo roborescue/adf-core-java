@@ -6,12 +6,11 @@ package adf.component.tactics;
 @Deprecated
 public abstract class TacticsFire extends TacticsFireBrigade {
 
-  public TacticsFire( TacticsFireBrigade parent ) {
-    super( parent );
+  public TacticsFire(TacticsFireBrigade parent) {
+    super(parent);
   }
 
-
   public TacticsFire() {
-    super( null );
+    super(null);
   }
 }

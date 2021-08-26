@@ -1,17 +1,18 @@
 package adf.launcher.connect;
 
-import adf.agent.config.ModuleConfig;
-import adf.agent.develop.DevelopData;
-import adf.agent.platoon.PlatoonFire;
-import adf.component.tactics.TacticsFireBrigade;
-import adf.component.AbstractLoader;
-import adf.launcher.ConfigKey;
-import adf.launcher.ConsoleOutput;
-import adf.launcher.dummy.tactics.DummyTacticsFireBrigade;
 import rescuecore2.components.ComponentConnectionException;
 import rescuecore2.components.ComponentLauncher;
 import rescuecore2.config.Config;
 import rescuecore2.connection.ConnectionException;
+
+import adf.agent.config.ModuleConfig;
+import adf.agent.develop.DevelopData;
+import adf.agent.platoon.PlatoonFire;
+import adf.component.AbstractLoader;
+import adf.component.tactics.TacticsFireBrigade;
+import adf.launcher.ConfigKey;
+import adf.launcher.ConsoleOutput;
+import adf.launcher.dummy.tactics.DummyTacticsFireBrigade;
 
 public class ConnectorFireBrigade extends Connector {
 

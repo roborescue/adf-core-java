@@ -1,5 +1,10 @@
 package adf.launcher.connect;
 
+import rescuecore2.components.ComponentConnectionException;
+import rescuecore2.components.ComponentLauncher;
+import rescuecore2.config.Config;
+import rescuecore2.connection.ConnectionException;
+
 import adf.agent.config.ModuleConfig;
 import adf.agent.develop.DevelopData;
 import adf.agent.office.OfficeAmbulance;
@@ -8,10 +13,6 @@ import adf.component.tactics.TacticsAmbulanceCentre;
 import adf.launcher.ConfigKey;
 import adf.launcher.ConsoleOutput;
 import adf.launcher.dummy.tactics.center.DummyTacticsAmbulanceCentre;
-import rescuecore2.components.ComponentConnectionException;
-import rescuecore2.components.ComponentLauncher;
-import rescuecore2.config.Config;
-import rescuecore2.connection.ConnectionException;
 
 public class ConnectorAmbulanceCentre extends Connector {
 

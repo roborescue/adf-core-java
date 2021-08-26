@@ -1,31 +1,29 @@
 package adf.agent.action.fire;
 
-import adf.agent.action.Action;
-
 import javax.annotation.Nonnull;
 
 import rescuecore2.messages.Message;
+import rescuecore2.messages.control.AKCommand;
+import rescuecore2.standard.commands.AKExtinguish;
 import rescuecore2.standard.entities.Building;
-import rescuecore2.standard.messages.AKExtinguish;
 import rescuecore2.worldmodel.EntityID;
+
+import adf.agent.action.Action;
 
 public class ActionExtinguish extends Action {
 
   protected EntityID target;
-  private int        power;
+  private int power;
 
-
-  public ActionExtinguish( @Nonnull EntityID targetID, int maxPower ) {
+  public ActionExtinguish(@Nonnull EntityID targetID, int maxPower) {
     super();
     this.target = targetID;
     this.power = maxPower;
   }
 
-
-  public ActionExtinguish( @Nonnull Building building, int maxPower ) {
-    this( building.getID(), maxPower );
+  public ActionExtinguish(@Nonnull Building building, int maxPower) {
+    this(building.getID(), maxPower);
   }
-
 
   @Override
   @Nonnull
@@ -33,21 +31,18 @@ public class ActionExtinguish extends Action {
     return "ActionExtinguish [target=" + target + ", power=" + power + "]";
   }
 
-
   public int getPower() {
     return this.power;
   }
-
 
   @Nonnull
   public EntityID getTarget() {
     return this.target;
   }
 
-
   @Override
   @Nonnull
-  public Message getCommand( @Nonnull EntityID agentID, int time ) {
-    return new AKExtinguish( agentID, time, this.target, this.power );
+  public Message getCommand(@Nonnull EntityID agentID, int time) {
+    return new AKCommand(new AKExtinguish(agentID, time, this.target, this.power));
   }
 }

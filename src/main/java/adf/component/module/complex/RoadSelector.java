@@ -14,24 +14,22 @@ import adf.agent.precompute.PrecomputeData;
 @Deprecated
 public abstract class RoadSelector extends RoadDetector {
 
-  public RoadSelector( AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData ) {
-    super( ai, wi, si, moduleManager, developData );
+  public RoadSelector(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager,
+      DevelopData developData) {
+    super(ai, wi, si, moduleManager, developData);
   }
 
-
   @Override
-  public RoadSelector precompute( PrecomputeData precomputeData ) {
-    super.precompute( precomputeData );
+  public RoadSelector precompute(PrecomputeData precomputeData) {
+    super.precompute(precomputeData);
     return this;
   }
 
-
   @Override
-  public RoadSelector resume( PrecomputeData precomputeData ) {
-    super.resume( precomputeData );
+  public RoadSelector resume(PrecomputeData precomputeData) {
+    super.resume(precomputeData);
     return this;
   }
-
 
   @Override
   public RoadSelector preparate() {
@@ -39,13 +37,11 @@ public abstract class RoadSelector extends RoadDetector {
     return this;
   }
 
-
   @Override
-  public RoadSelector updateInfo( MessageManager messageManager ) {
-    super.updateInfo( messageManager );
+  public RoadSelector updateInfo(MessageManager messageManager) {
+    super.updateInfo(messageManager);
     return this;
   }
-
 
   @Override
   public abstract RoadSelector calc();

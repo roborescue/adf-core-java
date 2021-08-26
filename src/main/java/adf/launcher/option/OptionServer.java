@@ -10,19 +10,17 @@ public class OptionServer extends Option {
     return true;
   }
 
-
   @Override
   public String getKey() {
     return "-s";
   }
 
-
   @Override
-  public void setValue( Config config, String data ) {
-    String[] splitedData = data.split( ":" );
-    if ( splitedData.length == 2 ) {
-      config.setValue( Constants.KERNEL_HOST_NAME_KEY, splitedData[0] );
-      config.setValue( Constants.KERNEL_PORT_NUMBER_KEY, splitedData[1] );
+  public void setValue(Config config, String data) {
+    String[] splitedData = data.split(":");
+    if (splitedData.length == 2) {
+      config.setValue(Constants.KERNEL_HOST_NAME_KEY, splitedData[0]);
+      config.setValue(Constants.KERNEL_PORT_NUMBER_KEY, splitedData[1]);
     }
   }
 }

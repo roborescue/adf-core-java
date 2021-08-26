@@ -2,9 +2,6 @@ package adf.debug;
 
 import static rescuecore2.misc.java.JavaTools.instantiate;
 
-import adf.agent.info.ScenarioInfo;
-import adf.agent.info.WorldInfo;
-
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -27,102 +24,93 @@ import rescuecore2.view.ViewListener;
 import rescuecore2.worldmodel.Entity;
 import rescuecore2.worldmodel.WorldModel;
 
+import adf.agent.info.ScenarioInfo;
+import adf.agent.info.WorldInfo;
+
 public class WorldViewer extends JPanel {
 
   /**
    *
    */
-  private static final long   serialVersionUID = 2732220527053489740L;
+  private static final long serialVersionUID = 2732220527053489740L;
 
-  private static final String VIEWERS_KEY      = "log.viewers";
+  private static final String VIEWERS_KEY = "log.viewers";
 
-  private JLabel              timestep;
-  private EntityInspector     inspector;
+  private JLabel timestep;
+  private EntityInspector inspector;
   private List<ViewComponent> viewers;
 
-  private WorldInfo           worldinfo;
+  private WorldInfo worldinfo;
 
-  private ScenarioInfo        scenarioInfo;
-
+  private ScenarioInfo scenarioInfo;
 
   /**
    * Construct a LogViewer.
    *
-   * @param worldinfo
-   *          worldInfo
-   * @param scenarioInfo
-   *          scenarioInfo
+   * @param worldinfo    worldInfo
+   * @param scenarioInfo scenarioInfo
    */
-  public WorldViewer( WorldInfo worldinfo, ScenarioInfo scenarioInfo ) {
-    super( new BorderLayout() );
+  public WorldViewer(WorldInfo worldinfo, ScenarioInfo scenarioInfo) {
+    super(new BorderLayout());
     this.worldinfo = worldinfo;
     this.scenarioInfo = scenarioInfo;
     inspector = new EntityInspector();
-    registerViewers( scenarioInfo.getRawConfig() );
+    registerViewers(scenarioInfo.getRawConfig());
     Dictionary<Integer, JComponent> labels = new Hashtable<Integer, JComponent>();
-    timestep = new JLabel( "Timestep: 0" );
+    timestep = new JLabel("Timestep: 0");
     JTabbedPane tabs = new JTabbedPane();
-    for ( ViewComponent next : viewers ) {
-      tabs.addTab( next.getViewerName(), next );
-      next.addViewListener( new ViewListener() {
+    for (ViewComponent next : viewers) {
+      tabs.addTab(next.getViewerName(), next);
+      next.addViewListener(new ViewListener() {
 
         @Override
-        public void objectsClicked( ViewComponent view,
-            List<RenderedObject> objects ) {
-          for ( RenderedObject next : objects ) {
-            if ( next.getObject() instanceof Entity ) {
-              inspector.inspect( (Entity) next.getObject() );
+        public void objectsClicked(ViewComponent view, List<RenderedObject> objects) {
+          for (RenderedObject next : objects) {
+            if (next.getObject() instanceof Entity) {
+              inspector.inspect((Entity) next.getObject());
               return;
             }
           }
         }
 
-
         @Override
-        public void objectsRollover( ViewComponent view,
-            List<RenderedObject> objects ) {
+        public void objectsRollover(ViewComponent view, List<RenderedObject> objects) {
         }
-      } );
+      });
     }
-    JSplitPane split1 = new JSplitPane( JSplitPane.HORIZONTAL_SPLIT, inspector,
-        tabs );
-    add( split1, BorderLayout.CENTER );
-    add( timestep, BorderLayout.NORTH );
+    JSplitPane split1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, inspector, tabs);
+    add(split1, BorderLayout.CENTER);
+    add(timestep, BorderLayout.NORTH);
   }
-
 
   /**
    * Show a particular timestep in the viewer.
    *
-   * @param time
-   *          The timestep to show. If this value is out of range then this
-   *          method will silently return.
+   * @param time The timestep to show. If this value is out of range then this
+   *             method will silently return.
    */
-  public void showTimestep( int time ) {
-    timestep.setText( "Timestep: " + time );
+  public void showTimestep(int time) {
+    timestep.setText("Timestep: " + time);
     CommandsRecord commandsRecord = null;// log.getCommands(time);
     UpdatesRecord updatesRecord = null;// log.getUpdates(time);
 
     WorldModel<? extends Entity> model = worldinfo.getRawWorld();
-    for ( ViewComponent next : viewers ) {
-      next.view( model,
-          ( commandsRecord == null ? null : commandsRecord.getCommands() ),
-          ( updatesRecord == null ? null : updatesRecord.getChangeSet() ) );
+    for (ViewComponent next : viewers) {
+      next.view(model, (commandsRecord == null ? null : commandsRecord.getCommands()),
+          (updatesRecord == null ? null : updatesRecord.getChangeSet()));
       next.repaint();
     }
   }
 
-
-  private void registerViewers( Config config ) {
+  private void registerViewers(Config config) {
     viewers = new ArrayList<ViewComponent>();
-    Config c2 = new Config( config );
-    c2.appendValue( "viewer.standard.AreaNeighboursLayer.visible", "false" );
-    for ( String next : config.getArrayValue( VIEWERS_KEY,
-        "rescuecore2.standard.view.AnimatedWorldModelViewer" ) ) {
-      ViewComponent viewer = instantiate( next, ViewComponent.class );
-      if ( viewer != null ) {
-        viewer.initialise( c2 );
-        viewers.add( viewer );
+    Config c2 = new Config(config);
+    c2.appendValue("viewer.standard.AreaNeighboursLayer.visible", "false");
+    for (String next : config.getArrayValue(VIEWERS_KEY, "rescuecore2.standard.view.AnimatedWorldModelViewer")) {
+      ViewComponent viewer = instantiate(next, ViewComponent.class);
+      if (viewer != null) {
+        viewer.initialise(c2);
+        viewers.add(viewer);
       }
     }
   }
