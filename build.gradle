@@ -80,7 +80,7 @@ build.mustRunAfter 'clean'
 
 task start (type: JavaExec) {
   classpath = sourceSets.main.runtimeClasspath
-  main = "adf.Main"
+  mainClass = "adf.Main"
   if (project.hasProperty('args')) {
     args project.args.split('\\s+')
   }
