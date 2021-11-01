@@ -10,9 +10,9 @@ import rescuecore2.components.ComponentLauncher;
 import rescuecore2.components.TCPComponentLauncher;
 import rescuecore2.config.Config;
 import rescuecore2.registry.Registry;
-import rescuecore2.standard.commands.StandardCommandFactory;
 import rescuecore2.standard.entities.StandardEntityFactory;
 import rescuecore2.standard.entities.StandardPropertyFactory;
+import rescuecore2.standard.messages.StandardMessageFactory;
 
 import adf.component.AbstractLoader;
 import adf.launcher.connect.Connector;
@@ -53,9 +53,9 @@ public class AgentLauncher {
 
   private void initSystem() {
     // register rescue system
-    Registry.SYSTEM_REGISTRY.registerEntityFactory(StandardEntityFactory.INSTANCE);
-    Registry.SYSTEM_REGISTRY.registerCommandFactory(StandardCommandFactory.INSTANCE);
-    Registry.SYSTEM_REGISTRY.registerPropertyFactory(StandardPropertyFactory.INSTANCE);
+    Registry.SYSTEM_REGISTRY.registerFactory(StandardEntityFactory.INSTANCE);
+    Registry.SYSTEM_REGISTRY.registerFactory(StandardMessageFactory.INSTANCE);
+    Registry.SYSTEM_REGISTRY.registerFactory(StandardPropertyFactory.INSTANCE);
   }
 
   @SuppressWarnings("unchecked")

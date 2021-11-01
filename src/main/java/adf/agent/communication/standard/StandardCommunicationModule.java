@@ -7,10 +7,9 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import rescuecore2.commands.Command;
+import rescuecore2.messages.Command;
 import rescuecore2.messages.Message;
-import rescuecore2.messages.control.AKCommand;
-import rescuecore2.standard.commands.AKSpeak;
+import rescuecore2.standard.messages.AKSpeak;
 import rescuecore2.worldmodel.EntityID;
 
 import adf.agent.Agent;
@@ -126,8 +125,7 @@ public class StandardCommunicationModule extends CommunicationModule {
         bitOutputStream.writeBits(message.toBitOutputStream());
 
         if (channel > 0) {
-          messages[0] = new AKCommand(
-              new AKSpeak(agent.getID(), agent.agentInfo.getTime(), channel, bitOutputStream.toByteArray()));
+          messages[0] = new AKSpeak(agent.getID(), agent.agentInfo.getTime(), channel, bitOutputStream.toByteArray());
           agent.send(messages);
         } else {
           // voice channel
@@ -157,8 +155,7 @@ public class StandardCommunicationModule extends CommunicationModule {
     }
 
     if (voiceMessageStream.size() > 0) {
-      messages[0] = new AKCommand(
-          new AKSpeak(agent.getID(), agent.agentInfo.getTime(), 0, voiceMessageStream.toByteArray()));
+      messages[0] = new AKSpeak(agent.getID(), agent.agentInfo.getTime(), 0, voiceMessageStream.toByteArray());
       agent.send(messages);
     }
   }

@@ -56,7 +56,7 @@ public class WorldInfo implements Iterable<StandardEntity> {
   private ChangeSet changed;
   private int time;
 
-  private Map<EntityID, Map<Integer, Map<String, Object>>> rollback;
+  private Map<EntityID, Map<Integer, Map<Integer, Object>>> rollback;
   private boolean runRollback;
 
   public WorldInfo(@Nonnull StandardWorldModel world) {
@@ -118,25 +118,25 @@ public class WorldInfo implements Iterable<StandardEntity> {
     if (targetTime <= 0) {
       targetTime = this.time + targetTime;
     }
-    Map<String, Object> rollbackProperties = new HashMap<>();
-    Map<Integer, Map<String, Object>> entityHistory = this.rollback.get(entity.getID());
+    Map<Integer, Object> rollbackProperties = new HashMap<>();
+    Map<Integer, Map<Integer, Object>> entityHistory = this.rollback.get(entity.getID());
     if (entityHistory == null) {
       return (StandardEntity) entity.copy();
     }
 
     for (int i = this.time - 1; i >= targetTime; i--) {
-      Map<String, Object> changeProperties = entityHistory.get(i);
+      Map<Integer, Object> changeProperties = entityHistory.get(i);
       if (changeProperties == null) {
         continue;
       }
       rollbackProperties.putAll(changeProperties);
     }
 
-    Set<Property<?>> propertySet = entity.getProperties();
+    Set<Property> propertySet = entity.getProperties();
     if (rollbackProperties.size() >= propertySet.size()) {
       boolean notExist = true;
       for (Property property : propertySet) {
-        String key = property.getURN();
+        int key = property.getURN();
         if (rollbackProperties.containsKey(key)) {
           if (rollbackProperties.get(key) != null) {
             notExist = false;
@@ -169,9 +169,6 @@ public class WorldInfo implements Iterable<StandardEntity> {
     }
     return null;
   }
-
-  // getEntityOfType
-  // /////////////////////////////////////////////////////////////////////////////////////////////////
 
   @Nonnull
   public Collection<StandardEntity> getEntitiesOfType(@Nonnull StandardEntityURN urn) {
@@ -698,11 +695,11 @@ public class WorldInfo implements Iterable<StandardEntity> {
   }
 
   @Nonnull
-  private Blockade createRollbackBlockade(@Nonnull StandardEntity entity, @Nonnull Map<String, Object> cache) {
+  private Blockade createRollbackBlockade(@Nonnull StandardEntity entity, @Nonnull Map<Integer, Object> cache) {
     Blockade copy = (Blockade) entity.copy();
-    for (String urn : cache.keySet()) {
-      Object value = cache.get(urn);
-      StandardPropertyURN type = StandardPropertyURN.fromString(urn);
+    for (Integer urnId : cache.keySet()) {
+      Object value = cache.get(urnId);
+      StandardPropertyURN type = StandardPropertyURN.fromInt(urnId);
       boolean isDefined = value != null;
       switch (type) {
         case APEXES:
@@ -741,11 +738,11 @@ public class WorldInfo implements Iterable<StandardEntity> {
 
   @SuppressWarnings("unchecked")
   @Nonnull
-  private Building createRollbackBuilding(@Nonnull StandardEntity entity, @Nonnull Map<String, Object> cache) {
+  private Building createRollbackBuilding(@Nonnull StandardEntity entity, @Nonnull Map<Integer, Object> cache) {
     Building copy = (Building) entity.copy();
-    for (String urn : cache.keySet()) {
-      Object value = cache.get(urn);
-      StandardPropertyURN type = StandardPropertyURN.fromString(urn);
+    for (Integer urnId : cache.keySet()) {
+      Object value = cache.get(urnId);
+      StandardPropertyURN type = StandardPropertyURN.fromInt(urnId);
       boolean isDefined = value != null;
       switch (type) {
         case FIERYNESS:
@@ -838,11 +835,11 @@ public class WorldInfo implements Iterable<StandardEntity> {
 
   @SuppressWarnings("unchecked")
   @Nonnull
-  private Road createRollbackRoad(@Nonnull StandardEntity entity, @Nonnull Map<String, Object> cache) {
+  private Road createRollbackRoad(@Nonnull StandardEntity entity, @Nonnull Map<Integer, Object> cache) {
     Road copy = (Road) entity.copy();
-    for (String urn : cache.keySet()) {
-      Object value = cache.get(urn);
-      StandardPropertyURN type = StandardPropertyURN.fromString(urn);
+    for (Integer urnId : cache.keySet()) {
+      Object value = cache.get(urnId);
+      StandardPropertyURN type = StandardPropertyURN.fromInt(urnId);
       boolean isDefined = value != null;
       switch (type) {
         case BLOCKADES:
@@ -874,11 +871,11 @@ public class WorldInfo implements Iterable<StandardEntity> {
   }
 
   @Nonnull
-  private World createRollbackWorld(@Nonnull StandardEntity entity, @Nonnull Map<String, Object> cache) {
+  private World createRollbackWorld(@Nonnull StandardEntity entity, @Nonnull Map<Integer, Object> cache) {
     World copy = (World) entity.copy();
-    for (String urn : cache.keySet()) {
-      Object value = cache.get(urn);
-      StandardPropertyURN type = StandardPropertyURN.fromString(urn);
+    for (Integer urnId : cache.keySet()) {
+      Object value = cache.get(urnId);
+      StandardPropertyURN type = StandardPropertyURN.fromInt(urnId);
       boolean isDefined = value != null;
       switch (type) {
         case START_TIME:
@@ -916,11 +913,11 @@ public class WorldInfo implements Iterable<StandardEntity> {
   }
 
   @Nonnull
-  private Human createRollbackHuman(@Nonnull StandardEntity entity, @Nonnull Map<String, Object> cache) {
+  private Human createRollbackHuman(@Nonnull StandardEntity entity, @Nonnull Map<Integer, Object> cache) {
     Human copy = (Human) entity.copy();
-    for (String urn : cache.keySet()) {
-      Object value = cache.get(urn);
-      StandardPropertyURN type = StandardPropertyURN.fromString(urn);
+    for (Integer urnId : cache.keySet()) {
+      Object value = cache.get(urnId);
+      StandardPropertyURN type = StandardPropertyURN.fromInt(urnId);
       boolean isDefined = value != null;
       switch (type) {
         case X:
@@ -988,11 +985,11 @@ public class WorldInfo implements Iterable<StandardEntity> {
   }
 
   @Nonnull
-  private FireBrigade createRollbackFireBrigade(@Nonnull StandardEntity entity, @Nonnull Map<String, Object> cache) {
+  private FireBrigade createRollbackFireBrigade(@Nonnull StandardEntity entity, @Nonnull Map<Integer, Object> cache) {
     FireBrigade copy = (FireBrigade) entity.copy();
-    for (String urn : cache.keySet()) {
-      Object value = cache.get(urn);
-      StandardPropertyURN type = StandardPropertyURN.fromString(urn);
+    for (Integer urnId : cache.keySet()) {
+      Object value = cache.get(urnId);
+      StandardPropertyURN type = StandardPropertyURN.fromInt(urnId);
       boolean isDefined = value != null;
       switch (type) {
         case X:
@@ -1070,15 +1067,15 @@ public class WorldInfo implements Iterable<StandardEntity> {
     @Override
     public void entityAdded(WorldModel<? extends StandardEntity> model, StandardEntity e) {
       EntityID entityID = e.getID();
-      Map<Integer, Map<String, Object>> entityHistory = rollback.get(entityID);
+      Map<Integer, Map<Integer, Object>> entityHistory = rollback.get(entityID);
       if (entityHistory == null) {
         entityHistory = new HashMap<>();
       }
-      Map<String, Object> changeProperties = entityHistory.get(time);
+      Map<Integer, Object> changeProperties = entityHistory.get(time);
       if (changeProperties == null) {
         changeProperties = new HashMap<>();
       }
-      Map<String, Object> addedPoint = new HashMap<>();
+      Map<Integer, Object> addedPoint = new HashMap<>();
 
       for (Property property : e.getProperties()) {
         changeProperties.put(property.getURN(), property.getValue());
@@ -1095,11 +1092,11 @@ public class WorldInfo implements Iterable<StandardEntity> {
     public void entityRemoved(WorldModel<? extends StandardEntity> model, StandardEntity e) {
       EntityID entityID = e.getID();
 
-      Map<Integer, Map<String, Object>> entityHistory = rollback.get(entityID);
+      Map<Integer, Map<Integer, Object>> entityHistory = rollback.get(entityID);
       if (entityHistory == null) {
         entityHistory = new HashMap<>();
       }
-      Map<String, Object> changeProperties = entityHistory.get(time);
+      Map<Integer, Object> changeProperties = entityHistory.get(time);
       if (changeProperties == null) {
         changeProperties = new HashMap<>();
       }
@@ -1119,11 +1116,11 @@ public class WorldInfo implements Iterable<StandardEntity> {
     public void propertyChanged(Entity entity, Property property, Object oldValue, Object newValue) {
       EntityID entityID = entity.getID();
 
-      Map<Integer, Map<String, Object>> entityHistory = rollback.get(entityID);
+      Map<Integer, Map<Integer, Object>> entityHistory = rollback.get(entityID);
       if (entityHistory == null) {
         entityHistory = new HashMap<>();
       }
-      Map<String, Object> changeProperties = entityHistory.get(time);
+      Map<Integer, Object> changeProperties = entityHistory.get(time);
       if (changeProperties == null) {
         changeProperties = new HashMap<>();
       }

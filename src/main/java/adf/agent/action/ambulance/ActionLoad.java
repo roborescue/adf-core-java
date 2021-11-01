@@ -3,9 +3,8 @@ package adf.agent.action.ambulance;
 import javax.annotation.Nonnull;
 
 import rescuecore2.messages.Message;
-import rescuecore2.messages.control.AKCommand;
-import rescuecore2.standard.commands.AKLoad;
 import rescuecore2.standard.entities.Civilian;
+import rescuecore2.standard.messages.AKLoad;
 import rescuecore2.worldmodel.EntityID;
 
 import adf.agent.action.Action;
@@ -37,6 +36,6 @@ public class ActionLoad extends Action {
   @Override
   @Nonnull
   public Message getCommand(@Nonnull EntityID agentID, int time) {
-    return new AKCommand(new AKLoad(agentID, time, this.target));
+    return new AKLoad(agentID, time, this.target);
   }
 }

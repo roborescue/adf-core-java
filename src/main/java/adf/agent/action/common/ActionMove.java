@@ -5,8 +5,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import rescuecore2.messages.Message;
-import rescuecore2.messages.control.AKCommand;
-import rescuecore2.standard.commands.AKMove;
+import rescuecore2.standard.messages.AKMove;
 import rescuecore2.worldmodel.EntityID;
 
 import adf.agent.action.Action;
@@ -59,7 +58,7 @@ public class ActionMove extends Action {
   @Override
   @Nonnull
   public Message getCommand(@Nonnull EntityID agentID, int time) {
-    return this.usePosition ? new AKCommand(new AKMove(agentID, time, this.path, this.posX, this.posY))
-        : new AKCommand(new AKMove(agentID, time, this.path));
+    return this.usePosition ? new AKMove(agentID, time, this.path, this.posX, this.posY)
+        : new AKMove(agentID, time, this.path);
   }
 }

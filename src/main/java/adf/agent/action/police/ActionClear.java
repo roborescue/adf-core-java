@@ -4,11 +4,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import rescuecore2.messages.Message;
-import rescuecore2.messages.control.AKCommand;
 import rescuecore2.misc.geometry.Vector2D;
-import rescuecore2.standard.commands.AKClear;
-import rescuecore2.standard.commands.AKClearArea;
 import rescuecore2.standard.entities.Blockade;
+import rescuecore2.standard.messages.AKClear;
+import rescuecore2.standard.messages.AKClearArea;
 import rescuecore2.worldmodel.EntityID;
 
 import adf.agent.action.Action;
@@ -75,9 +74,9 @@ public class ActionClear extends Action {
   @Nonnull
   public Message getCommand(@Nonnull EntityID agentID, int time) {
     if (this.useOldFunction) {
-      return new AKCommand(new AKClear(agentID, time, this.target));
+      return new AKClear(agentID, time, this.target);
     } else {
-      return new AKCommand(new AKClearArea(agentID, time, this.posX, this.posY));
+      return new AKClearArea(agentID, time, this.posX, this.posY);
     }
   }
 }

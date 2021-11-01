@@ -4,15 +4,14 @@ import java.util.Collection;
 import java.util.EnumSet;
 import java.util.List;
 
-import rescuecore2.commands.Command;
 import rescuecore2.components.AbstractAgent;
+import rescuecore2.messages.Command;
 import rescuecore2.messages.Message;
-import rescuecore2.messages.control.AKCommand;
 import rescuecore2.messages.control.KASense;
-import rescuecore2.standard.commands.AKSubscribe;
 import rescuecore2.standard.entities.StandardEntity;
 import rescuecore2.standard.entities.StandardEntityURN;
 import rescuecore2.standard.entities.StandardWorldModel;
+import rescuecore2.standard.messages.AKSubscribe;
 import rescuecore2.worldmodel.ChangeSet;
 
 import adf.agent.communication.MessageManager;
@@ -66,12 +65,12 @@ public abstract class Agent<E extends StandardEntity> extends AbstractAgent<Stan
   }
 
   @Override
-  public final String[] getRequestedEntityURNs() {
+  public final int[] getRequestedEntityURNs() {
     EnumSet<StandardEntityURN> set = getRequestedEntityURNsEnum();
-    String[] result = new String[set.size()];
+    int[] result = new int[set.size()];
     int i = 0;
     for (StandardEntityURN next : set) {
-      result[i++] = next.toString();
+      result[i++] = next.getURNId();
     }
 
     return result;
@@ -125,9 +124,9 @@ public abstract class Agent<E extends StandardEntity> extends AbstractAgent<Stan
   @Override
   protected void processSense(KASense sense) {
     int time = sense.getTime();
-    ChangeSet changed = sense.getChanges();
+    ChangeSet changed = sense.getChangeSet();
     this.worldInfo.setTime(time);
-    this.model.merge(sense.getChanges());
+    this.model.merge(sense.getChangeSet());
     Collection<Command> heard = sense.getHearing();
     think(time, changed, heard);
   }
@@ -155,7 +154,7 @@ public abstract class Agent<E extends StandardEntity> extends AbstractAgent<Stan
       if (!this.messageManager.getIsSubscribed()) {
         int[] channelsToSubscribe = this.messageManager.getChannels();
         if (channelsToSubscribe != null) {
-          super.send(new AKCommand(new AKSubscribe(this.getID(), time, channelsToSubscribe)));
+          super.send(new AKSubscribe(this.getID(), time, channelsToSubscribe));
           this.messageManager.setIsSubscribed(true);
         }
       }

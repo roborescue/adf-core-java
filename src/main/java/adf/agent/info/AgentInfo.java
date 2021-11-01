@@ -8,7 +8,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import rescuecore2.commands.Command;
+import rescuecore2.messages.Command;
 import rescuecore2.standard.entities.Area;
 import rescuecore2.standard.entities.FireBrigade;
 import rescuecore2.standard.entities.Human;
