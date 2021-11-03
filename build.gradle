@@ -2,8 +2,8 @@ plugins {
   id 'java-library'
 }
 
-sourceCompatibility = '11'
-targetCompatibility = '11'
+sourceCompatibility = '16'
+targetCompatibility = '16'
 version = '3.5'
 
 repositories {
@@ -28,16 +28,10 @@ dependencies {
 [compileJava, compileTestJava].each {
   it.options.encoding = 'UTF-8'
   it.options.compilerArgs += [ '-Xlint:unchecked', '-Xlint:deprecation' ]
-  if (JavaVersion.current() == JavaVersion.VERSION_1_9) {
-    it.options.compilerArgs += [ '--add-modules', 'java.xml.bind',
-                                 '--add-exports','java.xml.bind/javax.xml.bind=ALL-UNNAMED' ]
-  }
 }
 
 javadoc.options.encoding = 'UTF-8'
-if (JavaVersion.current() == JavaVersion.VERSION_1_9) {
-  javadoc.options.addStringOption('-add-modules', 'java.xml.bind');
-}
+javadoc.options.addStringOption('Xdoclint:none', '-quiet')
 
 test {
   useJUnit()
