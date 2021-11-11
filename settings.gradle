@@ -1,1 +1,4 @@
 rootProject.name = 'rcrs-adf-core'
+
+include ':rcrs-server'
+project(':rcrs-server').projectDir = new File('../rcrs-server')

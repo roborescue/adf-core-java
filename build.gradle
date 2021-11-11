@@ -2,32 +2,32 @@ plugins {
   id 'java-library'
 }
 
-sourceCompatibility = '16'
-targetCompatibility = '16'
+sourceCompatibility = '17'
+targetCompatibility = '17'
 version = '3.5'
 
-repositories {
-  mavenCentral()
-}
-
-def getDateTime() {
-  new Date().format('yyyyMMddHHmmss',TimeZone.getTimeZone('UTC'))
-}
-
 dependencies {
-  implementation fileTree(dir: new File(rootDir, 'lib'), include: '**/*.jar', exclude: '**/*-sources.jar')
+  implementation project(':rcrs-server')
 
-  implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
-  implementation 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-  implementation 'com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438'
+  implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.0'
+  implementation 'com.fasterxml.jackson.core:jackson-core:2.13.0'
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+  implementation 'com.google.code.findbugs:jsr305:3.0.2'
   implementation 'javax.activation:activation:1.1.1'
+  implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+  implementation 'log4j:log4j:1.2.17'
+  implementation 'org.msgpack:jackson-dataformat-msgpack:0.9.0'
 
   testImplementation 'junit:junit:4.12'
 }
 
-[compileJava, compileTestJava].each {
-  it.options.encoding = 'UTF-8'
-  it.options.compilerArgs += [ '-Xlint:unchecked', '-Xlint:deprecation' ]
+repositories {
+  mavenCentral()
+
+  maven {
+    url = 'http://sourceforge.net/projects/jsi/files/m2_repo'
+    allowInsecureProtocol = true
+  }
 }
 
 javadoc.options.encoding = 'UTF-8'
@@ -39,12 +39,18 @@ test {
 
 clean.doFirst {
   delete file( new File( rootDir, 'bin' ) )
+  delete file( new File( rootDir, 'build' ) )
+}
+
+[compileJava, compileTestJava].each {
+  it.options.encoding = 'UTF-8'
+  it.options.compilerArgs += [ '-Xlint:unchecked', '-Xlint:deprecation' ]
 }
 
 jar {
   manifest {
-    attributes "Main-Class": "adf.Main"
-    attributes "Build-Timestamp": getDateTime();
+    attributes 'Main-Class': 'adf.Main'
+    attributes 'Build-Timestamp': new Date().format('yyyyMMddHHmmss',TimeZone.getTimeZone('UTC'));
   }
   archiveFileName = 'adf-core.jar'
 }
@@ -74,7 +80,7 @@ build.mustRunAfter 'clean'
 
 task start (type: JavaExec) {
   classpath = sourceSets.main.runtimeClasspath
-  mainClass = "adf.Main"
+  mainClass = 'adf.Main'
   if (project.hasProperty('args')) {
     args project.args.split('\\s+')
   }
