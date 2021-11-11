@@ -12,12 +12,16 @@
 
 ```bash
 
+$ git clone https://github.com/roborescue/rcrs-server.git
+
 $ git clone https://github.com/roborescue/rcrs-adf-core.git
 ```
 
 ## 3. Compile
 
 ```bash
+
+$ cd rcrs-adf-core
 
 $ ./gradlew clean
 
