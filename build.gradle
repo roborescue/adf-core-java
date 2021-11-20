@@ -1,13 +1,22 @@
 plugins {
   id 'java-library'
+  id 'maven-publish'
 }
+
+defaultTasks 'build'
+
+group = 'com.github.roborescue'
 
 sourceCompatibility = '17'
 targetCompatibility = '17'
 version = '3.5'
 
+def getDateTime() {
+  new Date().format('yyyyMMddHHmmss', TimeZone.getTimeZone('UTC'))
+}
+
 dependencies {
-  implementation project(':rcrs-server')
+  implementation 'com.github.roborescue:rcrs-server:protobuf-v6-SNAPSHOT'
 
   implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.0'
   implementation 'com.fasterxml.jackson.core:jackson-core:2.13.0'
@@ -28,13 +37,40 @@ repositories {
     url = 'http://sourceforge.net/projects/jsi/files/m2_repo'
     allowInsecureProtocol = true
   }
+  maven {
+    url 'https://jitpack.io'
+  }
 }
-
-javadoc.options.encoding = 'UTF-8'
-javadoc.options.addStringOption('Xdoclint:none', '-quiet')
 
 test {
   useJUnit()
+}
+
+jar {
+  manifest {
+    attributes 'Main-Class': 'adf.Main'
+    attributes 'Build-Timestamp': getDateTime();
+  }
+  archiveFileName = 'adf-core.jar'
+}
+
+javadoc {
+  options {
+    encoding = 'UTF-8'
+    addStringOption('Xdoclint:none', '-quiet')
+  }
+}
+
+publishing {
+  publications {
+    maven(MavenPublication) {
+      groupId = 'com.github.roborescue'
+      artifactId = 'rcrs-adf-core'
+      version = 'master-SNAPSHOT'
+
+      from components.java
+    }
+  }
 }
 
 clean.doFirst {
@@ -45,18 +81,6 @@ clean.doFirst {
 [compileJava, compileTestJava].each {
   it.options.encoding = 'UTF-8'
   it.options.compilerArgs += [ '-Xlint:unchecked', '-Xlint:deprecation' ]
-}
-
-jar {
-  manifest {
-    attributes 'Main-Class': 'adf.Main'
-    attributes 'Build-Timestamp': new Date().format('yyyyMMddHHmmss',TimeZone.getTimeZone('UTC'));
-  }
-  archiveFileName = 'adf-core.jar'
-}
-
-jar.doLast { task ->
-  ant.checksum file: task.archivePath
 }
 
 task javadocJar(type: Jar, dependsOn:javadoc) {
@@ -75,8 +99,6 @@ artifacts {
   archives sourcesJar
   archives javadocJar
 }
-
-build.mustRunAfter 'clean'
 
 task start (type: JavaExec) {
   classpath = sourceSets.main.runtimeClasspath
