@@ -1,5 +1,6 @@
 package adf.launcher;
 
+import adf.launcher.annotation.NoStructureWarning;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,8 +21,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import adf.launcher.annotation.NoStructureWarning;
 
 public class LaunchSupporter {
 
@@ -147,7 +146,7 @@ public class LaunchSupporter {
     System.out.println("-at [AT]\t\t\t\tnumber of AmbulanceTeam");
     System.out.println("-ac [AC]\t\t\t\tnumber of AmbulanceCentre");
     System.out.println("-s [HOST]:[PORT]\t\t\tRCRS server host and port");
-    System.out.println("-h [HOST]\t\t\t\tRCRS server host (port:7000)");
+    System.out.println("-h [HOST]\t\t\t\tRCRS server host (port:27931)");
     System.out.println("-pre [0|1]\t\t\t\tPrecompute flag");
     System.out.println("-mc [FILE]\t\t\t\tModuleConfig file name");
     System.out.println("-md [JSON]\t\t\t\tModuleConfig JSON");
