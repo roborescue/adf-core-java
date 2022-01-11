@@ -1,4 +1,4 @@
-# `rcrs-adf-core` RCRS Agent Development Framework (Core)
+# `adf-core-java` Agent Development Framework Core Java
 
 (Linux) Instructions to download and build the core of the Agent Development Framework (ADF)
 
