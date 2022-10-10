@@ -5,7 +5,6 @@ import static rescuecore2.standard.entities.StandardEntityURN.CIVILIAN;
 import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.action.Action;
 import adf.core.agent.action.ambulance.ActionLoad;
-import adf.core.agent.action.ambulance.ActionRescue;
 import adf.core.agent.action.ambulance.ActionUnload;
 import adf.core.agent.action.common.ActionMove;
 import adf.core.agent.action.common.ActionRest;
@@ -176,9 +175,7 @@ public class DefaultExtActionTransport extends ExtAction {
       }
       EntityID targetPosition = human.getPosition();
       if (agentPosition.getValue() == targetPosition.getValue()) {
-        if (human.isBuriednessDefined() && human.getBuriedness() > 0) {
-          return new ActionRescue(human);
-        } else if (human.getStandardURN() == CIVILIAN) {
+        if (human.getStandardURN() == CIVILIAN && human.getBuriedness() == 0) {
           return new ActionLoad(human.getID());
         }
       } else {
