@@ -175,7 +175,8 @@ public class DefaultExtActionTransport extends ExtAction {
       }
       EntityID targetPosition = human.getPosition();
       if (agentPosition.getValue() == targetPosition.getValue()) {
-        if (human.getStandardURN() == CIVILIAN && human.getBuriedness() == 0) {
+        if ((human.getStandardURN() == CIVILIAN) &&
+                (!human.isBuriednessDefined() || (human.isBuriednessDefined() && (human.getBuriedness() == 0)))) {
           return new ActionLoad(human.getID());
         }
       } else {
