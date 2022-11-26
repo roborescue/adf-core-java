@@ -1,31 +1,39 @@
-# `adf-core-java` Agent Development Framework Core Java
+# `adf-core-java` 代理开发框架核心代码的Java实现
 
-(Linux) Instructions to download and build the core of the Agent Development Framework (ADF)
+(Linux) 代理开发框架核心下载构建说明 (ADF)
 
-## 1. Software Pre-Requisites
+## 1. 环境要求
 
 * Git
 * OpenJDK Java 17
 * Gradle
 
-## 2. Download
+## 2. 下载
 
 ```bash
-
-$ git clone https://github.com/roborescue/adf-core-java.git
+$ git clone https://github.com/roborescue-aust/adf-core-java.git
 ```
 
-## 3. Compile
+或者
 
 ```bash
+$ git clone git@github.com:roborescue-aust/adf-core-java.git
+```
 
+## 3. 编译
+
+```bash
 $ cd adf-core-java
+```
 
+```bash
 $ ./gradlew clean
+```
 
+```bash
 $ ./gradlew build
 ```
 
-## 4. Support
+## 4. 支持
 
-To report a bug, suggest improvements or request support, please open an issue at GitHub <https://github.com/roborescue/adf-core-java/issues>.
+报告错误、提出改进建议或请求支持,Github <https://github.com/roborescue-aust/adf-core-java/issues> 上提出issue.
