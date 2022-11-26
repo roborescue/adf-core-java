@@ -1,15 +1,16 @@
 package adf.core.agent.action;
 
-import javax.annotation.Nonnull;
 import rescuecore2.messages.Message;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+
 public abstract class Action {
 
-  public Action() {
-  }
+    public Action() {
+    }
 
 
-  @Nonnull
-  public abstract Message getCommand(@Nonnull EntityID agentID, int time);
+    @Nonnull
+    public abstract Message getCommand(@Nonnull EntityID agentID, int time);
 }

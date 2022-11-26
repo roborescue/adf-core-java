@@ -1,14 +1,5 @@
 package adf.impl.module.complex;
 
-import static rescuecore2.standard.entities.StandardEntityURN.AMBULANCE_CENTRE;
-import static rescuecore2.standard.entities.StandardEntityURN.AMBULANCE_TEAM;
-import static rescuecore2.standard.entities.StandardEntityURN.BUILDING;
-import static rescuecore2.standard.entities.StandardEntityURN.FIRE_BRIGADE;
-import static rescuecore2.standard.entities.StandardEntityURN.FIRE_STATION;
-import static rescuecore2.standard.entities.StandardEntityURN.GAS_STATION;
-import static rescuecore2.standard.entities.StandardEntityURN.POLICE_FORCE;
-import static rescuecore2.standard.entities.StandardEntityURN.POLICE_OFFICE;
-import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.communication.MessageManager;
 import adf.core.agent.develop.DevelopData;
 import adf.core.agent.info.AgentInfo;
@@ -19,23 +10,26 @@ import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.module.algorithm.Clustering;
 import adf.core.component.module.algorithm.PathPlanning;
 import adf.core.component.module.complex.Search;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 import rescuecore2.standard.entities.Building;
 import rescuecore2.standard.entities.StandardEntity;
 import rescuecore2.standard.entities.StandardEntityURN;
 import rescuecore2.worldmodel.EntityID;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+
+import static rescuecore2.standard.entities.StandardEntityURN.*;
+
 public class DefaultSearch extends Search {
 
-  private PathPlanning pathPlanning;
-  private Clustering clustering;
+    private PathPlanning pathPlanning;
+    private Clustering clustering;
 
-  private EntityID result;
-  private Collection<EntityID> unsearchedBuildingIDs;
+    private EntityID result;
+    private Collection<EntityID> unsearchedBuildingIDs;
 
-  public DefaultSearch(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
+    public DefaultSearch(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
     super(ai, wi, si, moduleManager, developData);
 
     this.unsearchedBuildingIDs = new HashSet<>();

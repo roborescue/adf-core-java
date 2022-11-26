@@ -9,13 +9,10 @@ import adf.core.component.communication.CommunicationMessage;
 import adf.core.component.communication.MessageBundle;
 import adf.core.component.communication.MessageCoordinator;
 import adf.core.launcher.ConsoleOutput;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.*;
 
 public class MessageManager {
 

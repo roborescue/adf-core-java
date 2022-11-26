@@ -1,8 +1,5 @@
 package adf.impl.extaction;
 
-import static rescuecore2.standard.entities.StandardEntityURN.BLOCKADE;
-import static rescuecore2.standard.entities.StandardEntityURN.CIVILIAN;
-import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.action.Action;
 import adf.core.agent.action.ambulance.ActionLoad;
 import adf.core.agent.action.ambulance.ActionUnload;
@@ -18,17 +15,15 @@ import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.extaction.ExtAction;
 import adf.core.component.module.algorithm.PathPlanning;
 import com.google.common.collect.Lists;
+import rescuecore2.config.NoSuchConfigOptionException;
+import rescuecore2.standard.entities.*;
+import rescuecore2.worldmodel.EntityID;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import rescuecore2.config.NoSuchConfigOptionException;
-import rescuecore2.standard.entities.AmbulanceTeam;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.Blockade;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.standard.entities.StandardEntityURN;
-import rescuecore2.worldmodel.EntityID;
+
+import static rescuecore2.standard.entities.StandardEntityURN.*;
 
 public class DefaultExtActionTransport extends ExtAction {
 

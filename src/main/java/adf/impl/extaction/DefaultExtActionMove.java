@@ -12,16 +12,13 @@ import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.extaction.ExtAction;
 import adf.core.component.module.algorithm.PathPlanning;
+import rescuecore2.config.NoSuchConfigOptionException;
+import rescuecore2.standard.entities.*;
+import rescuecore2.worldmodel.EntityID;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import rescuecore2.config.NoSuchConfigOptionException;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.Blockade;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.standard.entities.StandardEntityURN;
-import rescuecore2.worldmodel.EntityID;
 
 public class DefaultExtActionMove extends ExtAction {
 

@@ -2,6 +2,7 @@ package adf.core.agent.communication.standard.bundle;
 
 import adf.core.component.communication.util.BitOutputStream;
 import adf.core.component.communication.util.BitStreamReader;
+
 import javax.annotation.Nonnull;
 
 public class MessageDummy extends StandardMessage {

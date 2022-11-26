@@ -8,8 +8,9 @@ import adf.core.agent.info.WorldInfo;
 import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.module.AbstractModule;
-import java.util.Map;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.Map;
 
 public abstract class TargetAllocator extends AbstractModule {
 

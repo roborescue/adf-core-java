@@ -24,21 +24,22 @@ import adf.core.component.module.complex.Search;
 import adf.core.component.tactics.TacticsAmbulanceTeam;
 import adf.core.debug.WorldViewLauncher;
 import adf.impl.tactics.utils.MessageTool;
-import java.util.List;
-import java.util.Objects;
 import rescuecore2.standard.entities.AmbulanceTeam;
 import rescuecore2.standard.entities.StandardEntityURN;
 import rescuecore2.worldmodel.EntityID;
 
+import java.util.List;
+import java.util.Objects;
+
 public class DefaultTacticsAmbulanceTeam extends TacticsAmbulanceTeam {
 
-  private HumanDetector humanDetector;
-  private Search search;
+    private HumanDetector humanDetector;
+    private Search search;
 
-  private ExtAction actionTransport;
-  private ExtAction actionExtMove;
+    private ExtAction actionTransport;
+    private ExtAction actionExtMove;
 
-  private CommandExecutor<CommandAmbulance> commandExecutorAmbulance;
+    private CommandExecutor<CommandAmbulance> commandExecutorAmbulance;
   private CommandExecutor<CommandScout> commandExecutorScout;
 
   private MessageTool messageTool;

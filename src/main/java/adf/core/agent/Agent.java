@@ -13,9 +13,6 @@ import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.communication.CommunicationModule;
 import adf.core.launcher.ConfigKey;
 import adf.core.launcher.ConsoleOutput;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.List;
 import rescuecore2.components.AbstractAgent;
 import rescuecore2.messages.Command;
 import rescuecore2.messages.Message;
@@ -26,8 +23,12 @@ import rescuecore2.standard.entities.StandardWorldModel;
 import rescuecore2.standard.messages.AKSubscribe;
 import rescuecore2.worldmodel.ChangeSet;
 
+import java.util.Collection;
+import java.util.EnumSet;
+import java.util.List;
+
 public abstract class Agent<E extends StandardEntity>
-    extends AbstractAgent<StandardWorldModel, E> {
+        extends AbstractAgent<StandardWorldModel, E> {
 
   protected static final String DATASTORAGE_FILE_NAME_AMBULANCE = "ambulance.bin";
   protected static final String DATASTORAGE_FILE_NAME_FIRE = "fire.bin";

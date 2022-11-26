@@ -7,18 +7,19 @@ import adf.core.agent.info.ScenarioInfo;
 import adf.core.agent.info.WorldInfo;
 import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
-import java.util.Map;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.Map;
 
 public abstract class FireTargetAllocator extends TargetAllocator {
 
-  public FireTargetAllocator(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
-    super(ai, wi, si, moduleManager, developData);
-  }
+    public FireTargetAllocator(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
+        super(ai, wi, si, moduleManager, developData);
+    }
 
 
-  @Override
-  public abstract Map<EntityID, EntityID> getResult();
+    @Override
+    public abstract Map<EntityID, EntityID> getResult();
 
   @Override
   public abstract FireTargetAllocator calc();

@@ -1,7 +1,5 @@
 package adf.impl.extaction;
 
-import static rescuecore2.standard.entities.StandardEntityURN.HYDRANT;
-import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.action.Action;
 import adf.core.agent.action.common.ActionMove;
 import adf.core.agent.action.common.ActionRest;
@@ -16,28 +14,24 @@ import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.extaction.ExtAction;
 import adf.core.component.module.algorithm.PathPlanning;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
 import rescuecore2.config.NoSuchConfigOptionException;
-import rescuecore2.standard.entities.Building;
-import rescuecore2.standard.entities.FireBrigade;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.standard.entities.StandardEntityURN;
+import rescuecore2.standard.entities.*;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.*;
+
+import static rescuecore2.standard.entities.StandardEntityURN.HYDRANT;
+import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 
 public class DefaultExtActionFireFighting extends ExtAction {
 
-  private PathPlanning pathPlanning;
+    private PathPlanning pathPlanning;
 
-  private int maxExtinguishDistance;
-  private int maxExtinguishPower;
-  private int thresholdRest;
-  private int kernelTime;
-  private int refillCompleted;
+    private int maxExtinguishDistance;
+    private int maxExtinguishPower;
+    private int thresholdRest;
+    private int kernelTime;
+    private int refillCompleted;
   private int refillRequest;
   private boolean refillFlag;
 

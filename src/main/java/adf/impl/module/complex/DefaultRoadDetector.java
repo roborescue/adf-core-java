@@ -1,10 +1,5 @@
 package adf.impl.module.complex;
 
-import static rescuecore2.standard.entities.StandardEntityURN.BLOCKADE;
-import static rescuecore2.standard.entities.StandardEntityURN.BUILDING;
-import static rescuecore2.standard.entities.StandardEntityURN.GAS_STATION;
-import static rescuecore2.standard.entities.StandardEntityURN.HYDRANT;
-import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.communication.MessageManager;
 import adf.core.agent.communication.standard.bundle.MessageUtil;
 import adf.core.agent.communication.standard.bundle.centralized.CommandPolice;
@@ -21,27 +16,21 @@ import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.communication.CommunicationMessage;
 import adf.core.component.module.algorithm.PathPlanning;
 import adf.core.component.module.complex.RoadDetector;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.Blockade;
-import rescuecore2.standard.entities.Building;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.Road;
-import rescuecore2.standard.entities.StandardEntity;
+import rescuecore2.standard.entities.*;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.*;
+
+import static rescuecore2.standard.entities.StandardEntityURN.*;
 
 public class DefaultRoadDetector extends RoadDetector {
 
-  private Set<EntityID> targetAreas;
-  private Set<EntityID> priorityRoads;
+    private Set<EntityID> targetAreas;
+    private Set<EntityID> priorityRoads;
 
-  private PathPlanning pathPlanning;
+    private PathPlanning pathPlanning;
 
-  private EntityID result;
+    private EntityID result;
 
   public DefaultRoadDetector(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
     super(ai, wi, si, moduleManager, developData);

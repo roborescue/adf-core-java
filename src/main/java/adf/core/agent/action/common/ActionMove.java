@@ -1,21 +1,22 @@
 package adf.core.agent.action.common;
 
 import adf.core.agent.action.Action;
-import java.util.List;
-import javax.annotation.Nonnull;
 import rescuecore2.messages.Message;
 import rescuecore2.standard.messages.AKMove;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 public class ActionMove extends Action {
 
-  private List<EntityID> path;
+    private List<EntityID> path;
 
-  private boolean usePosition;
-  private int posX;
-  private int posY;
+    private boolean usePosition;
+    private int posX;
+    private int posY;
 
-  public ActionMove(@Nonnull List<EntityID> movePath) {
+    public ActionMove(@Nonnull List<EntityID> movePath) {
     super();
     this.usePosition = false;
     this.path = movePath;

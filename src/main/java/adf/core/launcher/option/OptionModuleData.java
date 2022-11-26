@@ -1,17 +1,18 @@
 package adf.core.launcher.option;
 
 import adf.core.launcher.ConfigKey;
-import java.util.Base64;
 import rescuecore2.config.Config;
+
+import java.util.Base64;
 
 public class OptionModuleData implements Option {
 
-  private static final String DATA_DELIMITER = " ";
+    private static final String DATA_DELIMITER = " ";
 
-  @Override
-  public boolean hasValue() {
-    return true;
-  }
+    @Override
+    public boolean hasValue() {
+        return true;
+    }
 
 
   @Override

@@ -8,25 +8,26 @@ import adf.core.component.communication.CommunicationModule;
 import adf.core.component.communication.util.BitOutputStream;
 import adf.core.component.communication.util.BitStreamReader;
 import adf.core.launcher.ConsoleOutput;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
-import javax.annotation.Nonnull;
 import rescuecore2.messages.Command;
 import rescuecore2.messages.Message;
 import rescuecore2.standard.messages.AKSpeak;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
+
 public class StandardCommunicationModule extends CommunicationModule {
 
-  final private int ESCAPE_CHAR = 0x41;
-  final private int SIZE_ID = 5;
-  final private int SIZE_TTL = 3;
+    final private int ESCAPE_CHAR = 0x41;
+    final private int SIZE_ID = 5;
+    final private int SIZE_TTL = 3;
 
-  @Override
-  public void receive(@Nonnull Agent agent,
-      @Nonnull MessageManager messageManager) {
+    @Override
+    public void receive(@Nonnull Agent agent,
+                        @Nonnull MessageManager messageManager) {
     Collection<Command> heardList = agent.agentInfo.getHeard();
 
     for (Command heard : heardList) {

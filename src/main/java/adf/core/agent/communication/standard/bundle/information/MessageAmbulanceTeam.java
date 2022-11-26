@@ -4,19 +4,20 @@ import adf.core.agent.communication.standard.bundle.StandardMessage;
 import adf.core.agent.communication.standard.bundle.StandardMessagePriority;
 import adf.core.component.communication.util.BitOutputStream;
 import adf.core.component.communication.util.BitStreamReader;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import rescuecore2.standard.entities.AmbulanceTeam;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class MessageAmbulanceTeam extends StandardMessage {
 
-  /* below id is same to information.MessageAmbulanceTeam */
-  public static final int ACTION_REST = 0;
-  public static final int ACTION_MOVE = 1;
-  public static final int ACTION_RESCUE = 2;
-  public static final int ACTION_LOAD = 3;
-  public static final int ACTION_UNLOAD = 4;
+    /* below id is same to information.MessageAmbulanceTeam */
+    public static final int ACTION_REST = 0;
+    public static final int ACTION_MOVE = 1;
+    public static final int ACTION_RESCUE = 2;
+    public static final int ACTION_LOAD = 3;
+    public static final int ACTION_UNLOAD = 4;
 
   private static final int SIZE_ID = 32;
   private static final int SIZE_HP = 14;

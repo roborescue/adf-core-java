@@ -1,6 +1,8 @@
 /**
- * 扩展动作的目录
+ * 扩展动作的包
  * <p>
+ * 实现了{@link adf.core.component.extaction.ExtAction}接口的类
+ * </p>
  *
  * @author <a href="https://roozen.top">Roozen</a>
  * @version 1.0

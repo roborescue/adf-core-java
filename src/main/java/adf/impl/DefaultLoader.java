@@ -1,18 +1,8 @@
 package adf.impl;
 
 import adf.core.component.AbstractLoader;
-import adf.core.component.tactics.TacticsAmbulanceCentre;
-import adf.core.component.tactics.TacticsAmbulanceTeam;
-import adf.core.component.tactics.TacticsFireBrigade;
-import adf.core.component.tactics.TacticsFireStation;
-import adf.core.component.tactics.TacticsPoliceForce;
-import adf.core.component.tactics.TacticsPoliceOffice;
-import adf.impl.tactics.DefaultTacticsAmbulanceCentre;
-import adf.impl.tactics.DefaultTacticsAmbulanceTeam;
-import adf.impl.tactics.DefaultTacticsFireBrigade;
-import adf.impl.tactics.DefaultTacticsFireStation;
-import adf.impl.tactics.DefaultTacticsPoliceForce;
-import adf.impl.tactics.DefaultTacticsPoliceOffice;
+import adf.core.component.tactics.*;
+import adf.impl.tactics.*;
 
 public class DefaultLoader extends AbstractLoader {
 

@@ -1,21 +1,22 @@
 package adf.core.agent.action.fire;
 
 import adf.core.agent.action.Action;
-import javax.annotation.Nonnull;
 import rescuecore2.messages.Message;
 import rescuecore2.standard.entities.Building;
 import rescuecore2.standard.messages.AKExtinguish;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+
 public class ActionExtinguish extends Action {
 
-  protected EntityID target;
-  private int power;
+    protected EntityID target;
+    private int power;
 
-  public ActionExtinguish(@Nonnull EntityID targetID, int maxPower) {
-    super();
-    this.target = targetID;
-    this.power = maxPower;
+    public ActionExtinguish(@Nonnull EntityID targetID, int maxPower) {
+        super();
+        this.target = targetID;
+        this.power = maxPower;
   }
 
 

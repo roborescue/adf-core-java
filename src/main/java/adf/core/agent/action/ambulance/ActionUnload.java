@@ -1,20 +1,21 @@
 package adf.core.agent.action.ambulance;
 
 import adf.core.agent.action.Action;
-import javax.annotation.Nonnull;
 import rescuecore2.messages.Message;
 import rescuecore2.standard.messages.AKUnload;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+
 public class ActionUnload extends Action {
 
-  public ActionUnload() {
-    super();
-  }
+    public ActionUnload() {
+        super();
+    }
 
 
-  @Override
-  @Nonnull
+    @Override
+    @Nonnull
   public String toString() {
     return "ActionUnload []";
   }

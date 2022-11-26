@@ -6,6 +6,7 @@ import adf.core.agent.info.ScenarioInfo;
 import adf.core.agent.info.WorldInfo;
 import adf.core.component.communication.CommunicationMessage;
 import adf.core.component.communication.MessageCoordinator;
+
 import java.util.ArrayList;
 import java.util.List;
 

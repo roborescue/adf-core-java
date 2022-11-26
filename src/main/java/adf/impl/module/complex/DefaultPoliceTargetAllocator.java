@@ -1,8 +1,5 @@
 package adf.impl.module.complex;
 
-import static rescuecore2.standard.entities.StandardEntityURN.BUILDING;
-import static rescuecore2.standard.entities.StandardEntityURN.GAS_STATION;
-import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.communication.MessageManager;
 import adf.core.agent.communication.standard.bundle.MessageUtil;
 import adf.core.agent.communication.standard.bundle.centralized.CommandPolice;
@@ -17,30 +14,22 @@ import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.communication.CommunicationMessage;
 import adf.core.component.module.complex.PoliceTargetAllocator;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.Building;
-import rescuecore2.standard.entities.PoliceForce;
-import rescuecore2.standard.entities.Road;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.standard.entities.StandardEntityURN;
+import rescuecore2.standard.entities.*;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.*;
+
+import static rescuecore2.standard.entities.StandardEntityURN.*;
 
 public class DefaultPoliceTargetAllocator extends PoliceTargetAllocator {
 
-  private Collection<EntityID> priorityAreas;
-  private Collection<EntityID> targetAreas;
+    private Collection<EntityID> priorityAreas;
+    private Collection<EntityID> targetAreas;
 
-  private Map<EntityID, PoliceForceInfo> agentInfoMap;
+    private Map<EntityID, PoliceForceInfo> agentInfoMap;
 
-  public DefaultPoliceTargetAllocator(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
-    super(ai, wi, si, moduleManager, developData);
+    public DefaultPoliceTargetAllocator(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
+        super(ai, wi, si, moduleManager, developData);
     this.priorityAreas = new HashSet<>();
     this.targetAreas = new HashSet<>();
     this.agentInfoMap = new HashMap<>();

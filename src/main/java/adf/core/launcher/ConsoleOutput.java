@@ -1,22 +1,24 @@
 package adf.core.launcher;
 
-import static adf.core.Main.VERSION_CODE;
 import adf.core.Main;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.Semaphore;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
+import static adf.core.Main.VERSION_CODE;
+
 public class ConsoleOutput {
 
-  private static final int titleLength = 6;
+    private static final int titleLength = 6;
 
-  private static final Semaphore semaphore = new Semaphore(1, true);
+    private static final Semaphore semaphore = new Semaphore(1, true);
 
-  public static enum State {
-    INFO,
-    WARN,
+    public static enum State {
+        INFO,
+        WARN,
     ERROR,
     NOTICE,
     START,

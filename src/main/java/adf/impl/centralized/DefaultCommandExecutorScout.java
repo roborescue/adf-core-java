@@ -1,6 +1,5 @@
 package adf.impl.centralized;
 
-import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.action.common.ActionMove;
 import adf.core.agent.communication.MessageManager;
 import adf.core.agent.communication.standard.bundle.centralized.CommandScout;
@@ -13,14 +12,17 @@ import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.centralized.CommandExecutor;
 import adf.core.component.module.algorithm.PathPlanning;
+import rescuecore2.standard.entities.Area;
+import rescuecore2.worldmodel.AbstractEntity;
+import rescuecore2.worldmodel.EntityID;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.worldmodel.AbstractEntity;
-import rescuecore2.worldmodel.EntityID;
+
+import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 
 public class DefaultCommandExecutorScout extends CommandExecutor<CommandScout> {
 

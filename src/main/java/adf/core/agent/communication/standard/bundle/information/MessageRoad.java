@@ -4,20 +4,21 @@ import adf.core.agent.communication.standard.bundle.StandardMessage;
 import adf.core.agent.communication.standard.bundle.StandardMessagePriority;
 import adf.core.component.communication.util.BitOutputStream;
 import adf.core.component.communication.util.BitStreamReader;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import rescuecore2.standard.entities.Blockade;
 import rescuecore2.standard.entities.Road;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class MessageRoad extends StandardMessage {
 
-  private static final int SIZE_ROADID = 32;
-  private static final int SIZE_BLOCKADEID = 32;
-  private static final int SIZE_COST = 32;
-  private static final int SIZE_PASSABLE = 1;
-  private static final int SIZE_X = 32;
-  private static final int SIZE_Y = 32;
+    private static final int SIZE_ROADID = 32;
+    private static final int SIZE_BLOCKADEID = 32;
+    private static final int SIZE_COST = 32;
+    private static final int SIZE_PASSABLE = 1;
+    private static final int SIZE_X = 32;
+    private static final int SIZE_Y = 32;
 
   protected int rawRoadID;
   protected int rawBlockadeID;

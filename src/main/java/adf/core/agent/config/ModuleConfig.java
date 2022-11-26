@@ -4,21 +4,18 @@ import adf.core.launcher.ConsoleOutput;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import rescuecore2.config.Config;
+import rescuecore2.config.ConfigException;
+
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import rescuecore2.config.Config;
-import rescuecore2.config.ConfigException;
 
 public class ModuleConfig extends Config {
 

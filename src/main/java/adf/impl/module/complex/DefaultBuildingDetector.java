@@ -9,27 +9,23 @@ import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.module.algorithm.Clustering;
 import adf.core.component.module.complex.BuildingDetector;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import rescuecore2.misc.geometry.Vector2D;
 import rescuecore2.standard.entities.Building;
 import rescuecore2.standard.entities.StandardEntity;
 import rescuecore2.standard.entities.StandardEntityURN;
 import rescuecore2.worldmodel.EntityID;
 
+import java.util.*;
+
 public class DefaultBuildingDetector extends BuildingDetector {
 
-  private EntityID result;
+    private EntityID result;
 
-  private Clustering clustering;
+    private Clustering clustering;
 
-  public DefaultBuildingDetector(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
-    super(ai, wi, si, moduleManager, developData);
-    switch (si.getMode()) {
+    public DefaultBuildingDetector(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
+        super(ai, wi, si, moduleManager, developData);
+        switch (si.getMode()) {
       case PRECOMPUTATION_PHASE:
       case PRECOMPUTED:
       case NON_PRECOMPUTE:

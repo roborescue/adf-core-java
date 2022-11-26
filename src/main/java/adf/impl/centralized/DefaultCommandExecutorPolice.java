@@ -1,7 +1,5 @@
 package adf.impl.centralized;
 
-import static rescuecore2.standard.entities.StandardEntityURN.BLOCKADE;
-import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.action.Action;
 import adf.core.agent.action.common.ActionMove;
 import adf.core.agent.action.common.ActionRest;
@@ -17,15 +15,14 @@ import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.centralized.CommandExecutor;
 import adf.core.component.extaction.ExtAction;
 import adf.core.component.module.algorithm.PathPlanning;
+import rescuecore2.standard.entities.*;
+import rescuecore2.worldmodel.EntityID;
+
 import java.util.List;
 import java.util.Objects;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.Blockade;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.PoliceForce;
-import rescuecore2.standard.entities.Road;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.worldmodel.EntityID;
+
+import static rescuecore2.standard.entities.StandardEntityURN.BLOCKADE;
+import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 
 public class DefaultCommandExecutorPolice extends CommandExecutor<CommandPolice> {
 

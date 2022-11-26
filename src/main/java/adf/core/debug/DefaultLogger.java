@@ -1,7 +1,5 @@
 package adf.core.debug;
 
-import java.io.File;
-import java.util.HashMap;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -10,15 +8,18 @@ import org.apache.log4j.varia.NullAppender;
 import rescuecore2.standard.entities.Building;
 import rescuecore2.standard.entities.StandardEntity;
 
+import java.io.File;
+import java.util.HashMap;
+
 public class DefaultLogger {
 
-  private static HashMap<String, Logger> name_loggers = new HashMap<>();
-  private static final String LOG_FOLDER = "logs";
+    private static HashMap<String, Logger> name_loggers = new HashMap<>();
+    private static final String LOG_FOLDER = "logs";
 
-  public static Logger getLogger(StandardEntity entity) {
-    if (entity == null) {
-      return getLogger("");
-    }
+    public static Logger getLogger(StandardEntity entity) {
+        if (entity == null) {
+            return getLogger("");
+        }
 
     if (entity instanceof Building) {
       return getLogger(entity.toString());

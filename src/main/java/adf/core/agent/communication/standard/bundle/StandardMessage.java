@@ -1,18 +1,19 @@
 package adf.core.agent.communication.standard.bundle;
 
 import adf.core.component.communication.CommunicationMessage;
-import javax.annotation.Nonnull;
 import rescuecore2.worldmodel.EntityID;
+
+import javax.annotation.Nonnull;
 
 abstract public class StandardMessage extends CommunicationMessage {
 
-  int rawSenderID = -1;
-  EntityID mySenderID;
-  int ttl = -1;
-  StandardMessagePriority sendingPriority = StandardMessagePriority.NORMAL;
+    int rawSenderID = -1;
+    EntityID mySenderID;
+    int ttl = -1;
+    StandardMessagePriority sendingPriority = StandardMessagePriority.NORMAL;
 
-  public StandardMessage(boolean isRadio, StandardMessagePriority sendingPriority) {
-    super(isRadio);
+    public StandardMessage(boolean isRadio, StandardMessagePriority sendingPriority) {
+        super(isRadio);
     this.sendingPriority = sendingPriority;
   }
 

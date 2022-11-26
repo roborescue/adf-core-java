@@ -4,15 +4,13 @@ import adf.core.agent.info.AgentInfo;
 import adf.core.agent.info.ScenarioInfo;
 import adf.core.agent.info.WorldInfo;
 import adf.core.launcher.annotation.NoStructureWarning;
+import rescuecore2.standard.entities.StandardEntity;
+import rescuecore2.worldmodel.EntityID;
+
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.worldmodel.EntityID;
 
 @NoStructureWarning
 public class WorldViewLauncher {
