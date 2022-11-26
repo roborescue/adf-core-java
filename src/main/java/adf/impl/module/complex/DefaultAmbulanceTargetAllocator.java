@@ -1,6 +1,5 @@
 package adf.impl.module.complex;
 
-import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.communication.MessageManager;
 import adf.core.agent.communication.standard.bundle.MessageUtil;
 import adf.core.agent.communication.standard.bundle.centralized.CommandAmbulance;
@@ -17,29 +16,22 @@ import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.communication.CommunicationMessage;
 import adf.core.component.module.complex.AmbulanceTargetAllocator;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import rescuecore2.standard.entities.AmbulanceTeam;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.standard.entities.StandardEntityURN;
+import rescuecore2.standard.entities.*;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.*;
+
+import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 
 public class DefaultAmbulanceTargetAllocator extends AmbulanceTargetAllocator {
 
-  private Collection<EntityID> priorityHumans;
-  private Collection<EntityID> targetHumans;
+    private Collection<EntityID> priorityHumans;
+    private Collection<EntityID> targetHumans;
 
-  private Map<EntityID, AmbulanceTeamInfo> ambulanceTeamInfoMap;
+    private Map<EntityID, AmbulanceTeamInfo> ambulanceTeamInfoMap;
 
-  public DefaultAmbulanceTargetAllocator(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
-    super(ai, wi, si, moduleManager, developData);
+    public DefaultAmbulanceTargetAllocator(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
+        super(ai, wi, si, moduleManager, developData);
     this.priorityHumans = new HashSet<>();
     this.targetHumans = new HashSet<>();
     this.ambulanceTeamInfoMap = new HashMap<>();

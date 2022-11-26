@@ -2,17 +2,13 @@ package adf.core.agent.precompute;
 
 import adf.core.agent.info.WorldInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import org.msgpack.jackson.dataformat.MessagePackFactory;
+import rescuecore2.worldmodel.EntityID;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.msgpack.jackson.dataformat.MessagePackFactory;
-import rescuecore2.worldmodel.EntityID;
 
 public final class PrecomputeData {
 

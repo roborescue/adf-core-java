@@ -1,28 +1,12 @@
 package adf.core.launcher;
 
-import adf.core.launcher.option.Option;
-import adf.core.launcher.option.OptionAmbulanceCentre;
-import adf.core.launcher.option.OptionAmbulanceTeam;
-import adf.core.launcher.option.OptionDebug;
-import adf.core.launcher.option.OptionDevelop;
-import adf.core.launcher.option.OptionDevelopData;
-import adf.core.launcher.option.OptionDevelopFile;
-import adf.core.launcher.option.OptionFireBrigade;
-import adf.core.launcher.option.OptionFireStation;
-import adf.core.launcher.option.OptionHost;
-import adf.core.launcher.option.OptionModuleConfig;
-import adf.core.launcher.option.OptionModuleData;
-import adf.core.launcher.option.OptionPoliceForce;
-import adf.core.launcher.option.OptionPoliceOffice;
-import adf.core.launcher.option.OptionPrecompute;
-import adf.core.launcher.option.OptionServer;
-import adf.core.launcher.option.OptionTeam;
-import adf.core.launcher.option.OptionTeamName;
+import adf.core.launcher.option.*;
+import rescuecore2.config.Config;
+import rescuecore2.config.ConfigException;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import rescuecore2.config.Config;
-import rescuecore2.config.ConfigException;
 
 class ConfigInitializer {
 

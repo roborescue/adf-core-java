@@ -2,8 +2,6 @@ package adf.core.agent.action.police;
 
 import adf.core.agent.action.Action;
 import adf.core.agent.info.AgentInfo;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import rescuecore2.messages.Message;
 import rescuecore2.misc.geometry.Vector2D;
 import rescuecore2.standard.entities.Blockade;
@@ -11,15 +9,18 @@ import rescuecore2.standard.messages.AKClear;
 import rescuecore2.standard.messages.AKClearArea;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class ActionClear extends Action {
 
-  protected EntityID target;
-  private boolean useOldFunction;
-  private int posX;
-  private int posY;
+    protected EntityID target;
+    private boolean useOldFunction;
+    private int posX;
+    private int posY;
 
-  public ActionClear(@Nonnull EntityID targetID) {
-    super();
+    public ActionClear(@Nonnull EntityID targetID) {
+        super();
     this.target = targetID;
     this.useOldFunction = true;
   }

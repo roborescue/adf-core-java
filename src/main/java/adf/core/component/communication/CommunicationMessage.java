@@ -1,6 +1,7 @@
 package adf.core.component.communication;
 
 import adf.core.component.communication.util.BitOutputStream;
+
 import javax.annotation.Nonnull;
 
 abstract public class CommunicationMessage {

@@ -1,7 +1,5 @@
 package adf.impl.centralized;
 
-import static rescuecore2.standard.entities.StandardEntityURN.CIVILIAN;
-import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 import adf.core.agent.action.common.ActionMove;
 import adf.core.agent.action.common.ActionRest;
 import adf.core.agent.communication.MessageManager;
@@ -16,23 +14,27 @@ import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.centralized.CommandExecutor;
 import adf.core.component.extaction.ExtAction;
 import adf.core.component.module.algorithm.PathPlanning;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
 import rescuecore2.standard.entities.Area;
 import rescuecore2.standard.entities.Human;
 import rescuecore2.standard.entities.StandardEntity;
 import rescuecore2.worldmodel.EntityID;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+
+import static rescuecore2.standard.entities.StandardEntityURN.CIVILIAN;
+import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
+
 public class DefaultCommandExecutorFire extends CommandExecutor<CommandAmbulance> {
 
-  private static final int ACTION_UNKNOWN = -1;
-  private static final int ACTION_REST = CommandAmbulance.ACTION_REST;
-  private static final int ACTION_MOVE = CommandAmbulance.ACTION_MOVE;
-  private static final int ACTION_RESCUE = CommandAmbulance.ACTION_RESCUE;
-  private static final int ACTION_AUTONOMY = CommandAmbulance.ACTION_AUTONOMY;
+    private static final int ACTION_UNKNOWN = -1;
+    private static final int ACTION_REST = CommandAmbulance.ACTION_REST;
+    private static final int ACTION_MOVE = CommandAmbulance.ACTION_MOVE;
+    private static final int ACTION_RESCUE = CommandAmbulance.ACTION_RESCUE;
+    private static final int ACTION_AUTONOMY = CommandAmbulance.ACTION_AUTONOMY;
 
-  private PathPlanning pathPlanning;
+    private PathPlanning pathPlanning;
 
   private ExtAction actionFireRescue;
   private ExtAction actionExtMove;

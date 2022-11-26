@@ -1,17 +1,7 @@
 package adf.core.launcher;
 
 import adf.core.component.AbstractLoader;
-import adf.core.launcher.connect.Connector;
-import adf.core.launcher.connect.ConnectorAmbulanceCentre;
-import adf.core.launcher.connect.ConnectorAmbulanceTeam;
-import adf.core.launcher.connect.ConnectorFireBrigade;
-import adf.core.launcher.connect.ConnectorFireStation;
-import adf.core.launcher.connect.ConnectorPoliceForce;
-import adf.core.launcher.connect.ConnectorPoliceOffice;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import adf.core.launcher.connect.*;
 import rescuecore2.Constants;
 import rescuecore2.components.ComponentLauncher;
 import rescuecore2.components.TCPComponentLauncher;
@@ -21,15 +11,20 @@ import rescuecore2.standard.entities.StandardEntityFactory;
 import rescuecore2.standard.entities.StandardPropertyFactory;
 import rescuecore2.standard.messages.StandardMessageFactory;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AgentLauncher {
 
-  private Config config;
+    private Config config;
 
-  private AbstractLoader loader;
+    private AbstractLoader loader;
 
-  private List<Connector> connectors;
+    private List<Connector> connectors;
 
-  public AgentLauncher(String... args) throws ClassNotFoundException, ClassCastException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public AgentLauncher(String... args) throws ClassNotFoundException, ClassCastException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
     this.init(args);
   }
 

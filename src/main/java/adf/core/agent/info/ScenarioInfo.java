@@ -1,9 +1,10 @@
 package adf.core.agent.info;
 
 import adf.core.launcher.ConfigKey;
+import rescuecore2.config.Config;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import rescuecore2.config.Config;
 
 public class ScenarioInfo {
 

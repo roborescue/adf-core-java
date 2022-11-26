@@ -2,21 +2,17 @@ package adf.core.agent.info;
 
 import adf.core.agent.Agent;
 import adf.core.agent.action.Action;
+import rescuecore2.messages.Command;
+import rescuecore2.standard.entities.*;
+import rescuecore2.worldmodel.ChangeSet;
+import rescuecore2.worldmodel.EntityID;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import rescuecore2.messages.Command;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.FireBrigade;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.standard.entities.StandardEntityURN;
-import rescuecore2.standard.entities.StandardWorldModel;
-import rescuecore2.worldmodel.ChangeSet;
-import rescuecore2.worldmodel.EntityID;
 
 public class AgentInfo {
 

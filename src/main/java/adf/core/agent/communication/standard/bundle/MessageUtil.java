@@ -1,24 +1,13 @@
 package adf.core.agent.communication.standard.bundle;
 
-import adf.core.agent.communication.standard.bundle.information.MessageAmbulanceTeam;
-import adf.core.agent.communication.standard.bundle.information.MessageBuilding;
-import adf.core.agent.communication.standard.bundle.information.MessageCivilian;
-import adf.core.agent.communication.standard.bundle.information.MessageFireBrigade;
-import adf.core.agent.communication.standard.bundle.information.MessagePoliceForce;
-import adf.core.agent.communication.standard.bundle.information.MessageRoad;
+import adf.core.agent.communication.standard.bundle.information.*;
 import adf.core.agent.info.WorldInfo;
-import java.util.Set;
+import rescuecore2.standard.entities.*;
+import rescuecore2.worldmodel.EntityID;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import rescuecore2.standard.entities.AmbulanceTeam;
-import rescuecore2.standard.entities.Blockade;
-import rescuecore2.standard.entities.Building;
-import rescuecore2.standard.entities.Civilian;
-import rescuecore2.standard.entities.FireBrigade;
-import rescuecore2.standard.entities.PoliceForce;
-import rescuecore2.standard.entities.Road;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.worldmodel.EntityID;
+import java.util.Set;
 
 public class MessageUtil {
 

@@ -1,51 +1,19 @@
 package adf.core.agent.info;
 
-import static rescuecore2.standard.entities.StandardEntityURN.AMBULANCE_CENTRE;
-import static rescuecore2.standard.entities.StandardEntityURN.AMBULANCE_TEAM;
-import static rescuecore2.standard.entities.StandardEntityURN.BLOCKADE;
-import static rescuecore2.standard.entities.StandardEntityURN.BUILDING;
-import static rescuecore2.standard.entities.StandardEntityURN.CIVILIAN;
-import static rescuecore2.standard.entities.StandardEntityURN.FIRE_BRIGADE;
-import static rescuecore2.standard.entities.StandardEntityURN.FIRE_STATION;
-import static rescuecore2.standard.entities.StandardEntityURN.GAS_STATION;
-import static rescuecore2.standard.entities.StandardEntityURN.POLICE_FORCE;
-import static rescuecore2.standard.entities.StandardEntityURN.POLICE_OFFICE;
-import static rescuecore2.standard.entities.StandardEntityURN.WORLD;
-import java.awt.geom.Rectangle2D;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
+import rescuecore2.misc.Pair;
+import rescuecore2.standard.entities.*;
+import rescuecore2.worldmodel.*;
+
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import rescuecore2.misc.Pair;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.Blockade;
-import rescuecore2.standard.entities.Building;
-import rescuecore2.standard.entities.Edge;
-import rescuecore2.standard.entities.FireBrigade;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.Road;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.standard.entities.StandardEntityURN;
-import rescuecore2.standard.entities.StandardPropertyURN;
-import rescuecore2.standard.entities.StandardWorldModel;
-import rescuecore2.standard.entities.World;
-import rescuecore2.worldmodel.ChangeSet;
-import rescuecore2.worldmodel.Entity;
-import rescuecore2.worldmodel.EntityID;
-import rescuecore2.worldmodel.EntityListener;
-import rescuecore2.worldmodel.Property;
-import rescuecore2.worldmodel.WorldModel;
-import rescuecore2.worldmodel.WorldModelListener;
+import java.awt.geom.Rectangle2D;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static rescuecore2.standard.entities.StandardEntityURN.*;
 
 public class WorldInfo implements Iterable<StandardEntity> {
 

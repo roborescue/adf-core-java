@@ -1,18 +1,7 @@
 package adf.core.debug;
 
-import static rescuecore2.misc.java.JavaTools.instantiate;
 import adf.core.agent.info.ScenarioInfo;
 import adf.core.agent.info.WorldInfo;
-import java.awt.BorderLayout;
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.List;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import rescuecore2.config.Config;
 import rescuecore2.log.CommandsRecord;
 import rescuecore2.log.UpdatesRecord;
@@ -23,14 +12,23 @@ import rescuecore2.view.ViewListener;
 import rescuecore2.worldmodel.Entity;
 import rescuecore2.worldmodel.WorldModel;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.List;
+
+import static rescuecore2.misc.java.JavaTools.instantiate;
+
 public class WorldViewer extends JPanel {
 
-  /**
-   *
-   */
-  private static final long serialVersionUID = 2732220527053489740L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 2732220527053489740L;
 
-  private static final String VIEWERS_KEY = "log.viewers";
+    private static final String VIEWERS_KEY = "log.viewers";
 
   private JLabel timestep;
   private EntityInspector inspector;

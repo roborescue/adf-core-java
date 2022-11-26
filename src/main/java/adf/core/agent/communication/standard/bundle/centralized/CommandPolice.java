@@ -4,10 +4,11 @@ import adf.core.agent.communication.standard.bundle.StandardMessage;
 import adf.core.agent.communication.standard.bundle.StandardMessagePriority;
 import adf.core.component.communication.util.BitOutputStream;
 import adf.core.component.communication.util.BitStreamReader;
-import java.util.Objects;
+import rescuecore2.worldmodel.EntityID;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import rescuecore2.worldmodel.EntityID;
+import java.util.Objects;
 
 public class CommandPolice extends StandardMessage {
 

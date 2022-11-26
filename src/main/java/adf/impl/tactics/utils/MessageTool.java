@@ -1,9 +1,5 @@
 package adf.impl.tactics.utils;
 
-import static rescuecore2.standard.entities.StandardEntityURN.AMBULANCE_TEAM;
-import static rescuecore2.standard.entities.StandardEntityURN.BUILDING;
-import static rescuecore2.standard.entities.StandardEntityURN.FIRE_BRIGADE;
-import static rescuecore2.standard.entities.StandardEntityURN.POLICE_FORCE;
 import adf.core.agent.communication.MessageManager;
 import adf.core.agent.communication.standard.bundle.MessageUtil;
 import adf.core.agent.communication.standard.bundle.StandardMessage;
@@ -17,36 +13,25 @@ import adf.core.agent.info.AgentInfo;
 import adf.core.agent.info.ScenarioInfo;
 import adf.core.agent.info.WorldInfo;
 import adf.core.component.communication.CommunicationMessage;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import rescuecore2.config.NoSuchConfigOptionException;
 import rescuecore2.misc.geometry.Point2D;
 import rescuecore2.misc.geometry.Vector2D;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.Blockade;
-import rescuecore2.standard.entities.Building;
-import rescuecore2.standard.entities.Civilian;
-import rescuecore2.standard.entities.Edge;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.Road;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.standard.entities.StandardEntityConstants;
+import rescuecore2.standard.entities.*;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.*;
+
+import static rescuecore2.standard.entities.StandardEntityURN.*;
 
 public class MessageTool {
 
-  @SuppressWarnings("unused")
-  private DevelopData developData;
+    @SuppressWarnings("unused")
+    private DevelopData developData;
 
-  private int sendingAvoidTimeReceived;
-  @SuppressWarnings("unused")
-  private int sendingAvoidTimeSent;
-  private int sendingAvoidTimeClearRequest;
+    private int sendingAvoidTimeReceived;
+    @SuppressWarnings("unused")
+    private int sendingAvoidTimeSent;
+    private int sendingAvoidTimeClearRequest;
   private int estimatedMoveDistance;
 
   private int maxTimeStep = Integer.MAX_VALUE;

@@ -1,6 +1,5 @@
 package adf.impl.extaction;
 
-import static rescuecore2.standard.entities.StandardEntityURN.BLOCKADE;
 import adf.core.agent.action.Action;
 import adf.core.agent.action.ambulance.ActionRescue;
 import adf.core.agent.action.common.ActionMove;
@@ -13,24 +12,23 @@ import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.extaction.ExtAction;
 import adf.core.component.module.algorithm.PathPlanning;
+import rescuecore2.config.NoSuchConfigOptionException;
+import rescuecore2.standard.entities.*;
+import rescuecore2.worldmodel.EntityID;
+
 import java.util.ArrayList;
 import java.util.List;
-import rescuecore2.config.NoSuchConfigOptionException;
-import rescuecore2.standard.entities.Area;
-import rescuecore2.standard.entities.Blockade;
-import rescuecore2.standard.entities.FireBrigade;
-import rescuecore2.standard.entities.Human;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.worldmodel.EntityID;
+
+import static rescuecore2.standard.entities.StandardEntityURN.BLOCKADE;
 
 public class DefaultExtActionFireRescue extends ExtAction {
 
-  private PathPlanning pathPlanning;
+    private PathPlanning pathPlanning;
 
-  private int thresholdRest;
-  private int kernelTime;
+    private int thresholdRest;
+    private int kernelTime;
 
-  private EntityID target;
+    private EntityID target;
 
   public DefaultExtActionFireRescue(AgentInfo agentInfo, WorldInfo worldInfo, ScenarioInfo scenarioInfo, ModuleManager moduleManager, DevelopData developData) {
     super(agentInfo, worldInfo, scenarioInfo, moduleManager, developData);

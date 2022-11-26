@@ -8,9 +8,10 @@ import adf.core.agent.info.WorldInfo;
 import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.communication.CommunicationMessage;
+import rescuecore2.worldmodel.EntityID;
+
 import java.util.Collection;
 import java.util.Map;
-import rescuecore2.worldmodel.EntityID;
 
 abstract public class CommandPicker {
 

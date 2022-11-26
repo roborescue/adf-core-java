@@ -8,23 +8,24 @@ import adf.core.agent.info.WorldInfo;
 import adf.core.agent.module.ModuleManager;
 import adf.core.component.centralized.CommandPicker;
 import adf.core.component.communication.CommunicationMessage;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
 import rescuecore2.standard.entities.Area;
 import rescuecore2.standard.entities.StandardEntity;
 import rescuecore2.standard.entities.StandardEntityURN;
 import rescuecore2.worldmodel.EntityID;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
+
 public class DefaultCommandPickerPolice extends CommandPicker {
 
-  private Collection<CommunicationMessage> messages;
-  private Map<EntityID, EntityID> allocationData;
+    private Collection<CommunicationMessage> messages;
+    private Map<EntityID, EntityID> allocationData;
 
-  public DefaultCommandPickerPolice(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
-    super(ai, wi, si, moduleManager, developData);
-    this.messages = new ArrayList<>();
-    this.allocationData = null;
+    public DefaultCommandPickerPolice(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
+        super(ai, wi, si, moduleManager, developData);
+        this.messages = new ArrayList<>();
+        this.allocationData = null;
   }
 
 

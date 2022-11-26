@@ -4,20 +4,21 @@ import adf.core.agent.communication.standard.bundle.StandardMessage;
 import adf.core.agent.communication.standard.bundle.StandardMessagePriority;
 import adf.core.component.communication.util.BitOutputStream;
 import adf.core.component.communication.util.BitStreamReader;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import rescuecore2.standard.entities.Civilian;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class MessageCivilian extends StandardMessage {
 
-  private static final int SIZE_ID = 32;
-  private static final int SIZE_HP = 14;
-  private static final int SIZE_BURIEDNESS = 13;
-  private static final int SIZE_DAMAGE = 14;
-  private static final int SIZE_POSITION = 32;
+    private static final int SIZE_ID = 32;
+    private static final int SIZE_HP = 14;
+    private static final int SIZE_BURIEDNESS = 13;
+    private static final int SIZE_DAMAGE = 14;
+    private static final int SIZE_POSITION = 32;
 
-  protected int rawAgentID;
+    protected int rawAgentID;
   protected EntityID agentID;
   protected int rawHumanPosition;
   protected int humanHP;

@@ -9,14 +9,15 @@ import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.module.algorithm.Clustering;
 import adf.core.component.module.algorithm.DynamicClustering;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 import rescuecore2.standard.entities.Building;
 import rescuecore2.standard.entities.StandardEntity;
 import rescuecore2.standard.entities.StandardEntityURN;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 public class FireClustering extends DynamicClustering {
 
@@ -26,7 +27,7 @@ public class FireClustering extends DynamicClustering {
   public FireClustering(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
     super(ai, wi, si, moduleManager, developData);
     this.groupingDistance = developData.getInteger(
-        "adf.impl.module.algorithm.FireClustering.groupingDistance", 30);
+            "adf.impl.module.algorithm.FireClustering.groupingDistance", 30);
   }
 
 

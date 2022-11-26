@@ -7,8 +7,9 @@ import adf.core.agent.info.ScenarioInfo;
 import adf.core.agent.info.WorldInfo;
 import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
-import java.util.Map;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.Map;
 
 public abstract class PoliceTargetAllocator extends TargetAllocator {
 

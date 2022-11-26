@@ -12,13 +12,14 @@ import adf.core.component.communication.CommunicationMessage;
 import adf.core.component.communication.MessageCoordinator;
 import adf.core.component.extaction.ExtAction;
 import adf.core.component.module.AbstractModule;
+import rescuecore2.config.NoSuchConfigOptionException;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import rescuecore2.config.NoSuchConfigOptionException;
 
 public class ModuleManager {
 

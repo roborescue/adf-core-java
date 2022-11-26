@@ -8,11 +8,12 @@ import adf.core.agent.info.WorldInfo;
 import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.module.AbstractModule;
+import rescuecore2.standard.entities.StandardEntity;
+import rescuecore2.worldmodel.EntityID;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import rescuecore2.standard.entities.StandardEntity;
-import rescuecore2.worldmodel.EntityID;
 
 public abstract class Clustering extends AbstractModule {
 

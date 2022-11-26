@@ -7,17 +7,12 @@ import adf.core.agent.info.WorldInfo;
 import adf.core.agent.module.ModuleManager;
 import adf.core.agent.precompute.PrecomputeData;
 import adf.core.component.module.algorithm.PathPlanning;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import rescuecore2.misc.collections.LazyMap;
 import rescuecore2.standard.entities.Area;
 import rescuecore2.worldmodel.Entity;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.*;
 
 public class AStarPathPlanning extends PathPlanning {
 

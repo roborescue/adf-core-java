@@ -12,18 +12,19 @@ import adf.core.component.communication.CommunicationMessage;
 import adf.core.component.module.complex.TargetAllocator;
 import adf.core.component.tactics.TacticsAmbulanceCentre;
 import adf.core.debug.WorldViewLauncher;
-import java.util.Map;
 import rescuecore2.worldmodel.EntityID;
+
+import java.util.Map;
 
 public class DefaultTacticsAmbulanceCentre extends TacticsAmbulanceCentre {
 
-  private TargetAllocator allocator;
-  private CommandPicker picker;
-  private Boolean isVisualDebug;
+    private TargetAllocator allocator;
+    private CommandPicker picker;
+    private Boolean isVisualDebug;
 
-  @Override
-  public void initialize(AgentInfo agentInfo, WorldInfo worldInfo,
-      ScenarioInfo scenarioInfo, ModuleManager moduleManager,
+    @Override
+    public void initialize(AgentInfo agentInfo, WorldInfo worldInfo,
+                           ScenarioInfo scenarioInfo, ModuleManager moduleManager,
       MessageManager messageManager, DevelopData debugData) {
     messageManager.setChannelSubscriber(moduleManager.getChannelSubscriber(
         "MessageManager.CenterChannelSubscriber",

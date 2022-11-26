@@ -22,22 +22,23 @@ import adf.core.component.module.complex.Search;
 import adf.core.component.tactics.TacticsPoliceForce;
 import adf.core.debug.WorldViewLauncher;
 import adf.impl.tactics.utils.MessageTool;
-import java.util.List;
-import java.util.Objects;
 import rescuecore2.standard.entities.PoliceForce;
 import rescuecore2.standard.entities.StandardEntity;
 import rescuecore2.standard.entities.StandardEntityURN;
 import rescuecore2.worldmodel.EntityID;
 
+import java.util.List;
+import java.util.Objects;
+
 public class DefaultTacticsPoliceForce extends TacticsPoliceForce {
 
-  private int clearDistance;
+    private int clearDistance;
 
-  private RoadDetector roadDetector;
-  private Search search;
+    private RoadDetector roadDetector;
+    private Search search;
 
-  private ExtAction actionExtClear;
-  private ExtAction actionExtMove;
+    private ExtAction actionExtClear;
+    private ExtAction actionExtMove;
 
   private CommandExecutor<CommandPolice> commandExecutorPolice;
   private CommandExecutor<CommandScout> commandExecutorScout;

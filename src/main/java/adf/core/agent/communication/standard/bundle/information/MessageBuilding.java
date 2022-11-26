@@ -4,19 +4,20 @@ import adf.core.agent.communication.standard.bundle.StandardMessage;
 import adf.core.agent.communication.standard.bundle.StandardMessagePriority;
 import adf.core.component.communication.util.BitOutputStream;
 import adf.core.component.communication.util.BitStreamReader;
-import javax.annotation.Nonnull;
 import rescuecore2.standard.entities.Building;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+
 public class MessageBuilding extends StandardMessage {
 
-  private static final int SIZE_ID = 32;
-  private static final int SIZE_BROKENNESS = 32;
-  private static final int SIZE_FIERYNESS = 32;
-  private static final int SIZE_TEMPERATURE = 32;
+    private static final int SIZE_ID = 32;
+    private static final int SIZE_BROKENNESS = 32;
+    private static final int SIZE_FIERYNESS = 32;
+    private static final int SIZE_TEMPERATURE = 32;
 
-  protected int rawBuildingID;
-  protected EntityID buildingID;
+    protected int rawBuildingID;
+    protected EntityID buildingID;
   protected int buildingBrokenness;
   protected int buildingFieryness;
   protected int buildingTemperature;

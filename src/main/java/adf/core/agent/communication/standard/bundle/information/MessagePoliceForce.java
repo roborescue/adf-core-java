@@ -4,20 +4,21 @@ import adf.core.agent.communication.standard.bundle.StandardMessage;
 import adf.core.agent.communication.standard.bundle.StandardMessagePriority;
 import adf.core.component.communication.util.BitOutputStream;
 import adf.core.component.communication.util.BitStreamReader;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import rescuecore2.standard.entities.PoliceForce;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class MessagePoliceForce extends StandardMessage {
 
-  /* below id is same to information.MessagePoliceForce */
-  public static final int ACTION_REST = 0;
-  public static final int ACTION_MOVE = 1;
-  public static final int ACTION_CLEAR = 2;
+    /* below id is same to information.MessagePoliceForce */
+    public static final int ACTION_REST = 0;
+    public static final int ACTION_MOVE = 1;
+    public static final int ACTION_CLEAR = 2;
 
-  private static final int SIZE_ID = 32;
-  private static final int SIZE_HP = 14;
+    private static final int SIZE_ID = 32;
+    private static final int SIZE_HP = 14;
   private static final int SIZE_BURIEDNESS = 13;
   private static final int SIZE_DAMAGE = 14;
   private static final int SIZE_POSITION = 32;

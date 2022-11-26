@@ -1,20 +1,21 @@
 package adf.core.agent.action.ambulance;
 
 import adf.core.agent.action.Action;
-import javax.annotation.Nonnull;
 import rescuecore2.messages.Message;
 import rescuecore2.standard.entities.Human;
 import rescuecore2.standard.messages.AKRescue;
 import rescuecore2.worldmodel.EntityID;
 
+import javax.annotation.Nonnull;
+
 public class ActionRescue extends Action {
 
-  protected EntityID target;
+    protected EntityID target;
 
-  public ActionRescue(@Nonnull EntityID targetID) {
-    super();
-    this.target = targetID;
-  }
+    public ActionRescue(@Nonnull EntityID targetID) {
+        super();
+        this.target = targetID;
+    }
 
 
   public ActionRescue(@Nonnull Human human) {

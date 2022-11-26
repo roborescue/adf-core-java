@@ -1,11 +1,6 @@
 package adf.core.component;
 
-import adf.core.component.tactics.TacticsAmbulanceCentre;
-import adf.core.component.tactics.TacticsAmbulanceTeam;
-import adf.core.component.tactics.TacticsFireBrigade;
-import adf.core.component.tactics.TacticsFireStation;
-import adf.core.component.tactics.TacticsPoliceForce;
-import adf.core.component.tactics.TacticsPoliceOffice;
+import adf.core.component.tactics.*;
 
 public abstract class AbstractLoader {
 
