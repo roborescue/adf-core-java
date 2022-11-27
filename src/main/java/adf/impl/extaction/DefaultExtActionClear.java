@@ -25,9 +25,12 @@ import rescuecore2.worldmodel.EntityID;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * 动作清理
+ */
 public class DefaultExtActionClear extends ExtAction {
 
-  private PathPlanning pathPlanning;
+  private PathPlanning pathPlanning;//路径
 
   private int clearDistance;
   private int forcedMove;
