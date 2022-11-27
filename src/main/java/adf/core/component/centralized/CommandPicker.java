@@ -22,10 +22,10 @@ abstract public class CommandPicker {
   protected DevelopData developData;
 
   private int countPrecompute;
-  private int countResume;
-  private int countPreparate;
-  private int countUpdateInfo;
-  private int countUpdateInfoCurrentTime;
+  private int countResume;//刷新参数
+  private int countPreparate;//预制参数
+  private int countUpdateInfo;//事件参数
+  private int countUpdateInfoCurrentTime;//事件时间
 
   public CommandPicker(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
     this.worldInfo = wi;

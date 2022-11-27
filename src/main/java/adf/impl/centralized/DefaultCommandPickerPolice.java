@@ -25,13 +25,13 @@ public class DefaultCommandPickerPolice extends CommandPicker {//默认命令选
     public DefaultCommandPickerPolice(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
         super(ai, wi, si, moduleManager, developData);
         this.messages = new ArrayList<>();
-        this.allocationData = null;
+        this.allocationData = null;//初始化地图数据为0
   }
 
 
   @Override
   public CommandPicker
-      setAllocatorResult(Map<EntityID, EntityID> allocationData) {
+      setAllocatorResult(Map<EntityID, EntityID> allocationData) {//设置分配器结果
     this.allocationData = allocationData;
     return this;
   }
