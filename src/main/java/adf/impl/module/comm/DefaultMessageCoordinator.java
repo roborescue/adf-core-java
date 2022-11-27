@@ -15,6 +15,7 @@ import rescuecore2.standard.entities.StandardEntityURN;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class DefaultMessageCoordinator extends MessageCoordinator {
 
   @Override

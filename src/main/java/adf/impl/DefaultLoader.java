@@ -4,6 +4,9 @@ import adf.core.component.AbstractLoader;
 import adf.core.component.tactics.*;
 import adf.impl.tactics.*;
 
+/**
+ *
+ */
 public class DefaultLoader extends AbstractLoader {
 
   @Override
