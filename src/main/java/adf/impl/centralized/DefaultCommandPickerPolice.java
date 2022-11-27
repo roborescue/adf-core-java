@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-public class DefaultCommandPickerPolice extends CommandPicker {
+public class DefaultCommandPickerPolice extends CommandPicker {//默认命令选择器,继承命令选择器类
 
-    private Collection<CommunicationMessage> messages;
-    private Map<EntityID, EntityID> allocationData;
+    private Collection<CommunicationMessage> messages;//收集交互信息
+    private Map<EntityID, EntityID> allocationData;//地图id，分配数据
 
     public DefaultCommandPickerPolice(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
         super(ai, wi, si, moduleManager, developData);
