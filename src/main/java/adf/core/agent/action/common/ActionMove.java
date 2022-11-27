@@ -7,21 +7,28 @@ import rescuecore2.worldmodel.EntityID;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+/**
+ *动作移动指令
+ */
+
 
 public class ActionMove extends Action {
 
     private List<EntityID> path;
 
     private boolean usePosition;
-    private int posX;
-    private int posY;
+    private int posX;//位置坐标X
+    private int posY;//位置坐标Y
 
     public ActionMove(@Nonnull List<EntityID> movePath) {
     super();
     this.usePosition = false;
     this.path = movePath;
   }
-
+/**
+ *
+ *
+ */
 
   public ActionMove(@Nonnull List<
       EntityID> movePath, int destinationX, int destinationY) {
