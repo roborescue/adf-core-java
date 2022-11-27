@@ -24,23 +24,74 @@ import java.util.Objects;
 import static rescuecore2.standard.entities.StandardEntityURN.BLOCKADE;
 import static rescuecore2.standard.entities.StandardEntityURN.REFUGE;
 
+/**
+ *警察的默认命令执行器
+ *
+ * @author <a href="https://downsxu.github.io/">DownsXu</a>
+ */
 public class DefaultCommandExecutorPolice extends CommandExecutor<CommandPolice> {
 
+  /**
+   * 未知动作
+   */
   private static final int ACTION_UNKNOWN = -1;
+  /**
+   * 休息
+   */
   private static final int ACTION_REST = CommandPolice.ACTION_REST;
+  /**
+   *移动
+   */
   private static final int ACTION_MOVE = CommandPolice.ACTION_MOVE;
+  /**
+   * 清理
+   */
   private static final int ACTION_CLEAR = CommandPolice.ACTION_CLEAR;
+  /**
+   * 自主行动
+   */
   private static final int ACTION_AUTONOMY = CommandPolice.ACTION_AUTONOMY;
 
+  /**
+   * 命令类型
+   */
   private int commandType;
+
+  /**
+   * 命令目标的EntityID
+   */
   private EntityID target;
+
+  /**
+   * 命令执行者的EntityID
+   */
   private EntityID commanderID;
 
+  /**
+   * 路径规划算法
+   */
   private PathPlanning pathPlanning;
 
+  /**
+   * 扩展行动：清理
+   */
   private ExtAction actionExtClear;
+
+  /**
+   * 扩展行动：移动
+   */
   private ExtAction actionExtMove;
 
+  /**
+   * {@link DefaultCommandExecutorPolice}的构造函数
+   *
+   * @param ai     代理信息
+   * @param wi     世界信息
+   * @param si  场景信息
+   * @param moduleManager 模块管理器
+   * @param developData   开发数据
+   * @author <a href="https://downsxu.github.io/">DownsXu</a>
+   */
   public DefaultCommandExecutorPolice(AgentInfo ai, WorldInfo wi, ScenarioInfo si, ModuleManager moduleManager, DevelopData developData) {
     super(ai, wi, si, moduleManager, developData);
     this.commandType = ACTION_UNKNOWN;
@@ -63,6 +114,14 @@ public class DefaultCommandExecutorPolice extends CommandExecutor<CommandPolice>
   }
 
 
+  /**
+   * 设置命令
+   *
+   * @param command 警察命令
+   * @return this
+   * @author <a href="https://downsxu.github.io/">DownsXu</a>
+   */
+
   @Override
   public CommandExecutor setCommand(CommandPolice command) {
     EntityID agentID = this.agentInfo.getID();
@@ -75,7 +134,13 @@ public class DefaultCommandExecutorPolice extends CommandExecutor<CommandPolice>
     return this;
   }
 
-
+  /**
+   * 预计算时执行的方法
+   *
+   * @param precomputeData 预计算数据
+   * @return this
+   * @author <a href="https://downsxu.github.io/">DownsXu</a>
+   */
   public CommandExecutor precompute(PrecomputeData precomputeData) {
     super.precompute(precomputeData);
     if (this.getCountPrecompute() >= 2) {
@@ -87,7 +152,13 @@ public class DefaultCommandExecutorPolice extends CommandExecutor<CommandPolice>
     return this;
   }
 
-
+  /**
+   *预计算模式的初始化处理方法
+   *
+   * @param precomputeData 预计算数据
+   * @return this
+   * @author <a href="https://downsxu.github.io/">DownsXu</a>
+   */
   public CommandExecutor resume(PrecomputeData precomputeData) {
     super.resume(precomputeData);
     if (this.getCountResume() >= 2) {
@@ -100,6 +171,12 @@ public class DefaultCommandExecutorPolice extends CommandExecutor<CommandPolice>
   }
 
 
+  /**
+   *无预计算模式的初始化处理方法
+   *
+   * @return this
+   * @author <a href="https://downsxu.github.io/">DownsXu</a>
+   */
   public CommandExecutor preparate() {
     super.preparate();
     if (this.getCountPreparate() >= 2) {
@@ -111,7 +188,13 @@ public class DefaultCommandExecutorPolice extends CommandExecutor<CommandPolice>
     return this;
   }
 
-
+  /**
+   *每个回合都会执行这个方法来更新agent所持有的信息
+   *
+   * @param messageManager
+   * @return this
+   * @author <a href="https://downsxu.github.io/">DownsXu</a>
+   */
   public CommandExecutor updateInfo(MessageManager messageManager) {
     super.updateInfo(messageManager);
     if (this.getCountUpdateInfo() >= 2) {
@@ -134,6 +217,12 @@ public class DefaultCommandExecutorPolice extends CommandExecutor<CommandPolice>
   }
 
 
+  /**
+   * 计算应该执行的动作,将结果保存在{@link #result}中
+   *
+   * @return this
+   * @author <a href="https://downsxu.github.io/">DownsXu</a>
+   */
   @Override
   public CommandExecutor calc() {
     this.result = null;
@@ -236,7 +325,12 @@ public class DefaultCommandExecutorPolice extends CommandExecutor<CommandPolice>
     return this;
   }
 
-
+  /**
+   * 判断命令是否执行完毕
+   *
+   * @return true:执行完毕 / false ：未执行完毕
+   * @author <a href="https://downsxu.github.io/">DownsXu</a>
+   */
   private boolean isCommandCompleted() {
     PoliceForce agent = (PoliceForce) this.agentInfo.me();
     switch (this.commandType) {
