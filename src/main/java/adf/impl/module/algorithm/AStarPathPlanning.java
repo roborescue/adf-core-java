@@ -17,6 +17,7 @@ import java.util.*;
 /**
  * 基于A*的路径规划算法
  * <p>
+ *
  * 调用流程:{@link #setFrom(EntityID)} -> {@link #setDestination(Collection)} -> {@link #calc()} -> {@link #getResult()}
  *
  * @author <a href="https://roozen.top">Roozen</a>
