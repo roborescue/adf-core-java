@@ -28,7 +28,7 @@ import static rescuecore2.standard.entities.StandardEntityURN.*;
 /**
  * 救护队的默认命令执行器
  *
- * <a href="https://roozen.top">Roozen</a>
+ * @author <a href="https://roozen.top">Roozen</a>
  */
 public class DefaultCommandExecutorAmbulance
         extends CommandExecutor<CommandAmbulance> {
