@@ -16,8 +16,8 @@ import java.util.Objects;
 
 public class AgentInfo {
 
-  private Agent agent;//代理
-  private StandardWorldModel world;//标准地图模型
+  private Agent agent;
+  private StandardWorldModel world;
   private int time;
   private ChangeSet changed;
   private Collection<Command> heard;

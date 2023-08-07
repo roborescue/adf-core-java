@@ -257,8 +257,7 @@ public class DefaultCommandExecutorAmbulance
             case ACTION_REST:
                 EntityID position = this.agentInfo.getPosition();
                 if (this.target == null) {
-                    Collection<
-                            EntityID> refuges = this.worldInfo.getEntityIDsOfType(REFUGE);
+                    Collection<EntityID> refuges = this.worldInfo.getEntityIDsOfType(REFUGE);
                     if (refuges.contains(position)) {
                         this.result = new ActionRest();
                     } else {

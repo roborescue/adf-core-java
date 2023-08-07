@@ -82,8 +82,8 @@ public class DefaultChannelSubscriber extends ChannelSubscriber {
 
 
   public static void main(String[] args) {
-    int numChannels = 6;
-    int maxChannels = 2;
+    int numChannels = 12;
+    int maxChannels = 4;
     for (int i = 0; i < maxChannels; i++) {
       System.out.println("FIREBRIGADE-" + i + ":"
           + getChannelNumber(StandardEntityURN.FIRE_BRIGADE, i, numChannels));
