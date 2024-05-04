@@ -37,7 +37,7 @@ public class DefaultTacticsFireStation extends TacticsFireStation {
       case PRECOMPUTED:
       case NON_PRECOMPUTE:
         this.allocator = moduleManager.getModule(
-            "TacticsFireStation.TargetAllocator",
+            "DefaultTacticsFireStation.TargetAllocator",
             "adf.impl.module.complex.DefaultFireTargetAllocator");
         this.picker = moduleManager.getCommandPicker(
             "DefaultTacticsFireStation.CommandPicker",
