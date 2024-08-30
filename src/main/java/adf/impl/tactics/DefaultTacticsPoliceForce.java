@@ -198,7 +198,7 @@ public class DefaultTacticsPoliceForce extends TacticsPoliceForce {
     }
 
     target = this.search.calc().getTarget();
-    action = this.actionExtClear.setTarget(target).calc().getAction();
+    action = this.actionExtMove.setTarget(target).calc().getAction();
     if (action != null) {
       this.sendActionMessage(worldInfo, messageManager, agent, action);
       return action;
