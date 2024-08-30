@@ -79,12 +79,12 @@ public abstract class PathPlanning extends AbstractModule {
       if (prevPoint != null) {
         int x = prevPoint.first() - point.first();
         int y = prevPoint.second() - point.second();
-        sum += x * x + y * y;
+        sum += Math.hypot(x, y);
       }
       prevPoint = point;
     }
 
-    return Math.sqrt(sum);
+    return sum;
   }
 
 
