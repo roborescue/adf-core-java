@@ -28,12 +28,12 @@ public class MessageAmbulanceTeam extends StandardMessage {
 
   protected int rawAgentID;
   protected EntityID agentID;
-  protected Integer rawHumanPosition;
-  protected Integer humanHP;
-  protected Integer humanBuriedness;
-  protected Integer humanDamage;
+  protected int rawHumanPosition;
+  protected int humanHP;
+  protected int humanBuriedness;
+  protected int humanDamage;
   protected EntityID humanPosition;
-  protected Integer rawTargetID;
+  protected int rawTargetID;
   protected EntityID myTargetID;
   protected int myAction;
 
