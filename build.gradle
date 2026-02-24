@@ -11,7 +11,7 @@ java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
 }
-version = '4.0'
+version = '5.0'
 
 def getDateTime() {
   new Date().format('yyyyMMddHHmmss', TimeZone.getTimeZone('UTC'))
