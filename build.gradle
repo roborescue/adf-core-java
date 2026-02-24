@@ -7,9 +7,11 @@ defaultTasks 'build'
 
 group = 'com.github.roborescue'
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
-version = '4.0'
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+version = '5.0'
 
 def getDateTime() {
   new Date().format('yyyyMMddHHmmss', TimeZone.getTimeZone('UTC'))
@@ -42,7 +44,7 @@ repositories {
     url = 'https://repo.enonic.com/public/'
   }
   maven {
-    url 'https://jitpack.io'
+    url = 'https://jitpack.io'
   }
 }
 
@@ -69,7 +71,7 @@ publishing {
   publications {
     maven(MavenPublication) {
       groupId = 'com.github.roborescue'
-      artifactId = 'adf-core'
+      artifactId = 'adf-core-java'
       version = 'master-SNAPSHOT'
 
       from components.java
@@ -90,21 +92,19 @@ clean{
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
+  archiveClassifier = 'javadoc'
   from javadoc.destinationDir
   archiveFileName = 'adf-core-javadoc.jar'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-  classifier = 'sources'
+  archiveClassifier = 'sources'
   from sourceSets.main.allSource
   archiveFileName = 'adf-core-sources.jar'
 }
 
-artifacts {
-  archives sourcesJar
-  archives javadocJar
-}
+assemble.dependsOn sourcesJar
+assemble.dependsOn javadocJar
 
 task start (type: JavaExec) {
   classpath = sourceSets.main.runtimeClasspath
