@@ -1,12 +1,14 @@
 package adf.core.launcher;
 
 import static adf.core.Main.VERSION_CODE;
-import adf.core.Main;
+
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
 import java.util.concurrent.Semaphore;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
+
+import adf.core.Main;
 
 public class ConsoleOutput {
 
@@ -112,7 +114,7 @@ public class ConsoleOutput {
     String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1)
         + "/META-INF/MANIFEST.MF";
     try {
-      Manifest manifest = new Manifest(new URL(manifestPath).openStream());
+      Manifest manifest = new Manifest(URI.create(manifestPath).toURL().openStream());
       Attributes attributes = manifest.getMainAttributes();
       buildTimestamp = attributes.getValue("Build-Timestamp");
     } catch (IOException e) {

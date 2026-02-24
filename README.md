@@ -4,9 +4,9 @@
 
 ## 1. Software Pre-Requisites
 
-* Git
-* OpenJDK Java 17
-* Gradle
+- Git
+- OpenJDK Java 21
+- Gradle
 
 ## 2. Download
 
