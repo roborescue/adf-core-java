@@ -71,7 +71,7 @@ publishing {
   publications {
     maven(MavenPublication) {
       groupId = 'com.github.roborescue'
-      artifactId = 'adf-core'
+      artifactId = 'adf-core-java'
       version = 'master-SNAPSHOT'
 
       from components.java
